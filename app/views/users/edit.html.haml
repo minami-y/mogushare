@@ -1,0 +1,22 @@
+%h1 プロフィール編集
+
+= form_for(@user) do |f|
+  = render 'shared/error_messages'
+
+  %div
+    = f.label :name
+    = f.text_field :name
+  %div
+    = f.label :email
+    = f.email_field :email
+  %div
+    = f.label :image
+    = f.file_field :image
+  %div
+    = f.label :password
+    = f.password_field :password
+  %div
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  %div
+    = f.submit "更新"

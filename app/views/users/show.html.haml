@@ -1,9 +1,14 @@
 %h1 Profile
 
+= image_tag @user.image, class: "user-image"
 = @user.name
 = @user.email
 
-%h2 プロフィール編集
-%h2　購入履歴一覧
-%h2　投稿履歴一覧
-%h2　口座情報
+%div
+= link_to "プロフィール編集", edit_user_path(current_user)
+%div
+= link_to "購入履歴一覧", "#"
+%div
+= link_to "投稿履歴一覧", "#"
+%div
+= link_to "口座情報", "#"

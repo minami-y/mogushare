@@ -37,6 +37,9 @@ gem 'haml-rails'
 gem 'erb2haml'
 # Use ActiveModel has_secure_password
 gem 'bcrypt',         '3.1.11'
+# Upload user-image
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
