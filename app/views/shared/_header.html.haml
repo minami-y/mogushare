@@ -1,6 +1,6 @@
-= link_to 'signup', signup_path
-= link_to 'profile', '/users/1'
 -if logged_in?
+  = link_to 'profile', user_path(current_user.id)
   = link_to 'logout', logout_path, method: :delete
 -else
+  = link_to 'signup', signup_path
   = link_to 'login', login_path
