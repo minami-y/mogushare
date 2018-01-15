@@ -4,13 +4,16 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def new
+    # binding.pry
     @user = User.new
+    @areas = Area.search(params[:search])
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
+      @user_area = UserArea.create(user_id: @user.id, area_id: params[:area_id])
       flash[:success] = "ユーザー登録が完了しました"
       # 仮置き　実際はタイムラインにリダイレクト
       redirect_to root_path

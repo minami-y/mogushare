@@ -1,6 +1,6 @@
 %h1 もぐシェア
 
 %p お住いの近くのコミュニティを郵便番号で検索
-= form_tag('/search') do
-  = text_field_tag :post_code
-  = submit_tag "探す"
+= form_tag signup_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", name: nil

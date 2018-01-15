@@ -3,16 +3,21 @@
 = form_for(@user, url: signup_path) do |f|
   = render 'shared/error_messages'
 
-  = f.label :name
-  = f.text_field :name
+  - @areas.each do |area|
+    = area.city + area.street
+    = hidden_field_tag :area_id, area.id
 
-  = f.label :email
-  = f.email_field :email
-
-  = f.label :password
-  = f.password_field :password
-
-  = f.label :password_confirmation, "Confirmation"
-  = f.password_field :password_confirmation
-
-  = f.submit "登録"
+  %div
+    = f.label :name
+    = f.text_field :name
+  %div
+    = f.label :email
+    = f.email_field :email
+  %div
+    = f.label :password
+    = f.password_field :password
+  %div
+    = f.label :password_confirmation, "Confirmation"
+    = f.password_field :password_confirmation
+  %div
+    = f.submit "登録"
