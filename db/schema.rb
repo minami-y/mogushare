@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112083601) do
+ActiveRecord::Schema.define(version: 20180115041741) do
+
+  create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "postal_code",                 null: false
+    t.integer  "prefectural_id"
+    t.string   "city",           default: ""
+    t.string   "street",         default: ""
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["postal_code"], name: "index_areas_on_postal_code", using: :btree
+    t.index ["prefectural_id"], name: "index_areas_on_prefectural_id", using: :btree
+  end
+
+  create_table "prefecturals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
