@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # ログイン後、アクセスしようとしていたページにリダイレクトする。
-      redirect_back_or user
+      # redirect_back_or user
+      redirect_to tickets_path
     else
       flash.now[:danger] = 'invalid'
       render 'new'

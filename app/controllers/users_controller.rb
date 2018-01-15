@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @user_area = UserArea.create(user_id: @user.id, area_id: params[:area_id])
       flash[:success] = "ユーザー登録が完了しました"
       # 仮置き　実際はタイムラインにリダイレクト
-      redirect_to root_path
+      redirect_to tickets_path
     else
       render 'new'
     end

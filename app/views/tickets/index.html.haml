@@ -1,0 +1,11 @@
+%h1 Timeline
+
+%div
+  - @user_areas.each do |user_area|
+    - user_area.area.users.each do |user|
+      %div
+        = user.name
+
+%div
+  = link_to "チケット投稿", new_ticket_path
+
