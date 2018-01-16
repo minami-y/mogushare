@@ -14,7 +14,7 @@ CSV.foreach('db/prefecturals_name_seed.csv') do |row|
 end
 
 Area.delete_all
-CSV.foreach('db/postal_code_seed.csv') do |row|
+CSV.foreach('db/postal_code_seed23.csv') do |row|
   record = {
     :postal_code     => row[0],
     :prefectural     => namelist[row[1].to_i], # オブジェクトを紐付け
