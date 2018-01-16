@@ -3,9 +3,16 @@
 %div
   - @user_areas.each do |user_area|
     - user_area.area.users.each do |user|
-      %div
-        = user.name
-
+      - if user.seller.present?
+        - user.seller.tickets.each do |ticket|
+          %div
+            = link_to ticket_path(ticket.id) do
+              .ticket-item
+                %div
+                = mypage_profile_image(user)
+                = user.seller.official_name
+                %div
+                = ticket.message
 %div
   = link_to "チケット投稿", new_ticket_path
 

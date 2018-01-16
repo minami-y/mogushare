@@ -1,6 +1,8 @@
 -if logged_in?
   = link_to 'profile', user_path(current_user.id)
   = link_to 'logout', logout_path, method: :delete
+  = link_to 'seller-registration', new_seller_path
+  = link_to 'timeline',tickets_path
 -else
   = link_to 'signup', signup_path
   = link_to 'login', login_path

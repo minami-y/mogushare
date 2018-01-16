@@ -32,6 +32,7 @@
         = render 'share_fields', f: share
     %div
       = link_to_add_association 'メニュー追加', f, :shares
+      = hidden_field_tag :seller_id, current_user.seller.id
 
     %br
     %div

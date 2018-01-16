@@ -1,0 +1,19 @@
+%h1　販売者情報登録
+
+= form_for @seller do |f|
+
+  %div
+    = f.label :official_name
+    = f.text_field :official_name
+    = hidden_field_tag :user_id, current_user.id
+
+  %div
+    = f.label :address
+    = f.text_field :address
+
+  %div
+    = f.label :phone_number
+    = f.text_field :phone_number
+
+  %div
+    = f.submit "登録"

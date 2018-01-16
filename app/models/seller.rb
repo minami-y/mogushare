@@ -1,3 +1,4 @@
 class Seller < ApplicationRecord
-  has_one :user
+  belongs_to :user, optional: true
+  has_many :tickets
 end
