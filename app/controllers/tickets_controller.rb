@@ -7,6 +7,8 @@ class TicketsController < ApplicationController
   end
 
   def new
+    @ticket = Ticket.new
+    @ticket.shares.build
   end
 
   def show

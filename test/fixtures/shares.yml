@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  genre: MyString
+  menu: MyString
+  price: 1
+  quantity: 1
+  ticket_id: one
+
+two:
+  genre: MyString
+  menu: MyString
+  price: 1
+  quantity: 1
+  ticket_id: two

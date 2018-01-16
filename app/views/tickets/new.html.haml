@@ -1,1 +1,30 @@
 %h1 チケット投稿
+
+= form_for @ticket do |f|
+  %ticket_form
+    %div
+      = f.label :message
+      = f.text_field :message
+
+    %div
+      = f.label :event_date
+      = f.datetime_select :event_date
+
+    %div
+      = f.label :expiration_date
+      = f.datetime_select :expiration_date
+
+    %div
+      = f.label :event_place
+      = f.text_field :event_place
+
+    %h4 -おすそわけメニュー-
+    %div
+      = f.fields_for :shares do |share|
+        = render 'share_form', f: share
+    %div
+      = link_to_add_association 'メニュー追加', f, :shares
+
+    %br
+    %div
+      = f.submit "投稿"

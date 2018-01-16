@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  event_date: 2018-01-15 20:21:03
+  expiration_date: 2018-01-15 20:21:03
+  event_place: MyString
+  seller_id: one
+  buyer_id: one
+
+two:
+  message: MyText
+  event_date: 2018-01-15 20:21:03
+  expiration_date: 2018-01-15 20:21:03
+  event_place: MyString
+  seller_id: two
+  buyer_id: two

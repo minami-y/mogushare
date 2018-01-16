@@ -1,0 +1,11 @@
+.nested-fields
+  %div
+    = f.label :genre
+    = f.text_field :genre
+  %div
+    = f.label :menu
+    = f.text_field :menu
+  %div
+    = f.label :quantity
+    = f.text_field :quantity
+    / = link_to_remove_association '削除', f

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115055209) do
+ActiveRecord::Schema.define(version: 20180115113131) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                 null: false
@@ -27,6 +27,40 @@ ActiveRecord::Schema.define(version: 20180115055209) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sellers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "official_name", null: false
+    t.string   "address",       null: false
+    t.string   "phone_number",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_sellers_on_user_id", using: :btree
+  end
+
+  create_table "shares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "genre"
+    t.string   "menu",       null: false
+    t.integer  "price",      null: false
+    t.integer  "quantity",   null: false
+    t.integer  "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_shares_on_ticket_id", using: :btree
+  end
+
+  create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "message",         limit: 65535, null: false
+    t.datetime "event_date",                    null: false
+    t.datetime "expiration_date",               null: false
+    t.string   "event_place",                   null: false
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["buyer_id"], name: "index_tickets_on_buyer_id", using: :btree
+    t.index ["seller_id"], name: "index_tickets_on_seller_id", using: :btree
   end
 
   create_table "user_areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
