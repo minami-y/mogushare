@@ -1,10 +1,18 @@
 %h1 チケット投稿
 
 = form_for @ticket do |f|
+  - if @ticket.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@ticket.errors.count, "error")
+        prohibited this ticket from being saved:
+      %ul
+        - @ticket.errors.full_messages.each do |message|
+          %li= message
   %ticket_form
     %div
       = f.label :message
-      = f.text_field :message
+      = f.text_area :message
 
     %div
       = f.label :event_date
@@ -21,7 +29,7 @@
     %h4 -おすそわけメニュー-
     %div
       = f.fields_for :shares do |share|
-        = render 'share_form', f: share
+        = render 'share_fields', f: share
     %div
       = link_to_add_association 'メニュー追加', f, :shares
 

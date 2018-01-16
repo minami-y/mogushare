@@ -11,6 +11,23 @@ class TicketsController < ApplicationController
     @ticket.shares.build
   end
 
+  def create
+    binding.pry
+    @ticket = Ticket.new(ticket_params)
+    if @ticket.save
+      flash[:success] = "チケットを投稿しました"
+      redirect_to tickets_path
+    else
+      render "new"
+    end
+  end
+
   def show
   end
+
+  private
+
+    def ticket_params
+      params.require(:ticket).permit(:message, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :genre, :menu, :price, :quantity, :ticket_id, :_destroy])
+    end
 end
