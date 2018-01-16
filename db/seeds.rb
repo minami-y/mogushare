@@ -3,7 +3,7 @@ require "csv"
 
 Prefectural.delete_all # 重複するとERRORになる為、seedの度に再作成している。
 namelist = Array.new
-CSV.foreach('db/prefecturals_name_seed.csv') do |row|
+CSV.foreach('db/prefecturals_name_seed23.csv') do |row|
   record = {
     :id              => row[0].to_i,
     :name            => row[1],
