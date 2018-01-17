@@ -3,9 +3,10 @@
 = form_for(@user, url: signup_path) do |f|
   = render 'shared/error_messages'
 
-  - @areas.each do |area|
-    = area.city + area.street
-    = hidden_field_tag :area_id, area.id
+  / - @areas.each do |area|
+  /   = area.city + area.street
+  = @area.city + @area.street
+  = hidden_field_tag :area_id, @area.id
 
   %div
     = f.label :name

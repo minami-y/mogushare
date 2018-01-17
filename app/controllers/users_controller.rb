@@ -6,7 +6,17 @@ class UsersController < ApplicationController
   def new
     # binding.pry
     @user = User.new
-    @areas = Area.search(params[:search])
+    # if params[:search].present?
+    #   @area = Area.search(params[:search])
+    # else
+    #   flash[:danger] = "正しい郵便番号を入力してください"
+    #   redirect_to root_path
+    # end
+    @area = Area.search(params[:search])
+    if @area.nil?
+      flash[:danger] = "正しい郵便番号を入力してください"
+      redirect_to root_path
+    end
   end
 
   def create
