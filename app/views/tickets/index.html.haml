@@ -13,6 +13,15 @@
                 = user.seller.official_name
                 %div
                 = ticket.message
+                %div
+                受け渡し時間：
+                = ticket.event_date.strftime('%Y年%m月%d日　%H:%M')
+                %div
+                受け渡し場所：
+                = ticket.event_place
+                %div
+                = ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')
+                まで有効
 %div
   = link_to "チケット投稿", new_ticket_path
 
