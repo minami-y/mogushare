@@ -1,2 +1,27 @@
-%h1 Tickets#show
-%p Find me in app/views/tickets/show.html.haml
+%h1 チケット詳細
+
+%div
+= mypage_profile_image(@seller.user)
+= @seller.official_name
+%div
+= @seller.address
+%br
+
+%div
+%h4 おすそわけ
+- @shares.each do |share|
+  %div.ticket-item
+    = share.menu
+    ¥
+    = share.price
+    = share.quantity
+
+%div
+= @ticket.message
+
+%div
+合計：
+= @shares_price
+
+%div
+= link_to 'これで決済する', "#"
