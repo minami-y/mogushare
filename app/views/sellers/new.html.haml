@@ -1,6 +1,14 @@
 %h1　販売者情報登録
 
 = form_for @seller do |f|
+  - if @seller.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@seller.errors.count, "error")
+        prohibited this ticket from being saved:
+      %ul
+        - @seller.errors.full_messages.each do |message|
+          %li= message
 
   %div
     = f.label :official_name
