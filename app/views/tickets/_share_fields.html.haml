@@ -10,5 +10,7 @@
     = f.text_field :price
   %div
     = f.label :quantity
-    = f.text_field :quantity
-    = link_to_remove_association '削除', f
+    = f.number_field :quantity
+    人前
+  %div
+    = link_to_remove_association 'メニュー削除', f
