@@ -1,4 +1,6 @@
 class SellersController < ApplicationController
+  before_action :set_seller, only: [:edit, :update]
+
   def new
     @seller = Seller.new
   end
@@ -16,9 +18,17 @@ class SellersController < ApplicationController
   end
 
   def update
+    if @seller.update_attributes(seller_params)
+      flash[:success] = "購入者情報が更新されました"
+      redirect_to user_path(current_user)
+    end
   end
 
   private
+
+    def set_seller
+      @seller = Seller.find(current_user.seller.id)
+    end
 
     def seller_params
       params.require(:seller).permit(:official_name, :address, :phone_number).merge(user_id: current_user.id)

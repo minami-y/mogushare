@@ -2,10 +2,17 @@
 
 = mypage_profile_image(current_user)
 = @user.name
+%div
 = @user.email
 
 %div
 = link_to "プロフィール編集", edit_user_path(current_user)
+- if current_user.seller.nil?
+  %div
+  = link_to "販売者情報登録", new_seller_path
+- else
+  %div
+  = link_to "販売者情報編集", edit_seller_path(current_user.seller.id)
 %div
 = link_to "購入履歴一覧", "#"
 %div

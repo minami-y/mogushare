@@ -12,16 +12,15 @@
 - @shares.each do |share|
   %div.ticket-item
     = share.menu
-    ¥
-    = share.price
-    = share.quantity
+    #{share.quantity}人前
+    ¥#{share.price}
 
 %div
 = @ticket.message
 
 %div
 合計：
-/ # = @shares_price
+= @shares_price
 
 %div
 = link_to 'これで決済する', "#"
