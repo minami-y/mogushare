@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :tickets
   resources :talks
   resources :sellers
-
+  resources :charges
+  # post 'chareges/new' => 'chareges#new'
 end

@@ -23,4 +23,6 @@
 = @shares_price
 
 %div
-= link_to 'これで決済する', "#"
+= link_to 'これで決済する', new_charge_path(id: @ticket.id)
+/ = form_tag(chareges_new_path, method: :post) do
+/   = hidden_field_tag
