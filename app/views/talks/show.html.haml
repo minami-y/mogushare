@@ -1,7 +1,7 @@
 - @talk_logs.each do |talk|
   %div
   = talk.user.name
-  = talk.created_at
+  = talk.created_at.strftime('%Y年%m月%d日　%H:%M')
   %p= talk.message
 = form_for @talk, url: talks_path do |f|
   = f.label :message
