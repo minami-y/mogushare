@@ -7,4 +7,6 @@
       %span Amount: ¥#{@amount}
   = hidden_field_tag :id, @ticket.id
   = hidden_field_tag :buyer_id, current_user.id
+  = hidden_field_tag :seller_id, @ticket.seller_id
+  = hidden_field_tag :user_ids, value: current_user.id, value: @ticket.seller_id, multiple: true
   %script.stripe-button{"data-amount" => @amount, "data-description" => "A month's subscription", "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", "data-locale" => "auto", :src => "https://checkout.stripe.com/checkout.js"}

@@ -14,6 +14,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_areas
   has_one :seller
   has_many :tickets
+  has_many :user_groups
+  has_many :groups, through: :user_groups
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

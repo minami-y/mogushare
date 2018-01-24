@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115113131) do
+ActiveRecord::Schema.define(version: 20180123150435) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                 null: false
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20180115113131) do
     t.datetime "updated_at",                  null: false
     t.index ["postal_code"], name: "index_areas_on_postal_code", using: :btree
     t.index ["prefectural_id"], name: "index_areas_on_prefectural_id", using: :btree
+  end
+
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prefecturals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,6 +73,15 @@ ActiveRecord::Schema.define(version: 20180115113131) do
     t.integer  "area_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_user_groups_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

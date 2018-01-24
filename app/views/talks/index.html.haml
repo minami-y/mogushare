@@ -1,2 +1,9 @@
 %h1 トーク一覧
 %p 仮置き
+
+- @groups.each do |group|
+  = link_to talk_path(group) do
+    %div
+    - group.users.each do |user|
+      = user.name
+      / = group.messages.first
