@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :user_groups
   has_many :groups, through: :user_groups
+  has_many :talks
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

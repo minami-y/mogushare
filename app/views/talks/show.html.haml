@@ -1,0 +1,10 @@
+- @talk_logs.each do |talk|
+  %div
+  = talk.user.name
+  = talk.created_at
+  %p= talk.message
+= form_for @talk, url: talks_path do |f|
+  = f.label :message
+  = f.text_area :message
+  = f.hidden_field :group_id, value: @group.id
+  = f.submit "送信"
