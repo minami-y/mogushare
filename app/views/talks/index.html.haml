@@ -10,4 +10,6 @@
         トークルームNo : #{group.id}
         %div
         = user.name
+        = group.latest_messages(group)
+
       / = group.messages.first
