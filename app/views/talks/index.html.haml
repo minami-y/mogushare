@@ -6,5 +6,8 @@
     %div
     - group.users.each do |user|
       - if user.name != current_user.name
+        %div
+        トークルームNo : #{group.id}
+        %div
         = user.name
       / = group.messages.first
