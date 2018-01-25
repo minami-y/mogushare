@@ -22,8 +22,12 @@
 合計：
 = @shares_price
 
-- if current_user.id != @ticket.seller_id
+- if current_user.seller.id == @ticket.seller_id
+  %div
+  = link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
+  = link_to '編集する',edit_ticket_path(@ticket.id)
+- else
   %div
   = link_to 'これで決済する', new_charge_path(id: @ticket.id)
-= link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
-= link_to '編集する',edit_ticket_path(@ticket.id)
+
+

@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   layout 'after_signup_footer'
   before_action :register_as_seller, only: :new
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
     @user_areas = current_user.user_areas
@@ -28,7 +29,28 @@ class TicketsController < ApplicationController
     @seller = @ticket.seller
   end
 
+  def edit
+  end
+
+  def update
+    if @ticket.update(ticket_params)
+      redirect_to ticket_path(@ticket.id)
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    if @ticket.destroy
+      redirect_to tickets_path, notice: 'チケットを削除しました。'
+    end
+  end
+
   private
+
+    def set_ticket
+      @ticket = Ticket.find(params[:id])
+    end
 
     def ticket_params
       params.require(:ticket).permit(:message, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :genre, :menu, :price, :quantity, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)

@@ -1,0 +1,39 @@
+%h1 チケット編集
+
+= form_for @ticket do |f|
+  - if @ticket.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@ticket.errors.count, "error")
+        prohibited this ticket from being saved:
+      %ul
+        - @ticket.errors.full_messages.each do |message|
+          %li= message
+  %ticket_form
+    %div
+      = f.label :message
+      = f.text_area :message
+
+    %div
+      = f.label :event_date
+      = f.datetime_select :event_date
+
+    %div
+      = f.label :expiration_date
+      = f.datetime_select :expiration_date
+
+    %div
+      = f.label :event_place
+      = f.text_field :event_place
+
+    %h4 -おすそわけメニュー-
+    %div
+      = f.fields_for :shares do |share|
+        = render 'share_fields', f: share
+    %div
+      = link_to_add_association 'メニュー追加', f, :shares
+      = hidden_field_tag :seller_id, current_user.seller.id
+
+    %br
+    %div
+      = f.submit "投稿"
