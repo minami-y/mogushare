@@ -22,7 +22,8 @@
 合計：
 = @shares_price
 
-%div
-= link_to 'これで決済する', new_charge_path(id: @ticket.id)
-/ = form_tag(chareges_new_path, method: :post) do
-/   = hidden_field_tag
+- if current_user.id != @ticket.seller_id
+  %div
+  = link_to 'これで決済する', new_charge_path(id: @ticket.id)
+= link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
+= link_to '編集する',edit_ticket_path(@ticket.id)

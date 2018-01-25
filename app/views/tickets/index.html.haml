@@ -6,22 +6,23 @@
       - if user.seller.present?
         - user.seller.tickets.each do |ticket|
           %div
-            = link_to ticket_path(ticket.id) do
-              .ticket-item
-                %div
-                = mypage_profile_image(user)
-                = user.seller.official_name
-                %div
-                = ticket.message
-                %div
-                受け渡し時間：
-                = ticket.event_date.strftime('%Y年%m月%d日　%H:%M')
-                %div
-                受け渡し場所：
-                = ticket.event_place
-                %div
-                = ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')
-                まで有効
+            - if ticket.buyer_id.nil? && (ticket.expiration_date > Time.current)
+              = link_to ticket_path(ticket.id) do
+                .ticket-item
+                  %div
+                  = mypage_profile_image(user)
+                  = user.seller.official_name
+                  %div
+                  = ticket.message
+                  %div
+                  受け渡し時間：
+                  = ticket.event_date.strftime('%Y年%m月%d日　%H:%M')
+                  %div
+                  受け渡し場所：
+                  = ticket.event_place
+                  %div
+                  = ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')
+                  まで有効
 %div
   = link_to "チケット投稿", new_ticket_path
 
