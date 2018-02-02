@@ -8,6 +8,7 @@ class User < ApplicationRecord
               uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: false, on: :facebook_login
   mount_uploader :image, ImageUploader
   has_many :user_areas
   has_many :area, through: :user_areas
@@ -18,7 +19,6 @@ class User < ApplicationRecord
   has_many :groups, through: :user_groups
   has_many :talks
   has_many :authorizations
-  validates :password, presence: false, on: :facebook_login
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

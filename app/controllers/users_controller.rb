@@ -22,8 +22,9 @@ class UsersController < ApplicationController
     else
       #　通常のサインアップ
       @user = User.new(user_params)
+      @area = Area.find(params[:area_id])
       result = @user.save
-      binding.pry
+      # binding.pry
       fb = ""
     end
 
@@ -37,7 +38,9 @@ class UsersController < ApplicationController
       if fb.present?
         redirect_to auth_failure_path
       else
-        render 'new'
+        render "new"
+        # redirect_to signup_path(params[:search])
+        # redirect_to root_path
       end
     end
   end
