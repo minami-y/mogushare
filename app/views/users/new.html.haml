@@ -1,5 +1,6 @@
 %h1 Signup
 
+= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
 = form_for(@user, url: signup_path) do |f|
   = render 'shared/error_messages'
 

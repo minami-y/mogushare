@@ -4,14 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def new
-    # binding.pry
     @user = User.new
-    # if params[:search].present?
-    #   @area = Area.search(params[:search])
-    # else
-    #   flash[:danger] = "正しい郵便番号を入力してください"
-    #   redirect_to root_path
-    # end
     @area = Area.search(params[:search])
     if @area.nil?
       flash[:danger] = "正しい郵便番号を入力してください"
@@ -20,15 +13,32 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    # facebook認証でのサインアップ
+    if env['omniauth.auth'].present?
+      @user = User.from_omniauth(env['omniauth.auth'])
+      result = @user.save(context: :facebook_login)
+      # binding.pry
+      fb = "Facebook"
+    else
+      #　通常のサインアップ
+      @user = User.new(user_params)
+      result = @user.save
+      binding.pry
+      fb = ""
+    end
+
+    if result
       log_in @user
       @user_area = UserArea.create(user_id: @user.id, area_id: params[:area_id])
       flash[:success] = "ユーザー登録が完了しました"
       # 仮置き　実際はタイムラインにリダイレクト
       redirect_to tickets_path
     else
-      render 'new'
+      if fb.present?
+        redirect_to auth_failure_path
+      else
+        render 'new'
+      end
     end
   end
 

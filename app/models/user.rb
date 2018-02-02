@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :talks
+  has_many :authorizations
+  validates :password, presence: false, on: :facebook_login
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -47,4 +49,20 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  def self.from_omniauth(auth)
+    # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    user = User.where('email=?', auth.info.email).first
+    if user.nil?
+      user = User.new
+    end
+    # where(auth.uid, auth.provider).first_or_initialize do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user
+    # end
+  end
 end
