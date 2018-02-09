@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
-  resources :tickets
+  resources :tickets do
+    collection do
+      post 'confirm'
+    end
+  end
   resources :talks
   resources :sellers
   resources :charges

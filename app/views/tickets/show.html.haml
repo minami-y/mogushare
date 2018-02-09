@@ -9,6 +9,7 @@
 
 %div
 %h4 おすそわけ
+= image_tag @ticket.image, class: "ticket-image"
 - @shares.each do |share|
   %div.ticket-item
     = share.menu

@@ -1,6 +1,6 @@
 %h1 チケット投稿
 
-= form_for @ticket do |f|
+= form_for @ticket, url: {action: 'confirm'} do |f|
   - if @ticket.errors.any?
     #error_explanation
       %h3
@@ -10,6 +10,12 @@
         - @ticket.errors.full_messages.each do |message|
           %li= message
   %ticket_form
+
+    %div
+      = f.label :image
+      = f.file_field :image
+      = f.hidden_field :image_cache
+
     %div
       = f.label :message
       = f.text_area :message
@@ -36,4 +42,4 @@
 
     %br
     %div
-      = f.submit "投稿"
+      = f.submit "確認ページへ"

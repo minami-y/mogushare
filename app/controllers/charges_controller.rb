@@ -23,6 +23,7 @@ class ChargesController < ApplicationController
     @ticket.update_attributes(buyer_id: params[:buyer_id])
     @group = Group.create(group_params)
     @user_group_seller = UserGroup.create(group_id: @group.id, user_id: params[:seller_id])
+    logger.debug @user_group_seller.errors.inspect
     @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
     redirect_to talks_path
 

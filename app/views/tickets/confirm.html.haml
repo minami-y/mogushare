@@ -1,0 +1,39 @@
+= form_for @ticket do |f|
+
+  %div
+  = image_tag @ticket.image, class: "ticket-image"
+  = hidden_field_tag :"cache[image]", @ticket.image.cache_name
+  %div
+  メッセージ: #{@ticket.message}
+  = f.hidden_field :message
+  %div
+  受け渡し日時 または 開催日時: #{@ticket.event_date.strftime('%Y年%m月%d日　%H:%M')}
+  = f.hidden_field :event_date, value: @ticket.event_date
+  %div
+  有効期限: #{@ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')}
+  = f.hidden_field :expiration_date, value: @ticket.expiration_date
+  %div
+  受け渡し場所 または 開催場所: #{@ticket.event_place}
+  = f.hidden_field :event_place
+
+  %div
+  = f.fields_for :shares do |s|
+    - @shares.each do |share|
+      %div
+      ジャンル: #{share.genre}
+      = s.hidden_field :genre
+      %div
+      メニュー: #{share.menu}
+      = s.hidden_field :menu
+      %div
+      金額: #{share.price}
+      = s.hidden_field :price
+      %div
+      数量: #{share.quantity}
+      = s.hidden_field :quantity
+
+  %div
+  以上の内容で投稿しますか？
+  %div
+  = f.submit "投稿する"
+  = f.submit "投稿を修正する", name: "back"

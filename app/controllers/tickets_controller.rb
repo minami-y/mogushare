@@ -12,9 +12,19 @@ class TicketsController < ApplicationController
     @ticket.shares.build
   end
 
+  def confirm
+    @ticket = Ticket.new(ticket_params)
+    @shares = @ticket.shares
+    render :new if @ticket.invalid?
+  end
+
   def create
     @ticket = Ticket.new(ticket_params)
-    if @ticket.save
+    # binding.pry
+    @ticket.image.retrieve_from_cache! params[:cache][:image]
+    if params[:back]
+      render :new
+    elsif @ticket.save!
       flash[:success] = "チケットを投稿しました"
       redirect_to tickets_path
     else
@@ -53,7 +63,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:message, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :genre, :menu, :price, :quantity, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
+      params.require(:ticket).permit(:image, :message, :image_cache, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :genre, :menu, :price, :quantity, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
     end
 
     # チケット投稿ページに遷移時、販売者登録ができていなければ登録ページにリダイレクト
