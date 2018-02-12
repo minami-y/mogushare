@@ -20,7 +20,6 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    # binding.pry
     @ticket.image.retrieve_from_cache! params[:cache][:image]
     if params[:back]
       render :new

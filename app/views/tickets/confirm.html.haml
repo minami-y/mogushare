@@ -17,23 +17,31 @@
   = f.hidden_field :event_place
 
   %div
-  = f.fields_for :shares do |s|
-    - @shares.each do |share|
-      %div
-      ジャンル: #{share.genre}
-      = s.hidden_field :genre
-      %div
-      メニュー: #{share.menu}
-      = s.hidden_field :menu
-      %div
-      金額: #{share.price}
-      = s.hidden_field :price
-      %div
-      数量: #{share.quantity}
-      = s.hidden_field :quantity
+
+  - @shares.each do |share|
+    %div
+    ジャンル:
+    = share.genre
+    %div
+    メニュー:
+    = share.menu
+    %div
+    金額:
+    = share.price
+    %div
+    数量:
+    = share.quantity
+
+  = f.fields_for :shares, @shares do |s|
+    = s.hidden_field :genre
+    = s.hidden_field :menu
+    = s.hidden_field :price
+    = s.hidden_field :quantity
 
   %div
   以上の内容で投稿しますか？
   %div
   = f.submit "投稿する"
   = f.submit "投稿を修正する", name: "back"
+
+
