@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   end
   resources :talks
   resources :sellers
-  resources :charges
+  resources :charges do
+    collection do
+      post 'confirm'
+    end
+  end
   # post 'chareges/new' => 'chareges#new'
 end

@@ -10,23 +10,45 @@
 %div
 %h4 おすそわけ
 = image_tag @ticket.image, class: "ticket-image"
-- @shares.each do |share|
-  %div.ticket-item
-    = share.menu
-    #{share.quantity}人前
-    ¥#{share.price}
-
 %div
 = @ticket.message
 
-%div
-合計：
-= @shares_price
-
 - if current_user.seller.nil? || current_user.seller.id != @ticket.seller_id
-  %div
-  = link_to 'これで決済する', new_charge_path(id: @ticket.id)
+  / 購入用の入力フォームを作成
+  = form_for(@order, url: confirm_charges_path(id: @ticket.id)) do |f|
+    = f.hidden_field :seller_id, value: @seller.id
+    = f.hidden_field :user_id, value: current_user.id
+    / = f.hidden_field :total_price # value計算式を記述する。
+
+    - @shares.each do |share|
+      = f.fields_for :order_details do |od|
+        %div.ticket-item.ticket-item-menu{"data-price": share.price}
+          = share.menu
+          = od.label :unit_price, "単価："
+          = od.text_field :unit_price, readonly: true, value: share.price, size: 5, class: "item-price-unit"
+          円
+          = od.select :quantity, (0..share.quantity).to_a, class: "select"
+          = od.label :price, "小計："
+          = od.text_field :price, value: 0, readonly: true, size: 5, class: "item-price-total"
+          = od.hidden_field :share_id, value: share.id
+          円
+    = f.label :total_price, "合計"
+    = f.text_field :total_price, value: 0, readonly: true, size: 5, id: "item-price-total"
+    円
+
+    %div
+    = f.submit "確認画面へ"
+
 - else
+  - @shares.each do |share|
+    %br
+    ジャンル： #{share.genre}
+    %br
+    メニュー名： #{share.menu}
+    %br
+    単価： #{share.price} 円
+    %br
+    数量： #{share.quantity} 人前
   %div
   = link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
   = link_to '編集する',edit_ticket_path(@ticket.id)
