@@ -21,7 +21,7 @@ class ChargesController < ApplicationController
         @share.save
       end
 
-
+      # stripeによる決済処理
       @amount = @order.total_price * 100
 
       customer = Stripe::Customer.create(
@@ -53,14 +53,14 @@ class ChargesController < ApplicationController
           @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
           logger.debug @user_group_seller.errors.inspect
           @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-          redirect_to talks_path
+          redirect_to thanks_path
         end
       else
         @group = Group.create(group_params)
         @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
         logger.debug @user_group_seller.errors.inspect
         @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-        redirect_to talks_path
+        redirect_to thanks_path
       end
     else
       render template 'tickets/show'
@@ -69,6 +69,9 @@ class ChargesController < ApplicationController
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_charge_path
+  end
+
+  def thanks
   end
 
   private
