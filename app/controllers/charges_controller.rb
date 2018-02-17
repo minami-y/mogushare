@@ -36,12 +36,32 @@ class ChargesController < ApplicationController
         :currency => 'jpy'
         )
       # @ticket.update_attributes(buyer_id: params[:buyer_id])
-      @group = Group.create(group_params)
-      @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
-      logger.debug @user_group_seller.errors.inspect
-      @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-      binding.pry
-      redirect_to talks_path
+
+      # 同じ購入者と販売者が属するgroupがない場合はgroupを作成する。
+      if current_user.groups.exists?
+        groups = current_user.groups
+        array = []
+        groups.each do |group|
+          group.user_groups.each do |user_group|
+            array << user_group.user_id
+          end
+        end
+        if array.include?(@ticket.seller.user.id)
+          redirect_to talks_path
+        else
+          @group = Group.create(group_params)
+          @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
+          logger.debug @user_group_seller.errors.inspect
+          @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
+          redirect_to talks_path
+        end
+      else
+        @group = Group.create(group_params)
+        @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
+        logger.debug @user_group_seller.errors.inspect
+        @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
+        redirect_to talks_path
+      end
     else
       render template 'tickets/show'
     end
