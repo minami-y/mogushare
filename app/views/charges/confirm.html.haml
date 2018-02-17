@@ -4,9 +4,11 @@
       #error_explanation
         %p= flash[:error]
     - @order_details.each do |od|
-      %div
-      = od.share.menu
-      単価： ¥#{od.unit_price}
+      - if od.quantity != 0
+        %div
+        = od.share.menu
+        単価： ¥#{od.unit_price}
+        × #{od.quantity}人前
     %label.amount
       %div Amount: ¥#{@amount}
 
