@@ -1,5 +1,8 @@
 %h1 Login
 
+= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
+
+
 = form_for(:session, url: login_path) do |f|
 
   = f.label :email
