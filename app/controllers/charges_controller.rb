@@ -47,20 +47,20 @@ class ChargesController < ApplicationController
           end
         end
         if array.include?(@ticket.seller.user.id)
-          redirect_to talks_path
+          redirect_to thanks_path(id: @ticket.id)
         else
           @group = Group.create(group_params)
           @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
           logger.debug @user_group_seller.errors.inspect
           @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-          redirect_to thanks_path
+          redirect_to thanks_path(id: @ticket.id)
         end
       else
         @group = Group.create(group_params)
         @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
         logger.debug @user_group_seller.errors.inspect
         @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-        redirect_to thanks_path
+        redirect_to thanks_path(id: @ticket.id)
       end
     else
       render template 'tickets/show'
@@ -72,6 +72,9 @@ class ChargesController < ApplicationController
   end
 
   def thanks
+    @ticket = Ticket.find(params[:id])
+    @group = current_user.groups.joins(:users).where(users:{id: @ticket.seller.user.id}).first
+    binding.pry
   end
 
   private
