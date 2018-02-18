@@ -1,3 +1,7 @@
+- @group.users.each do |user|
+  - if user.name != current_user.name
+    %div
+    #{user.name}さん
 - @talk_logs.each do |talk|
   %div
   = talk.user.name
@@ -5,6 +9,7 @@
   %p= talk.message
 = form_for @talk, url: talks_path do |f|
   = f.label :message
+  %br
   = f.text_area :message
   = f.hidden_field :group_id, value: @group.id
   = f.submit "送信"
