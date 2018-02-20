@@ -1,3 +1,26 @@
-%div
-= link_to "タイムライン", tickets_path
-= link_to "チャット", talks_path
+%footer
+  .footer_content
+    .footer-icon
+      %i.fas.fa-home
+    .footer-txt
+      = link_to "タイムライン", tickets_path
+  .footer_content
+    .footer-icon
+      %i.fas.fa-comments
+    .footer-txt
+      = link_to "チャット", tickets_path
+  .footer_content
+    .footer-icon
+      %i.fas.fa-paper-plane
+    .footer-txt
+      = link_to "投稿する", tickets_path
+  .footer_content
+    .footer-icon
+      %i.fas.fa-history
+    .footer-txt
+      = link_to "取引履歴", tickets_path
+  .footer_content
+    .footer-icon
+      %i.fas.fa-user
+    .footer-txt
+      = link_to "プロフィール", tickets_path

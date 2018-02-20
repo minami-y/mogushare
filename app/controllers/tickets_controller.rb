@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-  layout 'after_signup_footer'
   before_action :register_as_seller, only: :new
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
