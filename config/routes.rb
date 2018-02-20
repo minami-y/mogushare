@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root 'communities#index'
+  root 'communities#top'
 
   get 'auth/:provider/callback', to: 'users#create'
   get 'auth/failure', to: redirect('/')
   delete 'signout', to: 'sessions#destroy', as: 'signout'
-
+  get    '/index',     to: 'communities#index'
   post   '/search',  to: 'communities#search'
   get    '/signup',  to: 'users#new'
   post   '/signup',  to: 'users#create'
