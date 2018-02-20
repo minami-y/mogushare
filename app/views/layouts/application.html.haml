@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Mogushare
     = csrf_meta_tags
@@ -12,4 +13,3 @@
       .alert
         = message
     = yield
-    = render 'shared/footer'

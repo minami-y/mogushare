@@ -1,7 +1,13 @@
-%h1 もぐシェア
+.board.large
+  %h1 お住いの近くのコミュニティを郵便番号で検索
+  .line
+  .board.middle
+    = form_tag signup_path, method: 'get' do
+      %p.comment 郵便番号
+        .submit-field
+          = text_field_tag :search, params[:search], placeholder: "例：150-0013"
+        %p 入力頂いた郵便番号に応じご近所のコミュニティをご案内します
+        .submit-button
+          = submit_tag "コミュニティを探す", name: nil
 
-%p お住いの近くのコミュニティを郵便番号で検索
-= form_tag signup_path, method: 'get' do
-
-  = text_field_tag :search, params[:search]
-  = submit_tag "Search", name: nil
+/ なんかすっごい微妙なとこ幼いとsubmitできてないからhtmlの組み方間違ってるよ

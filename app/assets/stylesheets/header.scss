@@ -1,0 +1,67 @@
+h1 {
+  padding-top: 30px;
+}
+
+header {
+  background-color: #ffffff;
+  display: flex;
+  height: 150px;
+  align-items:center;
+}
+
+.mogura-icon {
+  display: flex;
+  height: 100%;
+}
+
+.mogura-icon img {
+  width: 80%;
+  height: auto;
+  padding-left:30px;
+}
+
+.signup_button{
+  width: 80%;
+  height: 60%;
+  border-radius: 20px;
+  background-color: #fd7700;
+  border: solid 0.5px #fd7700;
+  font-size: 40px;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.signup_button a {
+  color: white;
+  text-decoration: none;
+}
+
+.signin_button {
+  width: 80%;
+  height: 60%;
+  border-radius: 20px;
+  border: solid 0.5px #fd7700;
+  font-size: 40px;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.signin_button a {
+  color: #fd7700;
+  text-decoration: none;
+}
+
+.header_txt {
+  width: 100%;
+  font-size: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+.header_img {
+  width: 50%;
+  display: flex;
+ justify-content: flex-end;
+}

@@ -1,9 +1,15 @@
--if logged_in?
-  = link_to 'プロフィール', user_path(current_user.id)
-  = link_to 'ログアウト', logout_path, method: :delete
-  = link_to '販売者登録', new_seller_path
-  = link_to 'タイムライン',tickets_path
-  = link_to 'トーク一覧', talks_path
--else
-  = link_to 'signup', signup_path
-  = link_to 'login', login_path
+%header
+  .mogura-icon
+    =image_tag "mogura-moji.png"
+
+  -if logged_in?
+    .header_txt
+      = link_to current_user.name, user_path(current_user.id)
+    .header_img
+      = mypage_profile_image(current_user)
+
+  -else
+    .signup_button
+      = link_to '会員登録', signup_path
+    .signin_button
+      = link_to 'ログイン', login_path

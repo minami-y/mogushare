@@ -1,0 +1,28 @@
+footer {
+  background-color: #ffffff;
+  display: flex;
+  height: 130px;
+  align-items:center;
+  margin-top: auto;
+}
+
+.footer_content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+.footer-icon{
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+}
+.footer-txt{
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+
+
