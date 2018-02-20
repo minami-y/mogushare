@@ -1,0 +1,9 @@
+%h1 購入履歴
+
+- @orders.each do |order|
+  - order.order_details.each do |od|
+    %div
+    = order.seller.user.name
+    %div
+    = od.share.menu
+    %hr

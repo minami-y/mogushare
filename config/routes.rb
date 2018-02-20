@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'users#create'
   get 'auth/failure', to: redirect('/')
-  delete 'signout', to: 'sessions#destroy', as: 'signout'
-  get    '/index',     to: 'communities#index'
+  delete 'signout',  to: 'sessions#destroy', as: 'signout'
+  get    '/index',   to: 'communities#index'
   post   '/search',  to: 'communities#search'
   get    '/signup',  to: 'users#new'
   post   '/signup',  to: 'users#create'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get    '/thanks',  to: 'charges#thanks'
   resources :users
+  get    '/buy_history',  to: 'users#buy_history'
   resources :tickets do
     collection do
       post 'confirm'

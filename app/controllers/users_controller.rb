@@ -60,6 +60,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def buy_history
+    @orders = Order.where(user_id: current_user.id)
+  end
+
   private
 
     def set_user
