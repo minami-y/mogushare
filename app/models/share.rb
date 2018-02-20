@@ -1,5 +1,6 @@
 class Share < ApplicationRecord
   belongs_to :ticket, optional: true
+  has_many :order_details
   validates :genre, presence: true
   validates :menu, presence: true
   validates :price, numericality: { only_integer: true}, presence: true
