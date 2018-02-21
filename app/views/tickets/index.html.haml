@@ -1,5 +1,76 @@
-%h1 Timeline
+/ ここはelseで投稿なしの場合として復活させる！
 
+/ %div.no_item
+/   まだご指定の地域に投稿はありません
+
+
+/ ここは変数ぶちこまねば！
+.board.large
+  .board.middle
+    %p.ticket_title 画像3枚 │ 500円
+    .ticket_info
+      %i.fas.fa-hourglass 2/10 18:00-19:00
+      %i.fas.fa-map-pin 恵比寿駅周辺
+      %i.fas.fa-tag おすそわけ
+  .board-img
+    = image_tag "mogura-moji.png"
+  .board.middle
+    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+  .ticket-line
+  .board.middle
+    .jump-to-detail
+      .cook_info
+        = image_tag "blank.jpg"
+        %span
+          = current_user.name
+      .show_more_button
+        =link_to "もっと見る", index_path
+
+.board.large
+  .board.middle
+    %p.ticket_title 画像3枚 │ 500円
+    .ticket_info
+      %i.fas.fa-hourglass 2/10 18:00-19:00
+      %i.fas.fa-map-pin 恵比寿駅周辺
+      %i.fas.fa-tag おすそわけ
+  .board-img
+    = image_tag "mogura-moji.png"
+  .board.middle
+    %p けっこうおいしいスパイスを勝ったので、割りとお店に近い味だと思います。クマとか猪とかたくさん入ってるジビエカレーです！！
+  .ticket-line
+  .board.middle
+    .jump-to-detail
+      .cook_info
+        = image_tag "blank.jpg"
+        %span
+          = current_user.name
+      .show_more_button
+        =link_to "もっと見る", index_path
+
+.board.large
+  .board.middle
+    %p.ticket_title 画像3枚 │ 500円
+    .ticket_info
+      %i.fas.fa-hourglass 2/10 18:00-19:00
+      %i.fas.fa-map-pin 恵比寿駅周辺
+      %i.fas.fa-tag おすそわけ
+  .board-img
+    = image_tag "mogura-moji.png"
+  .board.middle
+    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+  .ticket-line
+  .board.middle
+    .jump-to-detail
+      .cook_info
+        = image_tag "blank.jpg"
+        %span
+          = current_user.name
+      .show_more_button
+        =link_to "もっと見る", index_path
+
+
+
+/ ここマッチングのロジックに応じて変わる
 %div
   - @user_areas.each do |user_area|
     - user_area.area.users.each do |user|
@@ -29,8 +100,5 @@
                       %div
                       = ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')
                       まで有効
-%div
-  = link_to "チケット投稿", new_ticket_path
 
 = render 'shared/after_signup_footer'
-

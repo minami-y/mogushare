@@ -13,6 +13,7 @@ p {
   line-height: normal;
   font-size: 30px;
   letter-spacing: -0.1px;
+  text-decoration: none;
 }
 
 .board {
@@ -26,12 +27,23 @@ p {
   margin: 10px, 0;
 }
 
+.board p {
+  text-align: left;
+  word-wrap: break-word;
+  margin-top: 0px;
+}
+
 .board.large {
   width:95%;
-  padding-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding-top: 20px;
 }
 .board.middle {
   width:80%;
+}
+.board.middle p {
+  font-size: 14px;
 }
 
 .line {
@@ -72,4 +84,61 @@ label.checkbox {
   background-color: #fd7700;
   font-size: 35px;
   color: white;
+}
+
+
+.no_item {
+  font-size: 40px;
+  margin: 0 auto;
+  color: #999999;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+p.ticket_title {
+  text-align: left;
+  font-weight: bold;
+}
+.ticket_info {
+  display: flex;
+  font-size: 25px;
+  color: #999999;
+}
+.ticket_info i.fas:before {
+  color: orange;
+}
+.board-img img {
+  width: 90%;
+}
+.ticket-line {
+  border: solid 3px #f8f7f2;
+  border-style: dashed;
+}
+.jump-to-detail {
+  display: flex;
+  align-items:center;
+  height: 120px;
+}
+.cook_info {
+  display: flex;
+  align-items: center;
+}
+.cook_info img {
+  border-radius: 50%;
+  width:  120px;
+  height: 120px;
+}
+.cook_info span {
+  font-size: 30px;
+}
+
+.show_more_button{
+  width: auto;
+  font-size: 35px;
+  color: white;
+  border-radius: 5px;
+  margin-left: auto;
+  background-color: #fd7700;
+  padding: 15px;
 }

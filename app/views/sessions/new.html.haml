@@ -6,16 +6,8 @@
       .submit-field
         %p.comment メールアドレス
         = f.email_field :email
-
-<<<<<<< HEAD
-= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
-
-
-= form_for(:session, url: login_path) do |f|
-=======
         %p.comment パスワード
         = f.password_field :password
->>>>>>> 1d6e9a3e658b65883770e4ad88faffb2e7ab2e8a
 
         / = f.label :"パスワード確認"
         / = f.password_confirmation_field :password_confirmation
