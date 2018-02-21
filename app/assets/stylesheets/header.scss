@@ -1,5 +1,4 @@
 h1 {
-  padding-top: 30px;
 }
 
 header {
@@ -63,5 +62,6 @@ header {
 .header_img {
   width: 50%;
   display: flex;
- justify-content: flex-end;
+  justify-content: flex-end;
+  padding-right: 30px;
 }

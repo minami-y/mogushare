@@ -1,45 +1,96 @@
-%h1 チケット投稿
+:javascript
+  $(document).on('turbolinks:load', function() {
+  $('.detail_info, .submit-button, .add-button').hide();
+  $('.next-button').on('click', function(){
+    $('.basic_info').hide();
+    $('.detail_info, .submit-button, .add-button').show();
+    });
+  });
 
-= form_for @ticket, url: {action: 'confirm'} do |f|
-  - if @ticket.errors.any?
-    #error_explanation
-      %h3
-        = pluralize(@ticket.errors.count, "error")
-        prohibited this ticket from being saved:
-      %ul
-        - @ticket.errors.full_messages.each do |message|
-          %li= message
-  %ticket_form
 
-    %div
-      = f.label :image
-      = f.file_field :image
-      = f.hidden_field :image_cache
+.board.large.color-none
+  %h1.title 投稿
+  .board.middle.color-none
+    = form_for @ticket do |f|
+      .submit-field
+        .basic_info
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          .next-button
+            次へ
 
-    %div
-      = f.label :message
-      = f.text_area :message
+        .detail_info
+          %p.comment こっちにおすそわけのコンテンツ投稿してね
+          = f.text_field :message, required: true
+          %p.comment 画像(必須ではありません)
+          .post-images
+            .mask-squre
+              %i.fa.fa-camera
+                = f.file_field :image
+                = f.hidden_field :image_cache
+            .mask-squre
+              %i.fa.fa-camera
+                = f.file_field :image
+                = f.hidden_field :image_cache
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+          %p.comment 自己紹介
+          = f.text_field :message, required: true
+        .add-button
+          別の商品を登録する
+      .submit-button
+        = f.submit "登録する"
 
-    %div
-      = f.label :event_date
-      = f.datetime_select :event_date
+  / = form_for @ticket, url: {action: 'confirm'} do |f|
+  /   - if @ticket.errors.any?
+  /     #error_explanation
+  /       %h3
+  /         = pluralize(@ticket.errors.count, "error")
+  /         prohibited this ticket from being saved:
+  /       %ul
+  /         - @ticket.errors.full_messages.each do |message|
+  /           %li= message
+  /   %ticket_form
 
-    %div
-      = f.label :expiration_date
-      = f.datetime_select :expiration_date
+  /     %div
+  /       = f.label :image
+  /       = f.file_field :image
+  /       = f.hidden_field :image_cache
 
-    %div
-      = f.label :event_place
-      = f.text_field :event_place
+  /     %div
+  /       = f.label :message
+  /       = f.text_area :message
 
-    %h4 -おすそわけメニュー-
-    %div
-      = f.fields_for :shares do |share|
-        = render 'share_fields', f: share
-    %div
-      = link_to_add_association 'メニュー追加', f, :shares
-      = hidden_field_tag :seller_id, current_user.seller.id
+  /     %div
+  /       = f.label :event_date
+  /       = f.datetime_select :event_date
 
-    %br
-    %div
-      = f.submit "確認ページへ"
+  /     %div
+  /       = f.label :expiration_date
+  /       = f.datetime_select :expiration_date
+
+  /     %div
+  /       = f.label :event_place
+  /       = f.text_field :event_place
+
+  /     %h4 -おすそわけメニュー-
+  /     %div
+  /       = f.fields_for :shares do |share|
+  /         = render 'share_fields', f: share
+  /     %div
+  /       = link_to_add_association 'メニュー追加', f, :shares
+  /       = hidden_field_tag :seller_id, current_user.seller.id
+
+  /     %br
+  /     %div
+  /       = f.submit "確認ページへ"

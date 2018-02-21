@@ -1,5 +1,66 @@
-%h1 チケット詳細
+:javascript
+  $(document).on('turbolinks:load', function() {
+  var num = 1
+  $('.plus').on('click', function(){
+    num++;
+    $(".number").html(num);
+    });
+  $('.minus').on('click', function(){
+    num--;　num>1
+    $(".number").html(num);
+    });
+  });
 
+.board.large
+  .board.middle
+    %p.ticket_title 画像3枚 │ 500円
+    .ticket_info
+      %i.fas.fa-hourglass 2/10 18:00-19:00
+      %i.fas.fa-map-pin 恵比寿駅周辺
+      %i.fas.fa-tag おすそわけ
+  .board-img
+    = image_tag "mogura-moji.png"
+  .board.middle
+    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+  .ticket-line
+  .board.middle
+    .comment
+      .exp 個数：
+      .number 1
+      .unit 個
+      .plus
+        %i.fa.fa-plus-circle
+      .minus
+        %i.fa.fa-minus-circle
+    .next-button
+      =link_to "カートに入れる", index_path
+
+.board.large
+  .board.middle
+    %p.ticket_title 画像3枚 │ 500円
+    .ticket_info
+      %i.fas.fa-hourglass 2/10 18:00-19:00
+      %i.fas.fa-map-pin 恵比寿駅周辺
+      %i.fas.fa-tag おすそわけ
+  .board-img
+    = image_tag "mogura-moji.png"
+  .board.middle
+    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+  .ticket-line
+  .board.middle
+    .comment
+      .exp 個数：
+      .number 1
+      .unit 個
+      .plus
+        %i.fa.fa-plus-circle
+      .minus
+        %i.fa.fa-minus-circle
+    .next-button
+      =link_to "カートに入れる", index_path
+
+
+/ 以下は書き換える際の参考に残している。ただしコメントアウトするとエラーなのでそのまま(インデントの問題？)
 %div
 = mypage_profile_image(@seller.user)
 = @seller.official_name
@@ -55,3 +116,6 @@
   %div
   = link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
   = link_to '編集する',edit_ticket_path(@ticket.id)
+
+
+= render 'shared/after_signup_footer'

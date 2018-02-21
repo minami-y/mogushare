@@ -16,6 +16,10 @@ p {
   text-decoration: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .board {
   height: auto;
   background-color: #ffffff;
@@ -43,7 +47,7 @@ p {
   width:80%;
 }
 .board.middle p {
-  font-size: 14px;
+  font-size: 25px;
 }
 
 .line {
@@ -67,10 +71,11 @@ label.checkbox {
   align-items: center;
 }
 
-.submit-field input#search, input#session_password, #session_email{
+.submit-field input, #session_email, #seller_official_name, #seller_address{
   width: 100%;
   height: 60px;
   border: solid 4px #ebebeb;
+  margin-bottom: 30px;
 }
 
 .submit-field ::-webkit-input-placeholder{
@@ -79,13 +84,15 @@ label.checkbox {
 
 .submit-button input{
   width: 100%;
-  height: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-radius: 5px;
   background-color: #fd7700;
   font-size: 35px;
   color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-
 
 .no_item {
   font-size: 40px;
@@ -141,4 +148,72 @@ p.ticket_title {
   margin-left: auto;
   background-color: #fd7700;
   padding: 15px;
+}
+
+.img-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+p.must {
+  color: orange
+}
+.mask {
+  border-radius: 50%;
+  width:  120px;
+  height: 120px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mask-squre {
+  width:  120px;
+  height: 120px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.color-none {
+  background-color: #f8f7f2;
+}
+
+.next-button{
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  background-color: #fd7700;
+  font-size: 35px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.add-button{
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  border: solid 0.5px #fd7700;
+  font-size: 35px;
+  color: #fd7700;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.post-images {
+  display: flex;
+}
+
+.comment {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 40px;
+}
+
+div > .minus, .plus {
+  padding-left: 20px;
 }

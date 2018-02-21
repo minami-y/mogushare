@@ -4,7 +4,10 @@
 
   -if logged_in?
     .header_txt
-      = link_to current_user.name, user_path(current_user.id)
+      -if current_user.seller.present?
+        = link_to current_user.name, edit_seller_path(current_user.seller)
+      - else
+        = link_to current_user.name, new_seller_path
     .header_img
       = mypage_profile_image(current_user)
 
