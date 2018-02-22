@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+h1 span {
+  color: gray;
+  font-size: 25px;
+}
+
 .header-board{
   height: auto;
   width: 100%;
@@ -56,12 +61,21 @@ a {
 .board.middle {
   width:80%;
 }
+
+.board.middle.txt{
+  text-align: left;
+  font-size: 25px;
+}
+
 .board.middle p {
   font-size: 25px;
 }
 
 .line {
   border: solid 0.5px #ebebeb;
+}
+.line-bold {
+  border: solid 1px #ebebeb;
 }
 
 p.comment {
@@ -102,6 +116,11 @@ label.checkbox {
   color: white;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.submit-button.outside-board {
+  width: 95%;
+  margin: 0 auto;
 }
 
 .no_item {
@@ -220,7 +239,6 @@ p.must {
 
 .comment {
   display: flex;
-  justify-content: flex-end;
   font-size: 40px;
 }
 
@@ -256,10 +274,61 @@ div > .minus, .plus {
 
 .chat-time {
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
 }
 
+.chat-time span:last-child {
+  margin-top: auto;
+  text-decoration: underline;
+  color: orange;
+}
 
+.faq-board {
+  width: 90%;
+  margin: 0 auto;
+}
+label.question-section {
+  display: flex;
+  align-items: center;
+}
+.faq-icon{
+  font-size: 40px;
+  color: orange;
+  display: flex;
+}
+.question-section .faq-icon:last-child{
+  margin-left: auto;
+}
+.question p {
+  font-weight: bold;
+  font-size: 35px;
+  margin-bottom: 0px;
+}
+.answer-section {
+  margin-top: 30px;
+}
 
+.answer-section01 p,
+.answer-section02 p,
+.answer-section03 p,
+.answer-section04 p,
+.answer-section05 p, {
+  max-height: 0;
+  overflow-y: hidden;
+}
+
+#q01:checked ~ .answer-section01 p,
+#q02:checked ~ .answer-section02 p,
+#q02:checked ~ .answer-section03 p,
+#q02:checked ~ .answer-section04 p,
+#q02:checked ~ .answer-section05 p {
+  font-size:35px;
+  max-height:500px;
+}
+input[type="checkbox"]{
+  display:none;
+}
 
 
 

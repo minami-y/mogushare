@@ -8,9 +8,6 @@
         = f.email_field :email
         %p.comment パスワード
         = f.password_field :password
-
-        / = f.label :"パスワード確認"
-        / = f.password_confirmation_field :password_confirmation
         .txt_checkbox
           %p.txt ログイン状態を保持する
           = f.label :remember_me, class: 'checkbox' do
