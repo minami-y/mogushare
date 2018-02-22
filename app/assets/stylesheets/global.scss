@@ -3,6 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0px;
 }
 
 p {
@@ -11,7 +12,6 @@ p {
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  font-size: 30px;
   letter-spacing: -0.1px;
   text-decoration: none;
 }

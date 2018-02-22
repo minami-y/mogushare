@@ -3,6 +3,8 @@
     =image_tag "mogura-moji.png"
 
   -if logged_in?
+    .pc_alert_button
+      スマホ専用サイトのため、登録/ログインはスマホからのみ可能です
     .header_txt
       -if current_user.seller.present?
         = link_to current_user.name, edit_seller_path(current_user.seller)
@@ -12,6 +14,8 @@
       = mypage_profile_image(current_user)
 
   -else
+    .pc_alert_button
+      スマホ専用サイトのため、スマホからのアクセスをお願いします
     .signup_button
       = link_to '会員登録', signup_path
     .signin_button

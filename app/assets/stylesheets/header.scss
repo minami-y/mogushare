@@ -1,7 +1,6 @@
 header {
   background-color: #ffffff;
   display: flex;
-  height: 150px;
   align-items:center;
 }
 
@@ -11,54 +10,88 @@ header {
 }
 
 .mogura-icon img {
-  width: 80%;
+  width: 70%;
   height: auto;
-  padding-left:30px;
+  padding-left:15px;
 }
 
-.signup_button{
-  width: 80%;
-  height: 60%;
-  border-radius: 20px;
-  background-color: #fd7700;
-  border: solid 0.5px #fd7700;
-  font-size: 40px;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  margin-right: 20px;
+@media screen and (max-width: 500px) {
+  .pc_alert_button {
+    display: none;
+  }
+  header {
+    height: 70px;
+  }
+  .mogura-icon {
+    width: 250%;
+  }
+  .signup_button{
+    width: 100%;
+    height: 60%;
+    border-radius: 2px;
+    background-color: #fd7700;
+    border: solid 0.5px #fd7700;
+    font-size: 14px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+
+  .signup_button a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .signin_button {
+    width: 100%;
+    height: 60%;
+    border-radius: 2px;
+    border: solid 0.5px #fd7700;
+    font-size: 14px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+  .signin_button a {
+    color: #fd7700;
+    text-decoration: none;
+  }
+
+  .header_txt {
+    width: 100%;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .header_img {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+  }
 }
 
-.signup_button a {
-  color: white;
-  text-decoration: none;
-}
-
-.signin_button {
-  width: 80%;
-  height: 60%;
-  border-radius: 20px;
-  border: solid 0.5px #fd7700;
-  font-size: 40px;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-}
-
-.signin_button a {
-  color: #fd7700;
-  text-decoration: none;
-}
-
-.header_txt {
-  width: 100%;
-  font-size: 40px;
-  display: flex;
-  justify-content: flex-end;
-}
-.header_img {
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
+@media screen and (min-width: 500px) {
+  .header_txt , .signup_button , .signin_button , .header_img {
+    display: none;
+  }
+  header {
+    height: 150px;
+  }
+  .pc_alert_button {
+    width: 70%;
+    height: 60%;
+    border-radius: 20px;
+    background-color: #fd7700;
+    color: white;
+    border: solid 0.5px #fd7700;
+    font-size: 22px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-right: 20px;
+  }
 }

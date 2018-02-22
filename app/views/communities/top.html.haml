@@ -1,3 +1,114 @@
-%h1 LP
+.white-container
+  .top_img
+    = image_tag "manma.jpg"
+  .white_content
+    .top_txt
+      %p
+        "もぐシェア"は
+        %br
+        子育て家庭とご近所を繋ぐ
+        %br
+        新しいカタチの地域コミュニティです。
+      %span
+        例えば、料理を1品からおすそわけしたり、子連れOKの料理教室やママ同士の交流会など地域のイベントに参加できます。
+        %br
+        %br
+        地域のつながりが希薄になり、多くのママは1人で子育てをする”孤育て”に追いやられています。
+        %br
+        %br
+        もぐシェアは
+        %strong 「子育ては誰かに頼れる！頼ってもいいんだ！」
+        そう思える拠り所になる、助け合いのコミュニティです。
 
-= link_to "スマホで今すぐ会員登録", index_path
+  .gray_content
+    .title
+      %p 選ばれる理由
+    .img_txt_3_column
+      .content
+        =image_tag "blank.jpg"
+        %p.title ここにタイトルです
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+      .content
+        =image_tag "blank.jpg"
+        %p.title ここにタイトルです
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+      .content
+        =image_tag "blank.jpg"
+        %p.title ここにタイトルです
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+
+  .white_content
+    .title
+      %p 利用者の声
+    .img_txt_2_column
+      .img_content
+        .user_img
+          =image_tag "blank.jpg"
+        .user_content
+          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(ねこ)
+      .img_content
+        .user_img
+          =image_tag "blank.jpg"
+        .user_content
+          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(いぬ)
+
+  .gray_content
+    .title
+      %p 使い方
+    %div#slider-pro.slider-pro
+      .sp-slides
+        .sp-slide
+          =image_tag "blank.jpg", class: "sp-image"
+        .sp-slide
+          =image_tag "manma.jpg", class: "sp-image"
+        .sp-slide
+          =image_tag "blank", class: "sp-image"
+    .use_img_3_column
+      .use_content
+        %p.title 郵便番号で近くのコミュを検索
+        =image_tag "blank.jpg"
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+      .use_content
+        %p.title コンテンツに参加
+        =image_tag "blank.jpg"
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+      .use_content
+        %p.title 参加したり、やり取りしたり！
+        =image_tag "blank.jpg"
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+    .large-button
+      まずはご近所のコミュニティを探す
+
+  .white_content
+    .title
+      %p.smaller
+        シェアして"もぐシェア"の
+        %br
+        仕組みをご近所で広げませんか？
+    .social-button
+      .facebook
+        =image_tag "blank.jpg"
+      .twitter
+        =image_tag "blank.jpg"
+
+<script src="http://bqworks.com/slider-pro/js/jquery.sliderPro.min.js"></script>
+<link rel="stylesheet" href="http://bqworks.com/slider-pro/css/slider-pro.min.css"/>
+:javascript
+  $(document).ready(function() {
+    $( '#slider-pro' ).sliderPro({
+        width: '100%',
+        height: 500,
+        responsive: true,
+        imageScaleMode: 'cover',
+        slideDistance:0,
+        arrows: true,
+        autoHeight:false,
+        buttons: false,
+        fadeFullScreen:true,
+        waitForLayers: true,
+        autoplay: true
+    });
+  });
+
+=render 'shared/footer'
+/ = link_to "スマホで今すぐ会員登録", index_path

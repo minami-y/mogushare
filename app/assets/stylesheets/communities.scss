@@ -1,3 +1,242 @@
 // Place all the styles related to the communities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.white-container {
+  background-color: white;
+  height:auto;
+}
+.white-container p {
+  font-family: YuGo;
+  color: #333333;
+}
+.top_img {
+  width: 100%;
+}
+.top_img img{
+  width: 100%;
+}
+.white_content {
+  width:95%;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+
+.top_txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.top_txt p {
+  font-family: YuGo;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .top_txt p {
+    font-size: 18px;
+  }
+  .top_txt span {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .top_txt p {
+    font-size: 28px;
+    }
+  .top_txt span {
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+.gray_content {
+  width:95%;
+  background-color: #f8f7f2;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+.title p {
+  text-align: center;
+  font-size: 30px
+}
+
+@media screen and (max-width: 500px) {
+  .title p {
+    font-size: 20px;
+  }
+}
+
+.img_txt_3_column {
+  display: flex;
+}
+@media screen and (max-width: 500px) {
+  .img_txt_3_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content img {
+  border-radius: 50%;
+  width:  50%;
+}
+.content p.title {
+  font-weight: bold;
+  text-align: center;
+}
+.content p {
+  font-size: 15px;
+  width: 80%;
+}
+@media screen and (max-width: 500px) {
+  .content p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .img_txt_2_column {
+    display: flex;
+    flex-direction: column;
+  }
+  .img_content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .user_img {
+    width: 30%;
+    padding-right: 20px;
+  }
+  .img_content img {
+    border-radius: 50%;
+    width:  100%;
+  }
+  .user_content {
+    width: 40%;
+    background-color: #f8f7f2;
+  }
+}
+@media screen and (min-width: 500px) {
+  .img_txt_2_column {
+    display: flex;
+  }
+  .img_content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .user_img {
+    width: 30%;
+    padding-right: 20px;
+  }
+  .img_content img {
+    border-radius: 50%;
+    width:  100%;
+  }
+  .user_content {
+    width: 40%;
+    background-color: #f8f7f2;
+  }
+}
+
+.large-button {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  background-color: #fd7700;
+  font-size: 16px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 500px) {
+  .use_img_3_column {
+    display:none;
+  }
+  .slider-pro {
+    width: 80% !important;
+  }
+  .sp-slide img {
+    width: 300px !important;
+    height: 534px !important;
+  }
+  .large-button {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 500px) {
+  .slider-pro {
+    display:none;
+  }
+  .use_img_3_column {
+    display: flex;
+    align-items: center;
+  }
+  .use_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .use_content img {
+    width: 300px !important;
+    height: 534px !important;
+  }
+  .use_content p.title {
+    font-weight: bold;
+    text-align: center;
+  }
+  .use_content p {
+    font-size: 15px;
+    width: 80%;
+  }
+  .large-button {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .social-button {
+    display: flex;
+    justify-content: center;
+  }
+  .facebook , .twitter {
+    text-align: center;
+    width: 20%;
+  }
+   .facebook img , .twitter img {
+    width:  100%;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 500px) {
+  .social-button {
+    display: flex;
+    justify-content: center;
+  }
+  .facebook , .twitter {
+    text-align: center;
+    width: 10%;
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+   .facebook img , .twitter img {
+    width:  100%;
+    border-radius: 50%;
+  }
+}

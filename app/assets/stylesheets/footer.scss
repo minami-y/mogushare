@@ -22,20 +22,48 @@ footer {
   font-size: 25px;
 }
 
+@media screen and (max-width: 500px) {
+  index_footer {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
 
-index_footer {
-  margin-top:100px;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  height: auto;
+  .middle{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .middle p{
+    font-size: 14px;
+  }
+
+  .index_bottom p {
+    text-align: center;
+  }
 }
+@media screen and (min-width: 500px) {
+  index_footer {
+    background-color: #f8f7f2;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
 
-.middle{
-  width: 80%;
-  margin: 0 auto;
-}
-
-.index_bottom p {
-  text-align: center;
+  .middle{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .middle p{
+    font-size: 15px;
+    margin-right: 20px;
+  }
+  .line-bold {
+    display: none
+  }
+  .index_bottom p {
+    text-align: center;
+  }
 }
