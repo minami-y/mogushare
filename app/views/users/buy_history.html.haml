@@ -3,7 +3,20 @@
 - @orders.each do |order|
   - order.order_details.each do |od|
     %div
+    = mypage_profile_image(order.seller.user)
+    %div
     = order.seller.user.name
     %div
+    商品名｜
     = od.share.menu
+    %div
+    購入個数｜
+    = od.quantity
+    個
+    %div
+    合計金額｜
+    = od.price
+    円
+    %div
+    = od.created_at.strftime('%Y年%m月%d日　%H:%M')
     %hr

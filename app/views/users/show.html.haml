@@ -5,17 +5,5 @@
 %div
 = @user.email
 
-%div
-= link_to "プロフィール編集", edit_user_path(current_user)
-- if current_user.seller.nil?
-  %div
-  = link_to "販売者情報登録", new_seller_path
-- else
-  %div
-  = link_to "販売者情報編集", edit_seller_path(current_user.seller.id)
-%div
-= link_to "購入履歴一覧", buy_history_path
-%div
-= link_to "投稿履歴一覧", "#"
-%div
-= link_to "口座情報", "#"
+= link_to "プロフィールを編集", edit_user_path(current_user)
+= link_to "口座情報を編集", "#"

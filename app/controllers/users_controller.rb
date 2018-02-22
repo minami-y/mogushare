@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @area = Area.search(params[:search])
     if @area.nil?
       flash[:danger] = "正しい郵便番号を入力してください"
-      redirect_to root_path
+      redirect_to index_path
     end
   end
 

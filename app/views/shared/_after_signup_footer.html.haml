@@ -8,7 +8,7 @@
     .footer-icon
       %i.fas.fa-comments
     .footer-txt
-      = link_to "チャット", tickets_path
+      = link_to "チャット", talks_path
   .footer_content
     .footer-icon
       %i.fas.fa-paper-plane
@@ -18,9 +18,9 @@
     .footer-icon
       %i.fas.fa-history
     .footer-txt
-      = link_to "取引履歴", tickets_path
+      = link_to "取引履歴", buy_history_path
   .footer_content
     .footer-icon
       %i.fas.fa-user
     .footer-txt
-      = link_to "プロフィール", tickets_path
+      = link_to "プロフィール", user_path(current_user.id)

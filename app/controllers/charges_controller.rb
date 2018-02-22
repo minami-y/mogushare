@@ -74,7 +74,6 @@ class ChargesController < ApplicationController
   def thanks
     @ticket = Ticket.find(params[:id])
     @group = current_user.groups.joins(:users).where(users:{id: @ticket.seller.user.id}).first
-    binding.pry
   end
 
   private
