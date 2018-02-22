@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :already_logged_in, only: [:new, :create]
+
   def new
   end
 
@@ -26,4 +28,13 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to login_path
   end
+
+  private
+
+    def already_logged_in
+      if logged_in?
+        redirect_to tickets_path
+      end
+    end
+
 end
