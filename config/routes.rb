@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get    '/thanks',  to: 'charges#thanks'
+  get    '/tmp',  to: 'sellers#tmp'
   resources :users
   get    '/buy_history',  to: 'users#buy_history'
   resources :tickets do
