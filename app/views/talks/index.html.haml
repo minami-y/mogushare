@@ -1,5 +1,72 @@
-%h1 トーク一覧
-%p 仮置き
+/ ここは個別トーク画面を避難させている
+/ これでトーク相手の情報を動的にとってこれる(今はpartnerという適当な変数になってるので注意！)
+/ %input{name: "partner_name", type: "hidden", value: current_user.partner(適当).name, class: 'partner_name' }
+/ %input{name: "partner_image", type: "hidden", value: current_user.partner(適当).image, class: 'partner_image' }
+
+/ :javascript
+/   $(document).on('turbolinks:load', function() {
+/   var name = $('.partner_name').val();
+/   var img = $('.partner_image').val();
+/   $('header').hide();
+/   $(".header-board img").attr("src", "assets/blank.jpg");
+/   $(".header-board span").append("hey");
+/   });
+/ = render 'shared/header_white'
+
+
+/ / 正しくはifでright,leftを変える必要あり
+/ .board.large.color-none
+/   %div.kaiwa
+/     %figure.kaiwa-img-left
+/       = image_tag "blank.jpg"
+/       %figcaption.kaiwa-img-description
+/     %div.kaiwa-text-right
+/       %p.kaiwa-text あ、どうも
+
+/   %div.kaiwa
+/     %figure.kaiwa-img-right
+/       = image_tag "blank.jpg"
+/       %figcaption.kaiwa-img-description
+/     %div.kaiwa-text-left
+/       %p.kaiwa-text こんにちはー
+
+/   %div.kaiwa
+/     %figure.kaiwa-img-left
+/       = image_tag "blank.jpg"
+/       %figcaption.kaiwa-img-description
+/     %div.kaiwa-text-right
+/       %p.kaiwa-text 最近景気悪くないですか？お宅のとこどんな感じですか？僕なんかダメダメすぎて妻と娘とも別居しちゃいましてね、ええ...今後どうしていこうかなーって何となく考えてたんですよ。キャバクラで全財産も溶かしちゃって。お金貸してくれませんか？
+
+/   %div.kaiwa
+/     %figure.kaiwa-img-right
+/       = image_tag "blank.jpg"
+/       %figcaption.kaiwa-img-description
+/     %div.kaiwa-text-left
+/       %p.kaiwa-text それは...いやです...
+
+
+/ 以下が正しいチャット一覧(このviewで表示すべきhtml)
+.board.large
+  .chat-board
+    .cook_info
+      = image_tag "blank.jpg"
+    .chat-txt
+      %span
+        = current_user.name
+      %span hogehogehogehoge
+    .chat-time
+      %span 1分前
+
+.board.large
+  .chat-board
+    .cook_info
+      = image_tag "blank.jpg"
+    .chat-txt
+      %span
+        = current_user.name
+      %span hogehogehogehoge
+    .chat-time
+      %span 1分前
 
 - @groups.each do |group|
   = link_to talk_path(group) do
@@ -13,3 +80,5 @@
         = group.latest_messages(group)
 
       / = group.messages.first
+
+= render 'shared/after_signup_footer'
