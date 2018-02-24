@@ -9,10 +9,9 @@
 /   $(".header-board img").hide();
 /   $(".header-board p").append("返金手続き");
 /   });
-
+/ = render 'shared/header_white'
 
 / buy-confirmーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-/ = render 'shared/header_white'
 / .board.large
 /   %h1 商品①
 /   .line
@@ -31,7 +30,6 @@
 
 
 / post-confirm(add-buttonまでeachして)submitだけはeachの外に一度だけ設置ーーーーーーーーーーーーーーーーーーー
-/ = render 'shared/header_white'
 / = form_for(:session, url: login_path) do |f|
 /   .board.large
 /     %h1 商品①
@@ -49,7 +47,6 @@
 
 
 / cancel-confirm(required meとチェックボックスは有効か？)ーーーーーーーーーーーーーーーーーーーーーーーーーー
-/ = render 'shared/header_white'
 / .board.large.color-none
 /   .board.middle.color-none
 /     = form_for(:session, url: login_path) do |f|

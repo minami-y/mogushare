@@ -1,25 +1,28 @@
-%h1 Signup
+.board.large
+  %h1 facebookで登録はこちら
+  .facebook_button
+    = link_to "facebookで登録", "/auth/facebook", id: "sign_in"
+  .line
+  %h1 メールアドレスで登録はこちら
+  .board.middle
+    = form_for(@user, url: signup_path) do |f|
+      = render 'shared/error_messages'
+      = hidden_field_tag :area_id, @area.id
 
-= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
-= form_for(@user, url: signup_path) do |f|
-  = render 'shared/error_messages'
-
-  / - @areas.each do |area|
-  /   = area.city + area.street
-  = @area.city + @area.street
-  = hidden_field_tag :area_id, @area.id
-
-  %div
-    = f.label :name
-    = f.text_field :name
-  %div
-    = f.label :email
-    = f.email_field :email
-  %div
-    = f.label :password
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation, "Confirmation"
-    = f.password_field :password_confirmation
-  %div
-    = f.submit "登録"
+      .submit-field
+        %p.comment 名前
+        = f.text_field :name
+        %p.comment メールアドレス
+        = f.email_field :email
+        %p.comment パスワード
+        = f.password_field :password
+        %p.comment パスワード確認
+        = f.password_field :password_confirmation
+      .txt_checkbox
+        %p.txt
+          = link_to "利用規約", index_path, target: "_blank"
+          に同意する
+        = f.label :agreement, class: 'checkbox', required: true do
+          =f.check_box :accepted ,{:checked => true}
+      .submit-button
+        = f.submit "登録する"

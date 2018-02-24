@@ -6,10 +6,6 @@ class Area < ApplicationRecord
   def self.search(search)
     if search
       Area.find_by(postal_code: "#{search}")
-      # Area.where(['postal_code LIKE ?', "%#{search}%"])
-    else
-      flash[:danger] = "該当するエリアはありませんでした。"
-      redirect_to root_path
     end
   end
 end

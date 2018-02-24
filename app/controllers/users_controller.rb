@@ -18,21 +18,22 @@ class UsersController < ApplicationController
     if env['omniauth.auth'].present?
       @user = User.from_omniauth(env['omniauth.auth'])
       result = @user.save(context: :facebook_login)
-      # binding.pry
       fb = "Facebook"
     else
       #　通常のサインアップ
       @user = User.new(user_params)
       @area = Area.find(params[:area_id])
-      result = @user.save
-      # binding.pry
-      fb = ""
+      if params.require(:user)[:accepted] == "1"
+        result = @user.save
+        fb = ""
+      else
+        flash[:danger] = "利用規約に同意して下さい"
+      end
     end
 
     if result
       log_in @user
       @user_area = UserArea.create(user_id: @user.id, area_id: params[:area_id])
-      flash[:success] = "ユーザー登録が完了しました"
       # 仮置き　実際はタイムラインにリダイレクト
       redirect_to tickets_path
     else
@@ -93,7 +94,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :accepted)
     end
-
 end

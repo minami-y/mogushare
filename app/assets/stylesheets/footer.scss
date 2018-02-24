@@ -1,9 +1,10 @@
 footer {
   background-color: #ffffff;
   display: flex;
-  height: 130px;
+  height: 50px;
   align-items:center;
   margin-top: auto;
+  border-top: solid 0.5px #fd7700;
 }
 .footer_content{
   display: flex;
@@ -14,12 +15,12 @@ footer {
 .footer-icon{
   display: flex;
   align-items: center;
-  font-size: 40px;
+  font-size: 14px;
 }
 .footer-txt{
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 1vw;
 }
 
 @media screen and (max-width: 500px) {
