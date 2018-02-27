@@ -316,7 +316,7 @@ label.question-section {
   align-items: center;
 }
 .faq-icon{
-  font-size: 40px;
+  font-size: 14px;
   color: orange;
   display: flex;
 }
@@ -325,8 +325,9 @@ label.question-section {
 }
 .question p {
   font-weight: bold;
-  font-size: 35px;
+  font-size: 14px;
   margin-bottom: 0px;
+  margin-top: 0px;
 }
 .answer-section {
   margin-top: 30px;
@@ -343,10 +344,10 @@ label.question-section {
 
 #q01:checked ~ .answer-section01 p,
 #q02:checked ~ .answer-section02 p,
-#q02:checked ~ .answer-section03 p,
-#q02:checked ~ .answer-section04 p,
-#q02:checked ~ .answer-section05 p {
-  font-size:35px;
+#q03:checked ~ .answer-section03 p,
+#q04:checked ~ .answer-section04 p,
+#q05:checked ~ .answer-section05 p {
+  font-size:12px;
   max-height:500px;
 }
 .faq-board input[type="checkbox"]{

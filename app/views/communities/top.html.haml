@@ -76,10 +76,46 @@
         %p.title 参加したり、やり取りしたり！
         =image_tag "blank.jpg"
         %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+
+  .white_content
+    .title
+      %p よくある質問
+    .faq-board
+      %input{type: :checkbox, id: "q01"}
+      %label{for:"q01", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p おすそわけは週何回でしょうか？場所と時間も決まっていますか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section01
+        %p おすそわけする方が好きな頻度で行います。場所,時間は郵便番号で繋がれるご近所さんと直接詳細を決めることができます。
+      %input{type: :checkbox, id: "q02"}
+      %label{for:"q02", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p イベントやおすそわけの価格はどのくらいでしょうか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section02
+        %p 例えばおすそわけ会(子ども食堂)は大人500円子ども300円です。おすそわけは、クックが自由に設定します(原材料費＋α程度が一般的です)。
+      %input{type: :checkbox, id: "q03"}
+      %label{for:"q03", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p アレルギーは対応していますか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section03
+        %p "おすそわけ"の範疇で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
+
     .large-button
       まずはご近所のコミュニティを探す
 
-  .white_content
+  .gray_content
     .title
       %p.smaller
         シェアして"もぐシェア"の
