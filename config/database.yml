@@ -50,5 +50,7 @@ test:
 production:
   <<: *default
   database: mogushare_production
-  username: mogushare
-  password: <%= ENV['MOGUSHARE_DATABASE_PASSWORD'] %>
+  # username: mogushare
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
