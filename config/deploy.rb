@@ -23,8 +23,6 @@ namespace :deploy do
   end
 end
 
-set :branch, fetch(:branch, "master")
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
