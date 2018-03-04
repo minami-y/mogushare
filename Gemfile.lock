@@ -85,6 +85,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     formatador (0.2.5)
+    geokit-rails (2.3.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.13.0)
@@ -293,6 +296,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   erb2haml
+  geokit-rails
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   haml-rails
