@@ -14,13 +14,14 @@
       / =image_tag "blank.jpg" ,required: true
       .mask
         %i.fa.fa-camera
+        = f.file_field :photo, class: "seller-photo-field"
       %p.comment.must ※必須
     %p.comment 自己紹介
-    = f.text_field :official_name, required: true
+    = f.text_field :self_introduction
     = hidden_field_tag :user_id, current_user.id
 
     %p.comment HPやinstagramなど
-    = f.text_field :address
+    = f.text_field :sns_info
 
     / %p.comment 通知メールの配信設定(オフすると投稿があった時、メッセージが来た時や購入された際に気付けなくなります)
     / = f.text_field :address

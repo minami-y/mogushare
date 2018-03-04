@@ -31,7 +31,7 @@ class SellersController < ApplicationController
     end
 
     def seller_params
-      params.require(:seller).permit(:official_name, :address, :phone_number).merge(user_id: current_user.id)
+      params.require(:seller).permit(:photo, :self_introduction, :sns_info).merge(user_id: current_user.id)
     end
 
 end

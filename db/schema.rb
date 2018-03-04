@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180304070703) do
 
+
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
     t.integer  "prefectural_id"
@@ -60,11 +61,11 @@ ActiveRecord::Schema.define(version: 20180304070703) do
 
   create_table "sellers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "official_name", null: false
-    t.string   "address",       null: false
-    t.string   "phone_number",  null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "self_introduction", limit: 65535
+    t.string   "photo"
+    t.string   "sns_info"
     t.index ["user_id"], name: "index_sellers_on_user_id", using: :btree
   end
 
@@ -123,14 +124,17 @@ ActiveRecord::Schema.define(version: 20180304070703) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "remember_digest"
     t.string   "image"
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
     t.boolean  "accepted"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
