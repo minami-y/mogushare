@@ -3,7 +3,8 @@ class TicketsMailer < ApplicationMailer
 
   def send_mail_about_new_ticket(user, ticket)
     @user = user
-    @share = ticket.shares.first
+    @ticket = ticket
+    @shares = ticket.shares
 
     mail to: @user.email
   end
