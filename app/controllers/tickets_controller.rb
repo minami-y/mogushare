@@ -23,6 +23,7 @@ class TicketsController < ApplicationController
     if params[:back]
       render :new
     elsif @ticket.save!
+      send_mail_to_users_in_area
       flash[:success] = "チケットを投稿しました"
       redirect_to tickets_path
     else
@@ -71,6 +72,15 @@ class TicketsController < ApplicationController
     def register_as_seller
       if current_user.seller.nil?
         redirect_to new_seller_path
+      end
+    end
+
+    def send_mail_to_users_in_area
+      user_areas = UserArea.where(user_id: @ticket.user_id)
+      user_areas.each do |user_area|
+        user_area.users.each do |user|
+          TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver_later unless @ticket.user_id == user.id
+        end
       end
     end
 end
