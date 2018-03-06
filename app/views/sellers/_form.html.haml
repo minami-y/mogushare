@@ -11,17 +11,17 @@
   / image_tagのところ、ifあるならその画像,無いなら白丸にfont-awesomeのアイコン、という形で処理
   .submit-field
     .img-field
-      / =image_tag "blank.jpg" ,required: true
       .mask
         %i.fa.fa-camera
+        = f.file_field :photo, required: true, class: "seller-photo-field"
       %p.comment.must ※必須
 
     %p.comment 自己紹介
-    = f.text_field :official_name, required: true
+    = f.text_field :self_introduction, required: true
     = hidden_field_tag :user_id, current_user.id
 
     %p.comment HPやinstagramなど
-    = f.text_field :address
+    = f.text_field :sns_info, required: true
 
   .submit-button
     = f.submit "登録する"

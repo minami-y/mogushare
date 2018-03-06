@@ -6,16 +6,78 @@
   background-color: white;
   height:auto;
 }
-.white-container p {
+.white-container p , span {
   font-family: YuGo;
   color: #333333;
 }
 .top_img {
   width: 100%;
+  position: relative;
 }
 .top_img img{
   width: 100%;
 }
+.top_img p {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  color: white;
+  font-size: 22px;
+  background-color: rgba(105,105,105,0.4);
+}
+.top_img p.vision {
+  -ms-transform: translate(-40%, 200%);
+  -webkit-transform: translate(-40%, 200%);
+  transform: translate(-40%, 200%);
+  font-size: 20px;
+}
+.top_img p.cook {
+  -ms-transform: translate(-45%, 170%);
+  -webkit-transform: translate(-45%, 170%);
+  transform: translate(-45%, 170%);
+  font-size: 20px;
+}
+.top_img p.amb {
+  -ms-transform: translate(-25%, 160%);
+  -webkit-transform: translate(-25%, 160%);
+  transform: translate(-25%, 160%);
+  font-size: 20px;
+  left: 25%;
+}
+@media screen and (min-width: 500px) {
+  .top_img p {
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    -ms-transform: translate(-60%,-60%);
+    -webkit-transform: translate(-60%,-60%);
+    transform: translate(-60%,-60%);
+    margin:0;
+    padding:0;
+    color: white;
+    font-size: 60px;
+    background-color: rgba(105,105,105,0.4);
+  }
+  .top_img p, .top_img p.vision, .top_img p.cook {
+    -ms-transform: translate(-45%, 170%);
+    -webkit-transform: translate(-45%, 170%);
+    transform: translate(-45%, 170%);
+    font-size: 50px;
+  }
+  .top_img p.amb {
+    -ms-transform: translate(-25%, 170%);
+    -webkit-transform: translate(-25%, 170%);
+    transform: translate(-25%, 170%);
+    font-size: 50px;
+  }
+}
+
+
 .white_content {
   width:95%;
   margin-top: 50px;
@@ -39,8 +101,17 @@
   .top_txt p {
     font-size: 18px;
   }
-  .top_txt span {
+  .top_txt  {
     font-size: 13px;
+  }
+  .top_txt.sub p {
+    font-size: 16px;
+  }
+  .top_txt.sub span {
+    font-size: 15px;
+    font-weight: normal;
+    text-align: center;
+    padding-bottom: 20px;
   }
 }
 
@@ -78,7 +149,6 @@
 }
 @media screen and (max-width: 500px) {
   .img_txt_3_column {
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -92,6 +162,18 @@
   border-radius: 50%;
   width:  50%;
 }
+.content.none-radius img {
+  border-radius: 0%;
+  width:  50%;
+}
+.content.none-radius img {
+  width: 100%;
+}
+@media screen and (min-width: 500px) {
+  .content {
+    width: 100%;
+  }
+}
 .content p.title {
   font-weight: bold;
   text-align: center;
@@ -103,6 +185,9 @@
 @media screen and (max-width: 500px) {
   .content p {
     font-size: 12px;
+  }
+  .content p.title.large {
+    font-size: 14px;
   }
 }
 
@@ -137,6 +222,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    width: 100%;
   }
   .user_img {
     width: 30%;
@@ -152,6 +238,25 @@
   }
 }
 
+.gallary-box {
+  display: flex;
+}
+.gallary-box img {
+  width: 50%;
+  height: 50%;
+}
+.gallary-box.full {
+  flex-direction: column;
+}
+.gallary-box.full img {
+  width: 100%;
+}
+
+.center {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .large-button {
   width: 100%;
   text-align: center;
@@ -163,6 +268,23 @@
   color: white;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.button-parent {
+  display: flex;
+}
+.half-button {
+  width: 40%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #90EE90;
+  font-size: 16px;
+  color: white;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.half-button a {
+  margin: auto;
 }
 @media screen and (max-width: 500px) {
   .use_img_3_column {
@@ -208,6 +330,30 @@
     font-size: 32px;
   }
 }
+.tatenaga-box {
+  display: flex;
+}
+@media screen and (max-width: 500px) {
+  .tatenaga-box {
+    flex-direction: column;
+  }
+}
+.use_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.use_content img {
+}
+.use_content p.title {
+  font-weight: bold;
+  text-align: center;
+}
+.use_content p {
+  font-size: 15px;
+  width: 80%;
+}
+
 
 @media screen and (max-width: 500px) {
   .social-button {
@@ -239,4 +385,22 @@
     width:  100%;
     border-radius: 50%;
   }
+}
+
+.sp-next-arrow:after, .sp-next-arrow:before, .sp-previous-arrow:after, .sp-previous-arrow:before {
+  background-color: orange !important;
+}
+
+.sp-slides p.title {
+  left: 285px;
+}
+
+ul {
+  list-style:none;
+  padding-left: 0px;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
 }

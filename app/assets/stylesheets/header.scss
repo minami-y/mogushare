@@ -8,7 +8,15 @@ header {
   align-items:center;
   margin: 0 auto;
 }
+.header_container>div:nth-child(2) {
+  justify-content: flex-end;
+  flex-grow: 2;
+}
 
+.mogura-icon img {
+  width: 100%;
+  height: auto;
+}
 .mogura-icon img {
   width: 100%;
   height: auto;
@@ -22,12 +30,15 @@ header {
     height: 70px;
   }
   .mogura-icon {
+    flex-basis: 180px;
+  }
+  .header_right_content {
     display: flex;
+    align-items:center;
     height: 100%;
-    width: 280%;
   }
   .signup_button{
-    width: 100%;
+    width: 150%;
     height: 50%;
     border-radius: 2px;
     background-color: #fd7700;
@@ -36,7 +47,7 @@ header {
     display: flex;
     align-items:center;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 25px;
   }
 
   .signup_button a {
@@ -45,7 +56,7 @@ header {
   }
 
   .signin_button {
-    width: 100%;
+    width: 150%;
     height: 50%;
     border-radius: 2px;
     border: solid 0.5px #fd7700;
@@ -59,19 +70,6 @@ header {
   .signin_button a {
     color: #fd7700;
     text-decoration: none;
-  }
-
-  .header_txt {
-    width: 100%;
-    font-size: 12px;
-    display: flex;
-    justify-content: flex-end;
-  }
-  .header_img {
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 30px;
   }
 }
 
@@ -88,8 +86,8 @@ header {
     height: 100%;
   }
   .mogura-icon img {
-    width: 70%;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
   .pc_alert_button {
     width: auto;
@@ -99,11 +97,104 @@ header {
     color: white;
     border: solid 0.5px #fd7700;
     font-size: 18px;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    margin-right: 20px;
-    padding-right: 10px;
-    padding-left: 10px;
+    text-align: center;
   }
+}
+
+
+/*チェック前はチェックボックスと選択肢を非表示に*/
+.nav-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 50px;
+  vertical-align: middle;
+  margin-top: 30px;
+}
+
+#nav-input:checked ~ #nav-open {
+  display: none;/*ハンバーガーボタンを非表示*/
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+#nav-open span:before {
+  bottom: -8px;
+}
+#nav-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用のセクション*/
+#nav-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: auto;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+  margin-top: 70px;
+}
+
+/*チェックが入ったらもろもろ表示*/
+#nav-input:checked ~ #nav-close {
+  display: flex;
+  opacity: .9;
+}
+
+/*中身*/
+.nav-content {
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: orange;
+}
+
+.nav-content ul {
+  display: flex;
+  flex-direction: column;
+  list-style:none;
+  padding-left: 0px;
+  margin: 0px;
+}
+.nav-content li {
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+.nav-content a {
+  color: #ffffff;
+  font-size: 16px;
+}
+.close-button {
+  width: 80%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  border: solid 0.5px #ffffff;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

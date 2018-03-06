@@ -45,6 +45,8 @@ gem 'cocoon'
 gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-facebook', '~> 4.0'
+# Search tickets by location
+gem 'geokit-rails' 
 
 # Use for asynchronous processing
 gem 'delayed_job_active_record'

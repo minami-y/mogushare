@@ -33,7 +33,14 @@ class UsersController < ApplicationController
 
     if result
       log_in @user
-      @user_area = UserArea.create(user_id: @user.id, area_id: params[:area_id])
+
+      @areas = Area.within(1, origin: [@area.lat, @area.lng]).tap do |scoped|
+        scoped.where!(prefectural_id: @area.prefectural_id)
+      end
+
+      @areas.each do |area|
+        UserArea.create(user_id: @user.id, area_id: area.id)
+      end
       # 仮置き　実際はタイムラインにリダイレクト
       redirect_to tickets_path
     else

@@ -1,39 +1,40 @@
 .white-container
   .top_img
-    = image_tag "manma.jpg"
+    = image_tag "top.jpg"
+    %p
+      地域に子育ての
+      %br
+      新しい形の拠り所を
   .white_content
     .top_txt
       %p
         "もぐシェア"は
         %br
-        子育て家庭とご近所を繋ぐ
+        子育て家庭の食卓を支える
         %br
-        新しいカタチの地域コミュニティです。
+        新しいカタチの地域コミュニティです
       %span
-        例えば、料理を1品からおすそわけしたり、子連れOKの料理教室やママ同士の交流会など地域のイベントに参加できます。
+        例えば、料理を1品から「おすそわけ」し合ったり、子連れOKの料理教室や子ども食堂などコミュニティ内の活動に参加できます。
         %br
         %br
-        地域のつながりが希薄になり、多くのママは1人で子育てをする”孤育て”に追いやられています。
+        「料理が好きで、自分の料理で誰かに喜んで欲しい」「子どもが小さく毎日の料理が大変」
         %br
-        %br
-        もぐシェアは
-        %strong 「子育ては誰かに頼れる！頼ってもいいんだ！」
-        そう思える拠り所になる、助け合いのコミュニティです。
+        そんな人たちが集まって、食と子育てを軸に助け合う仕組みです。
 
   .gray_content
     .title
       %p 選ばれる理由
     .img_txt_3_column
       .content
-        =image_tag "blank.jpg"
+        =image_tag "reason1.jpg"
         %p.title ここにタイトルです
         %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
       .content
-        =image_tag "blank.jpg"
+        =image_tag "reason2.jpg"
         %p.title ここにタイトルです
         %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
       .content
-        =image_tag "blank.jpg"
+        =image_tag "reason3.jpg"
         %p.title ここにタイトルです
         %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
 
@@ -43,26 +44,29 @@
     .img_txt_2_column
       .img_content
         .user_img
-          =image_tag "blank.jpg"
+          =image_tag "member_voice.png"
         .user_content
           %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(ねこ)
       .img_content
         .user_img
-          =image_tag "blank.jpg"
+          =image_tag "cook_voice.png"
         .user_content
           %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(いぬ)
+          クックについては
+          = link_to "こちら", cook_path, target: "_blank"
 
   .gray_content
     .title
       %p 使い方
     %div#slider-pro.slider-pro
       .sp-slides
+        %p.title 郵便番号で近くのコミュを検索
         .sp-slide
-          =image_tag "blank.jpg", class: "sp-image"
+          =image_tag "appflow1.png", class: "sp-image"
         .sp-slide
-          =image_tag "manma.jpg", class: "sp-image"
+          =image_tag "appflow2.png", class: "sp-image"
         .sp-slide
-          =image_tag "blank", class: "sp-image"
+          =image_tag "appflow3.JPG", class: "sp-image"
     .use_img_3_column
       .use_content
         %p.title 郵便番号で近くのコミュを検索
@@ -78,6 +82,16 @@
         %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
 
   .white_content
+    .title
+      %p ギャラリー
+    .gallary-box
+      =image_tag "gallery1.JPG"
+      =image_tag "gallery2.JPG"
+    .gallary-box
+      =image_tag "gallery3.JPG"
+      =image_tag "gallery4.JPG"
+
+  .gray_content
     .title
       %p よくある質問
     .faq-board
@@ -113,19 +127,22 @@
         %p "おすそわけ"の範疇で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
 
     .large-button
-      まずはご近所のコミュニティを探す
+      =link_to "まずはご近所のコミュニティを探す", signup_path
 
   .gray_content
     .title
       %p.smaller
-        シェアして"もぐシェア"の
+        "もぐシェア"の仕組みを
         %br
-        仕組みをご近所で広げませんか？
+        ご近所で広げませんか？
     .social-button
       .facebook
         =image_tag "blank.jpg"
       .twitter
         =image_tag "blank.jpg"
+    .button-parent
+      .half-button
+        =link_to "運営に関わりたい方はこちら", ambassador_path, target: "_blank"
 
 <script src="http://bqworks.com/slider-pro/js/jquery.sliderPro.min.js"></script>
 <link rel="stylesheet" href="http://bqworks.com/slider-pro/css/slider-pro.min.css"/>
@@ -133,7 +150,7 @@
   $(document).ready(function() {
     $( '#slider-pro' ).sliderPro({
         width: '100%',
-        height: 500,
+        height: 549,
         responsive: true,
         imageScaleMode: 'cover',
         slideDistance:0,

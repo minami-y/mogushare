@@ -1,0 +1,84 @@
+.white-container
+  .top_img
+    = image_tag "amb_top.JPG"
+    %p.amb
+      私達と一緒に子育ての
+      %br
+      新しい拠り所を作りませんか？
+  .white_content
+    .top_txt
+      %p
+        "もぐシェア"の地域コミュニティを
+        %br
+        一緒に作る"アンバサダー"を募集しています
+
+  .gray_content
+    .title
+      %p どうしてアンバサダーが必要なの？
+      .top_txt.sub
+        %span
+          "もぐシェア"はこれまでにない子育ての拠り所を作る、新しいチャレンジです。
+          %br
+          また食と子育てに関わるため、何より信頼が大事なコミュニティです。
+          %br
+          だからこそ
+          %u 一人一人が身近なところから「”孤育て”や”ワンオペ育児”を無くす」「「困った」を皆で支え合う社会を作る」という理念への共感を言葉にし伝えて頂くこと
+          はどんな広告よりも価値があると考えています。
+      .content.none-radius
+        =image_tag "reason_amb.JPG"
+  .white_content
+  .title
+    %p アンバサダーの活動
+    .top_txt.sub
+      %span
+        アンバサダーになると任意で次のような活動や特典があります(一部活動に応じた謝礼があります)。
+        %ul
+          %li ・知人への紹介,SNSでのシェア
+          %li ・地域食堂(子ども食堂)などイベント運営の手伝い
+          %li ・もぐシェアの意思決定に関われる、アンバサダー限定の”もぐトーク”への招待
+          %li ・もぐシェアの1年を総括しアワードなどを決める”もぐ総会”への優先招待
+  .gray_content
+    .title
+      %p アンバサダー紹介
+      .top_txt.sub
+        %span.center
+          専業主婦から元外資の共働きのお母さん,料理教室の先生からヨガインストラクターまで様々な人が活動しています。
+          %br
+          地域でやりがいを見つけたい、子育て家庭の力になりたい、そんな優しくて強い意志を持つ人達の集まりです。
+          %br
+          %br
+          ※アンバサダー一覧はこちら(準備中)
+          %br
+          %br
+          ※タップするとそれぞれのインタビューが見れます
+    .img_txt_2_column
+      .img_content
+        .user_img
+          = link_to image_tag('amb1.png'), 'http://osusowake-net.com/article/?p=107', target: "_blank"
+        .user_img
+          = link_to image_tag('amb2.png'), 'http://www.google.co.jp/', target: "_blank"
+      .img_content
+        .user_img
+          = link_to image_tag('amb3.png'), 'http://www.google.co.jp/', target: "_blank"
+        .user_img
+          = link_to image_tag('amb4.png'), 'http://www.google.co.jp/', target: "_blank"
+
+  .white_content
+    .title
+      %p アンバサダーに登録する
+      .top_txt.sub
+        %span.center
+          "もぐシェア"では地域問わずアンバサダーの方を募集しています。
+          %br
+          まずはあなたの身近なところから
+          %br
+          優しい繋がりを作っていきませんか？
+          %br
+          %br
+          以下のフォームをご送信下さい。3日以内にご連絡します。
+          %br
+          その後運営と30分ほど面談(お電話やskypeもok！)をし登録完了です。
+    %iframe{src: "https://docs.google.com/forms/d/e/1FAIpQLSdiI1LR1RXJLP9ryPseVbt5tYGXkKrKAsR4XpUiiEJdmTZzvw/viewform?embedded=true"}
+
+=render 'shared/footer'
+/ = link_to "スマホで今すぐ会員登録", index_path
