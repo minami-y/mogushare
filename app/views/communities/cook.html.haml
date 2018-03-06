@@ -1,0 +1,143 @@
+.white-container
+  .top_img
+    = image_tag "cook_top.JPG"
+    %p.cook
+      あなたの料理で
+      %br
+      誰かの食卓と笑顔を彩ろう
+  .white_content
+    .top_txt
+      %p
+        "もぐシェア"は
+        %br
+        子育て家庭の食卓を支える
+        %br
+        新しいカタチの地域コミュニティです
+      %span
+        詳細は
+        = link_to "こちら", root_path, target: "_blank"
+        から
+      %span
+        その中でも料理教室や"おすそわけ"の際に料理を作る側に回ってくれる方を"クック"と呼んでいます。
+        %br
+        %br
+        「料理が好きで、自分の料理で誰かに喜んで欲しい」「自分のペースで仕事,活動がしたい」
+        %br
+        そんな人にオススメです。
+
+  .gray_content
+    .title
+      %p クックの声
+    .img_txt_2_column
+      .img_content
+        .user_img
+          =image_tag "cook_voice.png"
+        .user_content
+          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(ねこ)
+      .img_content
+        .user_content
+          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(いぬ)
+        .user_img
+          =image_tag "cook_voice2.jpg"
+
+  .white_content
+    .title
+      %p 簡単3ステップで投稿~やり取りまで
+    .tatenaga-box
+      .use_content
+        %p.title 郵便番号で近くのコミュを検索
+        =image_tag "blank.jpg"
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+      .use_content
+        %p.title コンテンツを投稿/参加
+        =image_tag "blank.jpg"
+        %p "おすそわけ"をしたり、料理教室を主催したり。もちろん参加もok！
+      .use_content
+        %p.title 参加したりやり取りしたり好きに！
+        =image_tag "blank.jpg"
+        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+
+  .gray_content
+    .title
+      %p "もぐシェア"の活動紹介
+      .center
+        %span 実はお隣さんが味噌作りの上手な人だったり、対面の家庭はあなたのお家の前を通って「いい匂いがしてくる、食べてみたい」と思っていたり。
+        %br
+        "もぐシェア"を通じ、身近だけど繋がらなかった人たちが可視化され繋がり、楽しみができます。
+    .gallary-box.full
+      =image_tag "cook_gallery1.JPG"
+      =image_tag "cook_gallery2.JPG"
+
+  .white_content
+    .title
+      %p よくある質問
+    .faq-board
+      %input{type: :checkbox, id: "q01"}
+      %label{for:"q01", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p 料理の受け渡しなどコミュニティの活動の場所はどこですか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section01
+        %p
+          料理教室はご自宅や公共施設、"おすそわけ"なら自宅から徒歩,自転車圏内の小学校や保育園,駅付近などが、一般的な受け渡しの場所となっています
+
+      %input{type: :checkbox, id: "q02"}
+      %label{for:"q02", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p イベントやおすそわけの価格はどのくらいで設定しましょうか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section02
+        %p 例えばおすそわけ会(子ども食堂)は大人500円子ども300円です。おすそわけは、クックが自由に設定します(原材料費＋α程度が一般的です)。
+      %input{type: :checkbox, id: "q03"}
+      %label{for:"q03", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p 補償などは大丈夫でしょうか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section03
+        %p "もぐシェア"内での活動については最大3,000万までの保証も付くため、万一の事故の際に金銭的負担がクックに行くことは基本ありません。
+
+    .large-button
+      =link_to "まずはご近所のコミュニティを探す", signup_path
+
+  .gray_content
+    .title
+      %p.smaller
+        シェアして"もぐシェア"の
+        %br
+        仕組みをご近所で広げませんか？
+    .social-button
+      .facebook
+        =image_tag "blank.jpg"
+      .twitter
+        =image_tag "blank.jpg"
+
+<script src="http://bqworks.com/slider-pro/js/jquery.sliderPro.min.js"></script>
+<link rel="stylesheet" href="http://bqworks.com/slider-pro/css/slider-pro.min.css"/>
+:javascript
+  $(document).ready(function() {
+    $( '#slider-pro' ).sliderPro({
+        width: '100%',
+        height: 500,
+        responsive: true,
+        imageScaleMode: 'cover',
+        slideDistance:0,
+        arrows: true,
+        autoHeight:false,
+        buttons: false,
+        fadeFullScreen:true,
+        waitForLayers: true,
+        autoplay: true
+    });
+  });
+
+=render 'shared/footer'
+/ = link_to "スマホで今すぐ会員登録", index_path

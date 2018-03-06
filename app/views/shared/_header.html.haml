@@ -1,22 +1,51 @@
+.pc_alert_button スマホ専用サイトのため、登録/ログインはスマホからのみ可能です
 %header
   .header_container
     .mogura-icon
-      =image_tag "mogura-moji.png"
-
-    -if logged_in?
-      .pc_alert_button
-        スマホ専用サイトのため、登録/ログインはスマホからのみ可能です
-      .header_txt
-        -if current_user.seller.present?
-          = link_to current_user.name, edit_seller_path(current_user.seller)
-        - else
-          = link_to current_user.name, new_seller_path
-      .header_img
-        = mypage_profile_image(current_user)
-    -else
-      .pc_alert_button
-        ログイン/会員登録はスマホから
-      .signup_button
-        = link_to '無料登録', signup_path
-      .signin_button
-        = link_to 'ログイン', login_path
+      -if logged_in?
+        = link_to image_tag('mogura-moji.png'), tickets_path
+      -else
+        = link_to image_tag('mogura-moji.png'), root_path
+    .header_right_content
+      -if current_page?(root_path) || current_page?(cook_path) || current_page?(ambassador_path) || current_page?(vision_path)
+        %input{type: :checkbox, id: "nav-input", class: "nav-unshown"}
+        %label{for:"nav-input", id: "nav-open"}
+          %span
+        %label{for:"nav-input", id: "nav-close", class: "nav-unshown" }
+          .nav-content
+            %ul
+              %li
+                =link_to "もぐシェア-トップ", root_path
+              .line
+              %li
+                =link_to "クックについて", cook_path
+              .line
+              %li
+                =link_to "もぐシェアの中の人たち", ambassador_path
+              .line
+              %li
+                =link_to "目指す社会", vision_path
+              .line
+              %li
+                -if logged_in?
+                  =link_to "タイムラインへ", tickets_path
+                -else
+                  =link_to "無料登録", signup_path
+              .line
+                .close-button CLOSE
+      -else
+        -if logged_in?
+          .header_txt
+            -if current_user.seller.present?
+              = link_to current_user.name, edit_seller_path(current_user.seller)
+            - else
+              = link_to current_user.name, new_seller_path
+          .header_img
+            = mypage_profile_image(current_user)
+        -else
+          .pc_alert_button
+            ログイン/会員登録はスマホから
+          .signup_button
+            = link_to '無料登録', signup_path
+          .signin_button
+            = link_to 'ログイン', login_path

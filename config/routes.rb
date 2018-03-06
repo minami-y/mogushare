@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get    '/thanks',  to: 'charges#thanks'
   get    '/tmp',  to: 'sellers#tmp'
+  get    '/cook',   to: 'communities#cook'
+  get    '/ambassador',   to: 'communities#ambassador'
+  get    '/vision',   to: 'communities#vision'
   resources :users
   get    '/buy_history',  to: 'users#buy_history'
   resources :tickets do
