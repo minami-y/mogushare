@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224040514) do
+ActiveRecord::Schema.define(version: 20180306045800) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                 null: false
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20180224040514) do
     t.datetime "updated_at",                  null: false
     t.index ["postal_code"], name: "index_areas_on_postal_code", using: :btree
     t.index ["prefectural_id"], name: "index_areas_on_prefectural_id", using: :btree
+  end
+
+  create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "priority",                 default: 0, null: false
+    t.integer  "attempts",                 default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
