@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306045800) do
+ActiveRecord::Schema.define(version: 20180308221716) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20180306045800) do
     t.decimal  "lng",            precision: 9, scale: 6
     t.index ["postal_code"], name: "index_areas_on_postal_code", using: :btree
     t.index ["prefectural_id"], name: "index_areas_on_prefectural_id", using: :btree
+  end
+
+  create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "bank",           default: "", null: false
+    t.integer  "account_type",   default: 0,  null: false
+    t.string   "branch_code",    default: "", null: false
+    t.string   "account_number", default: "", null: false
+    t.string   "name",           default: "", null: false
+    t.integer  "seller_id",                   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["seller_id"], name: "index_bank_accounts_on_seller_id", using: :btree
   end
 
   create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -84,13 +96,14 @@ ActiveRecord::Schema.define(version: 20180306045800) do
   end
 
   create_table "shares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "genre"
-    t.string   "menu",       null: false
-    t.integer  "price",      null: false
-    t.integer  "quantity",   null: false
+    t.string   "menu",                     null: false
+    t.integer  "price",                    null: false
+    t.integer  "quantity",                 null: false
     t.integer  "ticket_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "image"
+    t.text     "message",    limit: 65535
     t.index ["ticket_id"], name: "index_shares_on_ticket_id", using: :btree
   end
 
@@ -105,15 +118,14 @@ ActiveRecord::Schema.define(version: 20180306045800) do
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "message",         limit: 65535, null: false
-    t.datetime "event_date",                    null: false
-    t.datetime "expiration_date",               null: false
-    t.string   "event_place",                   null: false
+    t.datetime "event_date",      null: false
+    t.datetime "expiration_date", null: false
+    t.string   "event_place",     null: false
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "image"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "genre"
     t.index ["buyer_id"], name: "index_tickets_on_buyer_id", using: :btree
     t.index ["seller_id"], name: "index_tickets_on_seller_id", using: :btree
   end
@@ -138,19 +150,17 @@ ActiveRecord::Schema.define(version: 20180306045800) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "remember_digest"
     t.string   "image"
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.string   "activation_digest"
-    t.boolean  "activated",         default: false
-    t.datetime "activated_at"
     t.boolean  "accepted"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "bank_accounts", "sellers"
 end
