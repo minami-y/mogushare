@@ -185,6 +185,7 @@
 @media screen and (max-width: 500px) {
   .content p {
     font-size: 12px;
+    margin-top: 0px;
   }
   .content p.title.large {
     font-size: 14px;
@@ -196,13 +197,18 @@
     display: flex;
     flex-direction: column;
   }
+  .img_txt_2_column p.small {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 13px;
+  }
   .img_content {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
   }
   .user_img {
-    width: 30%;
+    width: 35%;
     padding-right: 20px;
   }
   .img_content img {
@@ -212,6 +218,7 @@
   .user_content {
     width: 40%;
     background-color: #f8f7f2;
+    border-radius: 20%;
   }
 }
 @media screen and (min-width: 500px) {
@@ -255,6 +262,7 @@
 .center {
   width: 80%;
   margin: 0 auto;
+  font-size: 13px;
 }
 
 .large-button {
@@ -276,7 +284,8 @@
   width: 40%;
   text-align: center;
   border-radius: 5px;
-  background-color: #90EE90;
+  background-color: orange;
+  opacity: .9;
   font-size: 16px;
   color: white;
   margin: 0 auto;
@@ -284,6 +293,22 @@
   align-items: center;
 }
 .half-button a {
+  margin: auto;
+}
+.eighty-button {
+  width: 80%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: orange;
+  opacity: .9;
+  font-size: 16px;
+  color: white;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+.eighty-button a {
   margin: auto;
 }
 @media screen and (max-width: 500px) {
@@ -344,6 +369,8 @@
   align-items: center;
 }
 .use_content img {
+  width: 300px !important;
+  height: 534px !important;
 }
 .use_content p.title {
   font-weight: bold;

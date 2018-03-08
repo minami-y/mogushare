@@ -14,10 +14,15 @@
         %br
         新しいカタチの地域コミュニティです
       %span
-        例えば、料理を1品から「おすそわけ」し合ったり、子連れOKの料理教室や子ども食堂などコミュニティ内の活動に参加できます。
+        地域の子育て家庭と料理上手さんが繋がり
+        %br
+        「おかずのおすそわけ」「料理教室」「(子ども食堂など)子連れで楽しめるイベント」といった様々な活動に参加できる地域コミュニティです。
         %br
         %br
-        「料理が好きで、自分の料理で誰かに喜んで欲しい」「子どもが小さく毎日の料理が大変」
+        「料理が好きで、自分の料理で誰かに喜んで欲しい」
+        %br
+        「子どもが小さく毎日の料理が大変」
+        %br
         %br
         そんな人たちが集まって、食と子育てを軸に助け合う仕組みです。
 
@@ -27,16 +32,16 @@
     .img_txt_3_column
       .content
         =image_tag "reason1.jpg"
-        %p.title ここにタイトルです
-        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
-      .content
-        =image_tag "reason2.jpg"
-        %p.title ここにタイトルです
-        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+        %p.title 保険加入済みで最大3,000万まで補償！
+        %p もぐシェア運営の(株)”ふらりーと”は生産物賠償責任保険に加入しており、万一の事故の際に最大3,000万円まで補償が出ます。
       .content
         =image_tag "reason3.jpg"
-        %p.title ここにタイトルです
-        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+        %p.title 気軽に参加できるオープンな場作り
+        %p おすそわけや料理教室を主催する人が料理を作って振る舞う”おすそわけ会(子ども食堂)”や料理好き同士で繋がる"もぐもぐ会"などを各地で開催しているため、オープンな場で出会い,繋がることもできます。
+      .content
+        =image_tag "reason2.jpg"
+        %p.title 信頼できる地域団体との連携
+        %p 行政や子育て支援団体,NPOと各地域で連携しイベントを共済するなど、地域に根ざしたコミュニティ作りを行っています。
 
   .white_content
     .title
@@ -44,23 +49,29 @@
     .img_txt_2_column
       .img_content
         .user_img
-          =image_tag "member_voice.png"
+          =image_tag "member_voice.jpg"
         .user_content
-          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(ねこ)
+          %p 「この日は夕飯のことを気にしないでいいや」がすごく嬉しいんです
+      %p.small
+        週2くらいで副菜を頼んだり、そこで繋がった方のお料理教室に参加したりしています。クックの方は月のおすそわけ日程を前もって教えてくれるので予定も立てやすいです。実家の母に頼るような感覚ですね。
       .img_content
         .user_img
-          =image_tag "cook_voice.png"
+          =image_tag "cook_voice2.jpg"
         .user_content
-          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(いぬ)
-          クックについては
-          = link_to "こちら", cook_path, target: "_blank"
+          %p 主婦の自分がしてきた料理が、こんなに誰かに喜んでもらえるなんて
+      %p.small
+        料理好き活かして子育て家庭の力になりたいと思っていた所、このもぐシェアの仕組みを見つけ「これだ！」と思いました。家庭優先で在宅でできるのが嬉しいです。
+        %br
+        ※「クック」については
+        = link_to "こちら", cook_path, target: "_blank"
+
 
   .gray_content
     .title
       %p 使い方
     %div#slider-pro.slider-pro
       .sp-slides
-        %p.title 郵便番号で近くのコミュを検索
+        %p.title ①郵便番号で近所のコミュニティを検索し会員登録(無料)
         .sp-slide
           =image_tag "appflow1.png", class: "sp-image"
         .sp-slide
@@ -100,11 +111,11 @@
         .faq-icon
           %i.fas.fa-search
         .question
-          %p おすそわけは週何回でしょうか？場所と時間も決まっていますか？
+          %p イベントやおすそわけなどの活動について、場所や時間も決まっていますか？
         .faq-icon
           %i.fas.fa-plus-circle
       .answer-section01
-        %p おすそわけする方が好きな頻度で行います。場所,時間は郵便番号で繋がれるご近所さんと直接詳細を決めることができます。
+        %p 場所,時間は基本的にクックの方が決めたものに従って下さい。より詳細はチャットで直接調整できます。
       %input{type: :checkbox, id: "q02"}
       %label{for:"q02", class: "question-section"}
         .faq-icon
@@ -114,7 +125,7 @@
         .faq-icon
           %i.fas.fa-plus-circle
       .answer-section02
-        %p 例えばおすそわけ会(子ども食堂)は大人500円子ども300円です。おすそわけは、クックが自由に設定します(原材料費＋α程度が一般的です)。
+        %p 例えば子ども食堂は大人500円子ども300円です。おすそわけは、クックが自由に設定します(原材料費＋α程度が一般的です)。
       %input{type: :checkbox, id: "q03"}
       %label{for:"q03", class: "question-section"}
         .faq-icon
@@ -124,7 +135,17 @@
         .faq-icon
           %i.fas.fa-plus-circle
       .answer-section03
-        %p "おすそわけ"の範疇で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
+        %p "アレルギー対応"と銘打ったようなもの以外で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
+      %input{type: :checkbox, id: "q04"}
+      %label{for:"q04", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p 補償などは大丈夫でしょうか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section04
+        %p "もぐシェア"内での活動については最大3,000万までの保証が付きます。ご安心下さい。
 
     .large-button
       =link_to "まずはご近所のコミュニティを探す", signup_path
@@ -141,7 +162,7 @@
       .twitter
         =image_tag "blank.jpg"
     .button-parent
-      .half-button
+      .eighty-button
         =link_to "運営に関わりたい方はこちら", ambassador_path, target: "_blank"
 
 <script src="http://bqworks.com/slider-pro/js/jquery.sliderPro.min.js"></script>

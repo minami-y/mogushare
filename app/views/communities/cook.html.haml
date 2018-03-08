@@ -21,9 +21,7 @@
         その中でも料理教室や"おすそわけ"の際に料理を作る側に回ってくれる方を"クック"と呼んでいます。
         %br
         %br
-        「料理が好きで、自分の料理で誰かに喜んで欲しい」「自分のペースで仕事,活動がしたい」
-        %br
-        そんな人にオススメです。
+        「料理が好きで、自分の料理で誰かに喜んで欲しい」「自分のペースで仕事,活動がしたい」そんな人にオススメです。
 
   .gray_content
     .title
@@ -31,31 +29,35 @@
     .img_txt_2_column
       .img_content
         .user_img
-          =image_tag "cook_voice.png"
+          =image_tag "cook_voice1.jpg"
         .user_content
-          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(ねこ)
+          %p コミュニティに参加して、周りの生活がより豊かに
+      %p.small
+        子どもが少し大きくなり落ち着いたタイミングで、地域でやりがいを見つけたり自分の好きな料理で自己実現できる場所だと思います。
       .img_content
-        .user_content
-          %p こんにちはこんにちはこんにちはこんにちはこんにちはこんにちは(いぬ)
         .user_img
           =image_tag "cook_voice2.jpg"
+        .user_content
+          %p 主婦の自分がしてきた料理が、こんなに誰かに喜んでもらえるなんて
+      %p.small
+        料理好き活かして子育て家庭の力になりたいと思っていた所、このもぐシェアの仕組みを見つけ「これだ！」と思いました。家庭優先で在宅でできるのが嬉しいです。
 
   .white_content
     .title
       %p 簡単3ステップで投稿~やり取りまで
     .tatenaga-box
       .use_content
-        %p.title 郵便番号で近くのコミュを検索
-        =image_tag "blank.jpg"
-        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+        %p.title ①郵便番号で近所のコミュニティを検索し会員登録(無料)
+        =image_tag "appflow1.png"
+        %p 郵便番号を入力して近くにいる料理上手さんや、あなたの料理を食べたい子育て家庭と繋がれます
       .use_content
-        %p.title コンテンツを投稿/参加
-        =image_tag "blank.jpg"
-        %p "おすそわけ"をしたり、料理教室を主催したり。もちろん参加もok！
+        %p.title ②タイムラインからおすそわけやイベント情報を投稿/確認
+        =image_tag "appflow2.png"
+        %p タイムライン上で"おすそわけ"や料理教室のチケットを投稿、ご近所さんに通知できます。もちろん参加するのもok！
       .use_content
-        %p.title 参加したりやり取りしたり好きに！
-        =image_tag "blank.jpg"
-        %p 今日はいい天気だと思います。今日はいい天気だと思います。今日はいい天気だと思います。
+        %p.title ③当日までに場所,時間をチャットで調整
+        =image_tag "appflow3.JPG"
+        %p アプリ内でできるチャットで、おすそわけや料理教室などの時間,場所などをやり取りします
 
   .gray_content
     .title
@@ -77,12 +79,12 @@
         .faq-icon
           %i.fas.fa-search
         .question
-          %p 料理の受け渡しなどコミュニティの活動の場所はどこですか？
+          %p 料理の受け渡しなどコミュニティの活動の場所はどこですか？また活動に頻度などはありますか？
         .faq-icon
           %i.fas.fa-plus-circle
       .answer-section01
         %p
-          料理教室はご自宅や公共施設、"おすそわけ"なら自宅から徒歩,自転車圏内の小学校や保育園,駅付近などが、一般的な受け渡しの場所となっています
+          場所は頻度はクックの方ご自身が自由に設定できます。料理教室はご自宅や公共施設、"おすそわけ"なら自宅から徒歩,自転車圏内の小学校や保育園,駅付近などが、一般的な受け渡しの場所となっています。
 
       %input{type: :checkbox, id: "q02"}
       %label{for:"q02", class: "question-section"}
@@ -99,10 +101,20 @@
         .faq-icon
           %i.fas.fa-search
         .question
-          %p 補償などは大丈夫でしょうか？
+          %p アレルギーは対応していますか？
         .faq-icon
           %i.fas.fa-plus-circle
       .answer-section03
+        %p "アレルギー対応"と銘打ったようなもの以外で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
+      %input{type: :checkbox, id: "q04"}
+      %label{for:"q04", class: "question-section"}
+        .faq-icon
+          %i.fas.fa-search
+        .question
+          %p 補償などは大丈夫でしょうか？
+        .faq-icon
+          %i.fas.fa-plus-circle
+      .answer-section04
         %p "もぐシェア"内での活動については最大3,000万までの保証も付くため、万一の事故の際に金銭的負担がクックに行くことは基本ありません。
 
     .large-button
