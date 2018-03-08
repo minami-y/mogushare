@@ -7,90 +7,50 @@
     });
   });
 
-
 .board.large.color-none
   %h1.title 投稿
   .board.middle.color-none
     = form_for @ticket do |f|
+      - if @ticket.errors.any?
+        #error_explanation
+          %h3
+            = pluralize(@ticket.errors.count, "error")
+            prohibited this ticket from being saved:
+          %ul
+            - @ticket.errors.full_messages.each do |message|
+              %li= message
       .submit-field
         .basic_info
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
+          %p.comment ジャンル
+          = f.text_field :genre, required: true, placeholder: "例 | 和食"
+          %p.comment 開始日時
+          .date-box
+            = f.date_select :event_date, required: true
+          %p.comment 終了日時
+          .date-box
+            = f.date_select :expiration_date, required: true
+          %p.comment 場所
+          = f.text_field :event_place, required: true, placeholder: "例 | 恵比寿駅周辺"
           .next-button
             次へ
 
         .detail_info
-          %p.comment こっちにおすそわけのコンテンツ投稿してね
-          = f.text_field :message, required: true
-          %p.comment 画像(必須ではありません)
-          .post-images
-            .mask-squre
-              %i.fa.fa-camera
-                = f.file_field :image
-                = f.hidden_field :image_cache
-            .mask-squre
-              %i.fa.fa-camera
-                = f.file_field :image
-                = f.hidden_field :image_cache
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-          %p.comment 自己紹介
-          = f.text_field :message, required: true
-        .add-button
-          別の商品を登録する
+          = f.fields_for :shares do |share|
+            %p.comment メニュー
+            = share.text_field :menu, required: true, placeholder: "例 | 肉じゃが"
+            %p.comment 販売価格: 1つあたり
+            = share.text_field :price, required: true, placeholder: "例 | 100"
+            %p.comment 販売数
+            = share.text_field :quantity, required: true, placeholder: "例 | 4"
+            %p.comment 画像(必須ではありません)
+            .post-images
+              .mask-squre
+                %i.fa.fa-camera
+                  = share.file_field :image
+                  = share.hidden_field :image_cache
+            %p.comment 詳細
+            = share.text_area :message, required: true, rows: "3"
+            = link_to_add_association '別の商品を登録する', f, :shares, class: "add-button"
+      = hidden_field_tag :seller_id, current_user.seller.id
       .submit-button
-        = f.submit "登録する"
-
-  / = form_for @ticket, url: {action: 'confirm'} do |f|
-  /   - if @ticket.errors.any?
-  /     #error_explanation
-  /       %h3
-  /         = pluralize(@ticket.errors.count, "error")
-  /         prohibited this ticket from being saved:
-  /       %ul
-  /         - @ticket.errors.full_messages.each do |message|
-  /           %li= message
-  /   %ticket_form
-
-  /     %div
-  /       = f.label :image
-  /       = f.file_field :image
-  /       = f.hidden_field :image_cache
-
-  /     %div
-  /       = f.label :message
-  /       = f.text_area :message
-
-  /     %div
-  /       = f.label :event_date
-  /       = f.datetime_select :event_date
-
-  /     %div
-  /       = f.label :expiration_date
-  /       = f.datetime_select :expiration_date
-
-  /     %div
-  /       = f.label :event_place
-  /       = f.text_field :event_place
-
-  /     %h4 -おすそわけメニュー-
-  /     %div
-  /       = f.fields_for :shares do |share|
-  /         = render 'share_fields', f: share
-  /     %div
-  /       = link_to_add_association 'メニュー追加', f, :shares
-  /       = hidden_field_tag :seller_id, current_user.seller.id
-
-  /     %br
-  /     %div
-  /       = f.submit "確認ページへ"
+        = f.submit "確認ページへ"
