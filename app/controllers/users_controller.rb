@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @area = Area.search(params[:search])
+    @area = Area.search(params[:search].delete("-"))
     if @area.nil?
       flash[:danger] = "正しい郵便番号を入力してください"
       redirect_to index_path
