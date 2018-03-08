@@ -1,4 +1,5 @@
 class Share < ApplicationRecord
+  mount_uploader :image, ImageUploader
   belongs_to :ticket, optional: true
   has_many :order_details
   validates :genre, presence: true
