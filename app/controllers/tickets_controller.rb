@@ -14,12 +14,10 @@ class TicketsController < ApplicationController
   def confirm
     @ticket = Ticket.new(ticket_params)
     @shares = @ticket.shares
-    render :new if @ticket.invalid?
   end
 
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.image.retrieve_from_cache! params[:cache][:image]
     if params[:back]
       render :new
     elsif @ticket.save!
@@ -65,7 +63,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:image, :message, :image_cache, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :genre, :menu, :price, :quantity, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
+      params.require(:ticket).permit(:genre, :image_cache, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :image, :menu, :price, :quantity, :message, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
     end
 
     # チケット投稿ページに遷移時、販売者登録ができていなければ登録ページにリダイレクト
@@ -76,11 +74,9 @@ class TicketsController < ApplicationController
     end
 
     def send_mail_to_users_in_area
-      user_areas = UserArea.where(user_id: @ticket.user_id)
+      user_areas = UserArea.where(user_id: @ticket.seller.user_id)
       user_areas.each do |user_area|
-        user_area.users.each do |user|
-          TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver_later unless @ticket.user_id == user.id
-        end
+        TicketsMailer.send_mail_about_new_ticket(user_area.user, @ticket).deliver_later unless @ticket.seller.user_id == user_area.user_id
       end
     end
 end
