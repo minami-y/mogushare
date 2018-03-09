@@ -14,13 +14,14 @@ CSV.foreach('db/prefecturals_name_seed.csv') do |row|
 end
 
 Area.delete_all
-CSV.foreach('db/postal_code_seed.csv') do |row|
-  record = {
-    :postal_code     => row[0],
-    :prefectural     => namelist[row[1].to_i], # オブジェクトを紐付け
-    :city            => row[3],
-    :street          => row[4],
-  }
-  p record
-  Area.create!(record)
+connection = ActiveRecord::Base.connection
+
+sql = File.read('db/area_data.sql')
+statements = sql.split(/;$/)
+statements.pop
+
+ActiveRecord::Base.transaction do
+  statements.each do |statement|
+    connection.execute(statement)
+  end
 end
