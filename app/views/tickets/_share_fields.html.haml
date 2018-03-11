@@ -4,7 +4,7 @@
   %p.comment 販売価格: 1つあたり
   = f.text_field :price, required: true, placeholder: "例 | 100"
   %p.comment 販売数
-  = share.text_field :quantity, required: true, placeholder: "例 | 4"
+  = f.text_field :quantity, required: true, placeholder: "例 | 4"
   %p.comment 画像(必須ではありません)
   .post-images
     .mask-squre
@@ -12,6 +12,6 @@
         = f.file_field :image
         = f.hidden_field :image_cache
   %p.comment 詳細
-  = share.text_area :message, required: true, rows: "3"
+  = f.text_area :message, required: true, rows: "3"
   %div
     = link_to_remove_association 'メニュー削除', f, class: "add-button"
