@@ -3,6 +3,7 @@ class SellersController < ApplicationController
 
   def new
     @seller = Seller.new
+    # @seller.bank_account.build
   end
 
   def create
@@ -31,7 +32,7 @@ class SellersController < ApplicationController
     end
 
     def seller_params
-      params.require(:seller).permit(:photo, :self_introduction, :sns_info).merge(user_id: current_user.id)
+      params.require(:seller).permit(:photo, :self_introduction, :sns_info, bank_account_attributes: [:bank, :account_type, :branch_type, :branch_code, :account_number, :name]).merge(user_id: current_user.id)
     end
 
 end

@@ -5,100 +5,101 @@
 
 
 / ここは変数ぶちこまねば！
-.board.large
-  .board.middle
-    %p.ticket_title タンドリーチキン │ 350円
-    .ticket_info
-      %i.fas.fa-hourglass 2/10 18:00-19:00
-      %i.fas.fa-map-pin 恵比寿駅周辺
-      %i.fas.fa-tag おすそわけ
-  .board-img
-    = image_tag "tl_1.JPG"
-  .board.middle
-    %p カレー風味で仕上げました。子どももパクパクな我が家の定番です。付け合せにパプリカのきんぴらも入れてます^^
-  .ticket-line
-  .board.middle
-    .jump-to-detail
-      .cook_info
-        = image_tag "tl_cook1.png"
-        %span
-          古屋芳美
-      .show_more_button
-        =link_to "もっと見る", index_path
+/ .board.large
+/   .board.middle
+/     %p.ticket_title タンドリーチキン │ 350円
+/     .ticket_info
+/       %i.fas.fa-hourglass 2/10 18:00-19:00
+/       %i.fas.fa-map-pin 恵比寿駅周辺
+/       %i.fas.fa-tag おすそわけ
+/   .board-img
+/     = image_tag "tl_1.JPG"
+/   .board.middle
+/     %p カレー風味で仕上げました。子どももパクパクな我が家の定番です。付け合せにパプリカのきんぴらも入れてます^^
+/   .ticket-line
+/   .board.middle
+/     .jump-to-detail
+/       .cook_info
+/         = image_tag "tl_cook1.png"
+/         %span
+/           古屋芳美
+/       .show_more_button
+/         =link_to "もっと見る", index_path
 
-.board.large
-  .board.middle
-    %p.ticket_title 2時間で6品作れるようになる教室 │ 2500円
-    .ticket_info
-      %i.fas.fa-hourglass 2/10 11:00~13:00
-      %i.fas.fa-map-pin 渋谷駅周辺
-      %i.fas.fa-tag 料理教室
-  .board-img
-    = image_tag "tl_2.JPG"
-  .board.middle
-    %p 週末に作り置きしたいけど、結局時間がなくてやれない/レパートリーが少ない、という方に向けて！2時間6品一本勝負を3年間続けてきた経験から、効率的な食材の組み合わせ方からメニューの工夫の仕方、時短のコツを伝授します。
-  .ticket-line
-  .board.middle
-    .jump-to-detail
-      .cook_info
-        = image_tag "tl_cook2.png"
-        %span
-          瀬田美樹
-      .show_more_button
-        =link_to "もっと見る", index_path
+/ .board.large
+/   .board.middle
+/     %p.ticket_title 2時間で6品作れるようになる教室 │ 2500円
+/     .ticket_info
+/       %i.fas.fa-hourglass 2/10 11:00~13:00
+/       %i.fas.fa-map-pin 渋谷駅周辺
+/       %i.fas.fa-tag 料理教室
+/   .board-img
+/     = image_tag "tl_2.JPG"
+/   .board.middle
+/     %p 週末に作り置きしたいけど、結局時間がなくてやれない/レパートリーが少ない、という方に向けて！2時間6品一本勝負を3年間続けてきた経験から、効率的な食材の組み合わせ方からメニューの工夫の仕方、時短のコツを伝授します。
+/   .ticket-line
+/   .board.middle
+/     .jump-to-detail
+/       .cook_info
+/         = image_tag "tl_cook2.png"
+/         %span
+/           瀬田美樹
+/       .show_more_button
+/         =link_to "もっと見る", index_path
 
-.board.large
-  .board.middle
-    %p.ticket_title 画像3枚 │ 500円
-    .ticket_info
-      %i.fas.fa-hourglass 2/10 18:00-19:00
-      %i.fas.fa-map-pin 恵比寿駅周辺
-      %i.fas.fa-tag おすそわけ
-  .board-img
-    = image_tag "mogura-moji.png"
-  .board.middle
-    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
-  .ticket-line
-  .board.middle
-    .jump-to-detail
-      .cook_info
-        = image_tag "blank.jpg"
-        %span
-          きのした
-      .show_more_button
-        =link_to "もっと見る", index_path
+/ .board.large
+/   .board.middle
+/     %p.ticket_title 画像3枚 │ 500円
+/     .ticket_info
+/       %i.fas.fa-hourglass 2/10 18:00-19:00
+/       %i.fas.fa-map-pin 恵比寿駅周辺
+/       %i.fas.fa-tag おすそわけ
+/   .board-img
+/     = image_tag "mogura-moji.png"
+/   .board.middle
+/     %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+/   .ticket-line
+/   .board.middle
+/     .jump-to-detail
+/       .cook_info
+/         = image_tag "blank.jpg"
+/         %span
+/           きのした
+/       .show_more_button
+/         =link_to "もっと見る", index_path
 
 
 
 / ここマッチングのロジックに応じて変わる
-%div
-  - @user_areas.each do |user_area|
-    - user_area.area.users.each do |user|
-      - if user.seller.present?
-        - user.seller.tickets.each do |ticket|
-          %div
-            - if ticket.expiration_date > Time.current
-              - ticket.shares.each do |share|
-                - if share.quantity != 0
-                  = link_to ticket_path(ticket.id) do
-                    .ticket-item
-                      %div
-                      = mypage_profile_image(user)
-                      = user.seller.official_name
-                      %div
-                      = share.menu
-                      %div
-                      #{share.price} 円
-                      %div
-                      = ticket.message
-                      %div
-                      受け渡し時間：
-                      = ticket.event_date.strftime('%Y年%m月%d日　%H:%M')
-                      %div
-                      受け渡し場所：
-                      = ticket.event_place
-                      %div
-                      = ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')
-                      まで有効
+- @user_areas.each do |user_area|
+  - user_area.area.users.each do |user|
+    - if user.seller.present?
+      - user.seller.tickets.each do |ticket|
+        %div
+          - if ticket.expiration_date > Time.current
+            - ticket.shares.each do |share|
+              - if share.quantity != 0
+                .board.large
+                  .board.middle
+                    %p.ticket_title #{share.menu} | #{share.price} 円
+                    .ticket_info
+                      %i.fas.fa-hourglass #{ticket.event_date.strftime('%m/%d %H:%M')} - #{ticket.expiration_date.strftime('%m/%d %H:%M')}
+                      %i.fas.fa-map-pin #{ticket.event_place}
+                      %i.fas.fa-tag #{ticket.genre}
+                  .board-img
+                    = image_tag share.image
+                  .board.middle
+                    %p #{share.message}
+                  .ticket-line
+                  .board.middle
+                    .jump-to-detail
+                      .cook_info
+                        = image_tag ticket.seller.photo
+                        %span
+                          #{user.name}
+                      .show_more_button
+                        =link_to "もっと見る", ticket_path(ticket.id)
+
+
 
 = render 'shared/after_signup_footer'

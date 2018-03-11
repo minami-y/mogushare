@@ -30,7 +30,7 @@
                 -if logged_in?
                   =link_to "タイムラインへ", tickets_path
                 -else
-                  =link_to "無料登録", signup_path
+                  =link_to "無料登録", index_path
               .line
                 .close-button CLOSE
       -else
@@ -46,6 +46,6 @@
           .pc_alert_button
             ログイン/会員登録はスマホから
           .signup_button
-            = link_to '無料登録', signup_path
+            = link_to '無料登録', index_path
           .signin_button
             = link_to 'ログイン', login_path
