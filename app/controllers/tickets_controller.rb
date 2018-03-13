@@ -73,7 +73,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:genre, :image_cache, :event_date, :expiration_date, :event_date, :event_place, shares_attributes: [:id, :image, :menu, :price, :quantity, :message, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
+      params.require(:ticket).permit(:genre, :image_cache, :event_date, :expiration_date, :event_date, :event_end_date, :event_place, shares_attributes: [:id, :image, :menu, :price, :quantity, :message, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
     end
 
     # チケット投稿ページに遷移時、販売者登録ができていなければ登録ページにリダイレクト

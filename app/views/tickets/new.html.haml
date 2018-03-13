@@ -28,6 +28,9 @@
             = f.date_select :event_date, required: true
           %p.comment 終了日時
           .date-box
+            = f.date_select :event_end_date, required: true
+          %p.comment 予約締切日時
+          .date-box
             = f.date_select :expiration_date, required: true
           %p.comment 場所(可能な限り詳細に記述して下さい)
           = f.text_field :event_place, required: true, placeholder: "例 | 広尾郵便局前"

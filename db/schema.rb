@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308221716) do
+ActiveRecord::Schema.define(version: 20180313180047) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20180308221716) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "genre"
+    t.datetime "event_end_date"
     t.index ["buyer_id"], name: "index_tickets_on_buyer_id", using: :btree
     t.index ["seller_id"], name: "index_tickets_on_seller_id", using: :btree
   end
