@@ -5,6 +5,11 @@ body {
   min-height: 100vh;
   margin: 0px;
 }
+.main {
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow-y: scroll;
+}
 
 p {
   font-family: HiraginoSans-W3;
@@ -88,6 +93,9 @@ p.comment {
   color: #999999;
   margin-bottom: 0px;
 }
+p.comment.large {
+
+}
 .date-box {
   height: 40px;
   margin-bottom: 20px;
@@ -109,6 +117,9 @@ label.checkbox {
   height: 40px;
   border: solid 2px #ebebeb;
   margin-bottom: 20px;
+}
+#ticket_shares_attributes_0_message{
+  height: 90px;
 }
 
 .submit-field ::-webkit-input-placeholder{
@@ -144,6 +155,10 @@ label.checkbox {
   min-height: 80vh;
   display: flex;
   align-items: center;
+  width: 90%;
+}
+span.smaller {
+  font-size: 16px;
 }
 
 .facebook_button{
@@ -348,7 +363,8 @@ label.question-section {
 .answer-section02 p,
 .answer-section03 p,
 .answer-section04 p,
-.answer-section05 p, {
+.answer-section05 p,
+.answer-section06 p {
   max-height: 0;
   overflow-y: hidden;
 }
@@ -357,7 +373,8 @@ label.question-section {
 #q02:checked ~ .answer-section02 p,
 #q03:checked ~ .answer-section03 p,
 #q04:checked ~ .answer-section04 p,
-#q05:checked ~ .answer-section05 p {
+#q05:checked ~ .answer-section05 p,
+#q06:checked ~ .answer-section06 p {
   font-size:12px;
   max-height:500px;
 }
