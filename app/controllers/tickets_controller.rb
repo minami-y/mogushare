@@ -4,6 +4,16 @@ class TicketsController < ApplicationController
 
   def index
     @user_areas = current_user.user_areas
+    @tickets =[].uniq
+    @user_areas.each do |ua|
+      ua.area.users.each do |user|
+        if user.seller.present?
+          user.seller.tickets.each do |ticket|
+            @tickets << ticket
+          end
+        end
+      end
+    end
   end
 
   def new
