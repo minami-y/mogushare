@@ -1,22 +1,20 @@
-%h1 購入履歴
+- if @orders
+  - @orders.each do |order|
+    - order.order_details.each do |od|
+      .board.large
+        .chat-board
+          .cook_info
+            = mypage_profile_image(order.seller.user)
+          .chat-txt
+            %span= order.seller.user.name
+            %span 商品名： #{od.share.menu}
+            %span 購入個数：#{od.quantity} 個
+            %span 合計金額：#{od.price} 円
+          .chat-time
+            %span= od.created_at.strftime('%m/%d')
 
-- @orders.each do |order|
-  - order.order_details.each do |od|
-    %div
-    = mypage_profile_image(order.seller.user)
-    %div
-    = order.seller.user.name
-    %div
-    商品名｜
-    = od.share.menu
-    %div
-    購入個数｜
-    = od.quantity
-    個
-    %div
-    合計金額｜
-    = od.price
-    円
-    %div
-    = od.created_at.strftime('%Y年%m月%d日　%H:%M')
-    %hr
+- else
+  %div.no_item
+    取引履歴はありません
+
+= render 'shared/after_signup_footer'
