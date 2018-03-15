@@ -9,7 +9,9 @@
             .board.middle
               %p.ticket_title #{share.menu} | #{share.price} 円
               .ticket_info
-                %i.fas.fa-hourglass #{ticket.event_date.strftime('%m/%d %H:%M')} - #{ticket.expiration_date.strftime('%m/%d %H:%M')}
+                / 後でif文削除
+                - if ticket.event_end_date.present?
+                  %i.fas.fa-hourglass #{ticket.event_date.strftime('%m/%d %H:%M')} - #{ticket.event_end_date.strftime('%m/%d %H:%M')}
                 %i.fas.fa-map-pin #{ticket.event_place}
                 %i.fas.fa-tag #{ticket.genre}
             .board-img

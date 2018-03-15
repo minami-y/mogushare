@@ -1,122 +1,112 @@
 / このjsは動的にクラス変化させる必要あり(classに変数を当てる)
-:javascript
-  $(document).on('turbolinks:load', function() {
-  var num = 1
-  $('.plus').on('click', function(){
-    num++;
-    $(".number").html(num);
-    });
-  $('.minus').on('click', function(){
-    num--;　num>1
-    $(".number").html(num);
-    });
-  });
+/ :javascript
+/   $(document).on('turbolinks:load', function() {
+/   var num = 0
+/   $('.plus').on('click', function(){
+/     num++;
+/     $(this).prev().val(num);
+/     });
+/   $('.minus').on('click', function(){
+/     num--;　num>1
+/     $(this).prev().prev().val(num);
+/     });
+/   });
 
-.board.large
-  .board.middle
-    %p.ticket_title 画像3枚 │ 500円
-    .ticket_info
-      %i.fas.fa-hourglass 2/10 18:00-19:00
-      %i.fas.fa-map-pin 恵比寿駅周辺
-      %i.fas.fa-tag おすそわけ
-  .board-img
-    = image_tag "mogura-moji.png"
-  .board.middle
-    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
-  .ticket-line
-  .board.middle
-    .buy_number
-      .exp 個数：
-      .number 1
-      .unit 個
-      .plus
-        %i.fa.fa-plus-circle
-      .minus
-        %i.fa.fa-minus-circle
-    .next-button
-      =link_to "カートに入れる", index_path
+/ .board.large
+/   .board.middle
+/     %p.ticket_title 画像3枚 │ 500円
+/     .ticket_info
+/       %i.fas.fa-hourglass 2/10 18:00-19:00
+/       %i.fas.fa-map-pin 恵比寿駅周辺
+/       %i.fas.fa-tag おすそわけ
+/   .board-img
+/     = image_tag "mogura-moji.png"
+/   .board.middle
+/     %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+/   .ticket-line
+/   .board.middle
+/     .buy_number
+/       .exp 個数：
+/       .number 1
+/       .unit 個
+/       .plus
+/         %i.fa.fa-plus-circle
+/       .minus
+/         %i.fa.fa-minus-circle
+/     .next-button
+/       =link_to "カートに入れる", index_path
 
-.board.large
-  .board.middle
-    %p.ticket_title 画像3枚 │ 500円
-    .ticket_info
-      %i.fas.fa-hourglass 2/10 18:00-19:00
-      %i.fas.fa-map-pin 恵比寿駅周辺
-      %i.fas.fa-tag おすそわけ
-  .board-img
-    = image_tag "mogura-moji.png"
-  .board.middle
-    %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
-  .ticket-line
-  .board.middle
-    .buy_number
-      .exp 個数：
-      .number 1
-      .unit 個
-      .plus
-        %i.fa.fa-plus-circle
-      .minus
-        %i.fa.fa-minus-circle
-    .next-button
-      =link_to "カートに入れる", index_path
+/ .board.large
+/   .board.middle
+/     %p.ticket_title 画像3枚 │ 500円
+/     .ticket_info
+/       %i.fas.fa-hourglass 2/10 18:00-19:00
+/       %i.fas.fa-map-pin 恵比寿駅周辺
+/       %i.fas.fa-tag おすそわけ
+/   .board-img
+/     = image_tag "mogura-moji.png"
+/   .board.middle
+/     %p hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+/   .ticket-line
+/   .board.middle
+/     .buy_number
+/       .exp 個数：
+/       .number 1
+/       .unit 個
+/       .plus
+/         %i.fa.fa-plus-circle
+/       .minus
+/         %i.fa.fa-minus-circle
+/     .next-button
+/       =link_to "カートに入れる", index_path
 
 
 / 以下は書き換える際の参考に残している。ただしコメントアウトするとエラーなのでそのまま(インデントの問題？)
-%div
-= mypage_profile_image(@seller.user)
-= @seller.official_name
-%div
-= @seller.address
-%br
 
-%div
-%h4 おすそわけ
-= image_tag @ticket.image, class: "ticket-image"
-%div
-= @ticket.message
 
 / ログインしているユーザーが投稿者の場合、shareの情報と編集、削除へのリンクを表示
 - if current_user.seller.nil? || current_user.seller.id != @ticket.seller_id
-  / 購入用の入力フォームを作成
   = form_for(@order, url: confirm_charges_path(id: @ticket.id)) do |f|
     = f.hidden_field :seller_id, value: @seller.id
     = f.hidden_field :user_id, value: current_user.id
 
     - @shares.each do |share|
       = f.fields_for :order_details do |od|
-        %div.ticket-item.ticket-item-menu{"data-price": share.price}
-          - if share.quantity == 0
-            売り切れました。
-          = share.menu
-          = od.label :unit_price, "単価："
-          = od.text_field :unit_price, readonly: true, value: share.price, size: 5, class: "item-price-unit"
-          円
-          = od.select :quantity, (0..share.quantity).to_a, class: "select"
-          = od.label :price, "小計："
-          = od.text_field :price, value: 0, readonly: true, size: 5, class: "item-price-total"
-          = od.hidden_field :share_id, value: share.id
-          円
-
-    = f.label :total_price, "合計"
+        .board.large.ticket-item.ticket-item-menu{"data-price": share.price}
+          .board.middle
+            %p.ticket_title #{share.menu} │ #{share.price}
+            = od.hidden_field :unit_price, readonly: true, value: share.price, size: 5, class: "item-price-unit"
+            .ticket_info
+              / 後でif文削除
+              - if @ticket.event_end_date.present?
+                %i.fas.fa-hourglass #{@ticket.event_date.strftime('%m/%d %H:%M')} - #{@ticket.event_end_date.strftime('%m/%d %H:%M')}
+              %i.fas.fa-map-pin #{@ticket.event_place}
+              %i.fas.fa-tag #{@ticket.genre}
+          .board-img
+            = image_tag share.image
+          .board.middle
+            %p #{share.message}
+          .ticket-line
+          .board.middle
+            .buy_number
+              .exp 個数：
+              = od.hidden_field :price, value: 0, readonly: true, size: 5, class: "item-price-total"
+              = od.hidden_field :share_id, value: share.id
+              = od.select :quantity, (0..share.quantity).to_a, class: "select"
+              .plus
+                %i.fa.fa-plus-circle
+              .minus
+                %i.fa.fa-minus-circle
+            / .next-button
+            /   =link_to "カートに入れる", index_path
+    合計金額：
     = f.text_field :total_price, value: 0, readonly: true, size: 5, id: "item-price-total"
     円
 
-    %div
-    = f.submit "確認画面へ"
+    = f.submit "確認画面へ", class: "next-button"
 
-- else
-  - @shares.each do |share|
-    %br
-    ジャンル： #{share.genre}
-    %br
-    メニュー名： #{share.menu}
-    %br
-    単価： #{share.price} 円
-    %br
-    数量： #{share.quantity} 人前
-  %div
-  = link_to '削除する', ticket_path(@ticket.id), method: :delete, data: {confirm: "are you sure?"}
-  = link_to '編集する',edit_ticket_path(@ticket.id)
+
+
 
 
 = render 'shared/after_signup_footer'

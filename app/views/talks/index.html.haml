@@ -47,41 +47,48 @@
 
 / 以下が正しいチャット一覧(このviewで表示すべきhtml)
 
-/ %div.no_item
-/   チャットはありません
-.board.large
-  .chat-board
-    .cook_info
-      = image_tag "blank.png"
-    .chat-txt
-      %span
-        = current_user.name
-      %span hogehogehogehoge
-    .chat-time
-      %span 1分前
 
-.board.large
-  .chat-board
-    .cook_info
-      = image_tag "blank.png"
-    .chat-txt
-      %span
-        = current_user.name
-      %span hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
-    .chat-time
-      %span 1分前
+/ .board.large
+/   .chat-board
+/     .cook_info
+/       = image_tag "blank.png"
+/     .chat-txt
+/       %span
+/         = current_user.name
+/       %span hogehogehogehoge
+/     .chat-time
+/       %span 1分前
 
-- @groups.each do |group|
-  = link_to talk_path(group) do
-    %div
-    - group.users.each do |user|
-      - if user.name != current_user.name
-        %div
-        トークルームNo : #{group.id}
-        %div
-        = user.name
-        = group.latest_messages(group)
+/ .board.large
+/   .chat-board
+/     .cook_info
+/       = image_tag "blank.png"
+/     .chat-txt
+/       %span
+/         = current_user.name
+/       %span hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
+/     .chat-time
+/       %span 1分前
+-if @groups
+  - @groups.each do |group|
+    = link_to talk_path(group) do
+      %div
+      - group.users.each do |user|
+        - if user.name != current_user.name
+          .board.large
+            .chat-board
+              .cook_info
+                = image_tag "blank.png"
+              .chat-txt
+                %span
+                  = user.name
+                %span
+                  = group.latest_messages(group)
+              .chat-time
+                %span 1分前
+-else
+  %div.no_item
+  チャットはありません
 
-      / = group.messages.first
 
 = render 'shared/after_signup_footer'
