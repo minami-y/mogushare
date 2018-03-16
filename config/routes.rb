@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get    '/buy_history',  to: 'users#buy_history'
   resources :tickets do
     collection do
-      get 'confirm'
+      post 'confirm'
     end
   end
   resources :talks

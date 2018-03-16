@@ -1,47 +1,40 @@
 = form_for @ticket do |f|
 
-  %div
-  = image_tag @ticket.image, class: "ticket-image"
-  = hidden_field_tag :"cache[image]", @ticket.image.cache_name
-  %div
-  メッセージ: #{@ticket.message}
-  = f.hidden_field :message
-  %div
-  受け渡し日時 または 開催日時: #{@ticket.event_date.strftime('%Y年%m月%d日　%H:%M')}
   = f.hidden_field :event_date, value: @ticket.event_date
-  %div
-  有効期限: #{@ticket.expiration_date.strftime('%Y年%m月%d日　%H:%M')}
+  = f.hidden_field :event_end_date, value: @ticket.event_end_date
   = f.hidden_field :expiration_date, value: @ticket.expiration_date
-  %div
-  受け渡し場所 または 開催場所: #{@ticket.event_place}
   = f.hidden_field :event_place
+  = f.hidden_field :genre
 
-  %div
 
-  - @shares.each do |share|
-    %div
-    ジャンル:
-    = share.genre
-    %div
-    メニュー:
-    = share.menu
-    %div
-    金額:
-    = share.price
-    %div
-    数量:
-    = share.quantity
+  - @shares.each_with_index do |share, i|
+    .board.large
+      %h1 商品#{i+1}
+      .line
+      .board.middle
+        .submit-field
+          %p.comment タイトル
+          = share.menu
+          %p.comment 注文個数
+          = share.quantity
+          %p.comment 価格|1つあたり
+          = share.price
+          %p.comment 日時
+
 
   = f.fields_for :shares, @shares do |s|
-    = s.hidden_field :genre
+
     = s.hidden_field :menu
     = s.hidden_field :price
     = s.hidden_field :quantity
+    = s.hidden_field :message
+    = s.hidden_field :image
 
   %div
   以上の内容で投稿しますか？
   %div
   = f.submit "投稿する"
   = f.submit "投稿を修正する", name: "back"
+
 
 

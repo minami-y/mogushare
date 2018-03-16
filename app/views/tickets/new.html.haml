@@ -10,7 +10,7 @@
 .board.large.color-none
   %h1.title 投稿
   .board.middle.color-none
-    = form_for @ticket do |f|
+    = form_for @ticket, url: {action: 'confirm'} do |f|
       - if @ticket.errors.any?
         #error_explanation
           %h3
@@ -25,13 +25,13 @@
           = f.text_field :genre, required: true, placeholder: "例 | おすそわけ"
           %p.comment 開始日時(おすそわけの場合、受渡可能な時間幅)
           .date-box
-            = f.date_select :event_date, required: true
+            = f.datetime_select :event_date, required: true, use_month_numbers: true
           %p.comment 終了日時
           .date-box
-            = f.date_select :event_end_date, required: true
+            = f.datetime_select :event_end_date, required: true, use_month_numbers: true
           %p.comment 予約締切日時
           .date-box
-            = f.date_select :expiration_date, required: true
+            = f.datetime_select :expiration_date, required: true, use_month_numbers: true
           %p.comment 場所(可能な限り詳細に記述して下さい)
           = f.text_field :event_place, required: true, placeholder: "例 | 広尾郵便局前"
           .next-button

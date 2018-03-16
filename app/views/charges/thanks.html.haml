@@ -1,3 +1,16 @@
-%h1 おすそ分けありがとうございます。
-
-= link_to "チャットへ", talk_path(@group.id)
+.board.large
+  .board.middle
+    %h1.title
+      購入ありがとうございます。
+      %br
+      お支払が完了しました。
+      %br
+      %br
+      クックの#{@seller.user.name}さんとチャットで場所や時間を調整して下さい！
+      %br
+      %br
+      %span
+        ※キャンセルは合意が取れた場合、クックからのみ可能です。キャンセルご希望の場合はクックと個別に相談して下さい。
+    .add-button
+      = link_to "クックとのトークに移動する", talk_path(@group.id)
+= render 'shared/after_signup_footer'
