@@ -21,20 +21,19 @@
           = share.price
           %p.comment 日時
 
+        = f.submit "編集する", name: "back"
+  .submit-button
+    = f.submit "投稿する"
+
 
   = f.fields_for :shares, @shares do |s|
-
     = s.hidden_field :menu
     = s.hidden_field :price
     = s.hidden_field :quantity
     = s.hidden_field :message
     = s.hidden_field :image
 
-  %div
-  以上の内容で投稿しますか？
-  %div
-  = f.submit "投稿する"
-  = f.submit "投稿を修正する", name: "back"
+
 
 
 
