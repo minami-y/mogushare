@@ -28,7 +28,6 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    binding.pry
     if params[:back]
       render :new
     elsif @ticket.save!
