@@ -25,13 +25,14 @@
   .submit-button
     = f.submit "投稿する"
 
-
   = f.fields_for :shares, @shares do |s|
     = s.hidden_field :menu
     = s.hidden_field :price
     = s.hidden_field :quantity
     = s.hidden_field :message
     = s.hidden_field :image
+    = s.hidden_field :image_cache
+    / = s.hidden_field :"cache[image]", s.image.cache_name
 
 
 

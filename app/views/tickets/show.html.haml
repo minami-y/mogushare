@@ -99,6 +99,8 @@
               %i.fa.fa-minus-circle
             / .next-button
             /   =link_to "カートに入れる", index_path
+
+  - if current_user.seller.nil? || current_user.seller.id != @ticket.seller_id
     合計金額：
     = f.text_field :total_price, value: 0, readonly: true, size: 5, id: "item-price-total"
     円
