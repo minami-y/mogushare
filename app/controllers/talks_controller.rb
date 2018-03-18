@@ -20,3 +20,4 @@ class TalksController < ApplicationController
       params.require(:talk).permit(:group_id, :user_id, :message)
     end
 end
+
