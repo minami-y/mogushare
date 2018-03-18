@@ -55,6 +55,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @tickets = current_user.seller.tickets
   end
 
   def edit

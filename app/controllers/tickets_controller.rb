@@ -1,10 +1,10 @@
 class TicketsController < ApplicationController
   before_action :register_as_seller, only: :new
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :edit_confirm, :update, :destroy]
 
   def index
     @user_areas = current_user.user_areas
-    @tickets =[].uniq
+    @tickets = []
     @user_areas.each do |ua|
       ua.area.users.each do |user|
         if user.seller.present?
@@ -32,7 +32,7 @@ class TicketsController < ApplicationController
       render :new
     elsif @ticket.save!
       send_mail_to_users_in_area
-      flash[:success] = "チケットを投稿しました"
+      flash[:success] = "チケットを更新しました"
       redirect_to tickets_path
     else
       render "new"
@@ -50,11 +50,18 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    @shares = @ticket.shares
+  end
+
+  def edit_confirm
+    # @ticket = Ticket.new(ticket_params)
+    @ticket.attributes = ticket_params
+    @shares = @ticket.shares
   end
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to ticket_path(@ticket.id)
+      redirect_to user_path(current_user.id)
     else
       render "edit"
     end

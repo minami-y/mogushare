@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     collection do
       post 'confirm'
     end
+    member do
+      patch 'edit_confirm'
+    end
   end
   resources :talks
   resources :sellers
