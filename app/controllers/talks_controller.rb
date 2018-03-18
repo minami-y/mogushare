@@ -12,12 +12,24 @@ class TalksController < ApplicationController
 
   def create
     @talk = current_user.talks.create(talk_params)
-    redirect_to :back if @talk.save
+    if @talk.save
+      send_mail_to_group_user(@talk)
+      redirect_to :back
+    end
   end
 
   private
     def talk_params
       params.require(:talk).permit(:group_id, :user_id, :message)
     end
+
+    def send_mail_to_group_user(talk)
+      group = talk.group
+      group_users = group.users
+      group_users.each do |user|
+        ChatMailer.send_mail_about_new_chat(user, group) unless user.id == current_user.id
+      end
+    end
 end
+
 
