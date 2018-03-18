@@ -9,7 +9,7 @@
     - if talk.user.id == current_user.id
       %div.kaiwa
         %figure.kaiwa-img-right
-          - if talk.user.seller.photo.present?
+          - if talk.user.seller.present? && talk.user.seller.photo.present?
             = image_tag talk.user.seller.photo
           -else
             = image_tag "blank.png"
