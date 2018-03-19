@@ -30,19 +30,22 @@
     .bank-info
       = f.fields_for :bank_account do |ba|
         %p.comment 銀行名
-        = ba.text_field :bank
+        = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+
+        %p.comment 金融機関コード
+        = ba.text_field :bank_code, placeholder: "例：1111"
 
         %p.comment 口座種別
-        =ba.text_field :account_type
+        = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
 
         %p.comment 支店コード
-        =ba.text_field :branch_code
+        =ba.text_field :branch_code, placeholder: "例：111"
 
         %p.comment 口座番号
-        =ba.text_field :account_number
+        =ba.text_field :account_number, placeholder: "例：1111111"
 
         %p.comment 口座名義
-        =ba.text_field :name
+        =ba.text_field :name, placeholder: "モグシェアタロウ"
 
     / %p.comment 通知メールの配信設定(オフすると投稿があった時、メッセージが来た時や購入された際に気付けなくなります)
     / = f.text_field :address
