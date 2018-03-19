@@ -7,4 +7,6 @@ class Seller < ApplicationRecord
   mount_uploader :photo, ImageUploader
   validates :photo, presence: true
   validates :self_introduction, presence: true
+
+  accepts_nested_attributes_for :bank_account
 end
