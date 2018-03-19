@@ -22,19 +22,29 @@ class ChargesController < ApplicationController
       end
 
       # stripeによる決済処理
-      @amount = @order.total_price * 100
+      @amount = @order.total_price
 
-      customer = Stripe::Customer.create(
-        :email  => params[:stripeEmail],
-        :source => params[:stripeToken]
+      if current_user.stripe_customer_id.present?
+        customer_id = current_user.stripe_customer_id
+      else
+        customer = Stripe::Customer.create(
+          email: params[:stripeEmail],
+          source: params[:stripeToken]
         )
+        current_user.update(stripe_customer_id: customer.id)
+        customer_id = customer.id
+      end
 
-      charge = Stripe::Charge.create(
-        :customer => customer.id,
-        :amount => @amount,
-        :description => 'Rails Stripe customer',
-        :currency => 'jpy'
-        )
+      raise '決済に失敗しました' unless current_user.stripe_customer_id.present? && @ticket.seller.stripe_account_id.present?
+
+      charge = Stripe::Charge.create({
+        amount: @amount,
+        currency: "jpy",
+        customer: customer_id,
+        destination: {
+          account: @ticket.seller.stripe_account_id,
+        }
+      })
       # @ticket.update_attributes(buyer_id: params[:buyer_id])
 
       # 同じ購入者と販売者が属するgroupがない場合はgroupを作成する。
