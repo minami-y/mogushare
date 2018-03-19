@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313180047) do
+ActiveRecord::Schema.define(version: 20180318223701) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -26,14 +26,17 @@ ActiveRecord::Schema.define(version: 20180313180047) do
   end
 
   create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "bank",           default: "", null: false
-    t.integer  "account_type",   default: 0,  null: false
-    t.string   "branch_code",    default: "", null: false
-    t.string   "account_number", default: "", null: false
-    t.string   "name",           default: "", null: false
-    t.integer  "seller_id",                   null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "bank",            default: "", null: false
+    t.integer  "account_type",    default: 0,  null: false
+    t.string   "branch_code",     default: "", null: false
+    t.string   "account_number",  default: "", null: false
+    t.string   "name",            default: "", null: false
+    t.integer  "seller_id",                    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "bank_code"
+    t.string   "bank_account_id"
+    t.string   "string"
     t.index ["seller_id"], name: "index_bank_accounts_on_seller_id", using: :btree
   end
 
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180313180047) do
     t.text     "self_introduction", limit: 65535
     t.string   "photo"
     t.string   "sns_info"
+    t.string   "stripe_account_id"
     t.index ["user_id"], name: "index_sellers_on_user_id", using: :btree
   end
 
@@ -151,18 +155,16 @@ ActiveRecord::Schema.define(version: 20180313180047) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "remember_digest"
     t.string   "image"
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.string   "activation_digest"
-    t.boolean  "activated",         default: false
-    t.datetime "activated_at"
     t.boolean  "accepted"
+    t.string   "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
