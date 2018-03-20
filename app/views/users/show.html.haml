@@ -5,6 +5,8 @@
 %div
 = @user.email
 
+= @user.user_invitation_code.code
+
 = link_to "プロフィールを編集", edit_user_path(current_user)
 = link_to "口座情報を編集", "#"
 

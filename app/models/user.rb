@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
+  before_save :build_invitation_code
+
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255},
@@ -19,6 +21,9 @@ class User < ApplicationRecord
   has_many :groups, through: :user_groups
   has_many :talks
   has_many :authorizations
+  has_one  :user_invitation_code
+  has_one  :user_point
+  has_many :user_point_logs
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -64,5 +69,13 @@ class User < ApplicationRecord
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user
     # end
+  end
+
+  private
+
+  def build_invitation_code
+    if user_invitation_code.nil?
+      build_user_invitation_code
+    end
   end
 end

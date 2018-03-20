@@ -13,6 +13,10 @@
       %div Amount: ¥#{@amount}
 
   / = hidden_field_tag :id, @ticket.id
+  = text_field_tag :invitation_code, nil, placeholder: '招待コード'
+  %br
+  = text_field_tag :used_point, nil, placeholder: '使用するポイント'
+  %br
   = f.hidden_field :seller_id
   = f.hidden_field :user_id
   = f.hidden_field :total_price
