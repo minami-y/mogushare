@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318223701) do
+ActiveRecord::Schema.define(version: 20180320125923) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 20180318223701) do
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "total_price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "summed_price"
     t.index ["seller_id"], name: "index_orders_on_seller_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
@@ -151,12 +152,37 @@ ActiveRecord::Schema.define(version: 20180318223701) do
     t.index ["user_id"], name: "index_user_groups_on_user_id", using: :btree
   end
 
+  create_table "user_invitation_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.string   "code",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_user_invitation_codes_on_code", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_invitation_codes_on_user_id", using: :btree
+  end
+
+  create_table "user_point_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                  null: false
+    t.integer  "amount",                   null: false
+    t.integer  "reason_id",                null: false
+    t.text     "detail",     limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_id"], name: "index_user_point_logs_on_user_id", using: :btree
+  end
+
+  create_table "user_points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id",             null: false
+    t.integer "amount",  default: 0, null: false
+    t.index ["user_id"], name: "index_user_points_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "remember_digest"
     t.string   "image"
     t.string   "provider"
@@ -164,9 +190,13 @@ ActiveRecord::Schema.define(version: 20180318223701) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean  "accepted"
+    t.boolean  "use_invitation_code", default: false, null: false
     t.string   "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   add_foreign_key "bank_accounts", "sellers"
+  add_foreign_key "user_invitation_codes", "users"
+  add_foreign_key "user_point_logs", "users"
+  add_foreign_key "user_points", "users"
 end

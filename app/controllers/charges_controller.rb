@@ -5,24 +5,40 @@ class ChargesController < ApplicationController
     @order_details = @order.order_details
     @ticket = Ticket.find(params[:id])
     @amount = @order.total_price
+    # 使用可能なポイント
+    @user_point = current_user.find_or_create_user_point!.amount
   end
 
   def create
     # orderを保存
     @order = Order.new(order_params)
+    @order.summed_price = @order.total_price
+    @order_details = @order.order_details
+    @user_point = current_user.find_or_create_user_point!.amount
     @ticket = Ticket.find(params[:id])
-    if params[:back]
-      render template: "tickets/#{@ticket.id}/show"
-    elsif @order.save!
+    @amount = @order.total_price
+    if params[:used_point].to_i > current_user.find_or_create_user_point!.amount
+      flash[:alert] = "使用可能なポイントは#{current_user.user_point.amount}です"
+      return render :confirm
+    end
+
+    return render template: "tickets/#{@ticket.id}/show" if params[:back]
+
+      calculator = BillCalculator.new(
+        current_user,
+        @order.total_price,
+        params[:invitation_code],
+        params[:used_point].to_i,
+      )
+      @order.total_price = calculator.amount
+
       # 在庫を減らす。
       @order.order_details.each do |od|
         @share = Share.find(od.share_id)
         @share.quantity -= od.quantity
         @share.save
       end
-
-      # stripeによる決済処理
-      @amount = @order.total_price
+      @order.save!
 
       if current_user.stripe_customer_id.present?
         customer_id = current_user.stripe_customer_id
@@ -38,7 +54,7 @@ class ChargesController < ApplicationController
       raise '決済に失敗しました' unless current_user.stripe_customer_id.present? && @ticket.seller.stripe_account_id.present?
 
       charge = Stripe::Charge.create({
-        amount: @amount,
+        amount: @order.total_price,
         currency: "jpy",
         customer: customer_id,
         destination: {
@@ -46,6 +62,8 @@ class ChargesController < ApplicationController
         }
       })
       # @ticket.update_attributes(buyer_id: params[:buyer_id])
+
+      calculator.apply!
 
       # 同じ購入者と販売者が属するgroupがない場合はgroupを作成する。
       if current_user.groups.exists?
@@ -72,9 +90,6 @@ class ChargesController < ApplicationController
         @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
         redirect_to thanks_path(id: @ticket.id)
       end
-    else
-      render template 'tickets/show'
-    end
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
