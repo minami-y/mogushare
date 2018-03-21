@@ -1,11 +1,11 @@
 .detail_info.nested-fields
   %p.comment メニュー
-  = f.text_field :menu, required: true, placeholder: "例 | 肉じゃが"
+  = f.text_field :menu, required: true, placeholder: "例 | 本格フレンチ教室"
   %p.comment 販売価格: 1つあたり
-  = f.text_field :price, required: true, placeholder: "例 | 100"
+  = f.text_field :price, required: true, placeholder: "例 | 3000"
   %p.comment 販売数
   = f.text_field :quantity, required: true, placeholder: "例 | 4"
-  %p.comment 画像(必須ではありません)
+  %p.comment 画像(必須ではありません。サイズは長方形推奨)
   .post-images
     .mask-squre
       %i.fa.fa-camera

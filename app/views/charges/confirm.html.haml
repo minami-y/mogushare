@@ -1,35 +1,45 @@
-= form_for(@order, url: charges_path(id: @ticket.id)) do |f|
-  %article
-    - if flash[:error].present?
-      #error_explanation
-        %p= flash[:error]
-    - @order_details.each do |od|
-      - if od.quantity != 0
-        %div
-        = od.share.menu
-        単価： ¥#{od.unit_price}
-        × #{od.quantity}人前
-    %label.amount
-      %div Amount: ¥#{@amount}
+.board.large
+  %h1 注文確認画面
+  .line
+  .board.middle
+    = form_for(@order, url: charges_path(id: @ticket.id)) do |f|
+      .submit-field
+        - if flash[:error].present?
+          #error_explanation
+            %p= flash[:error]
+        - @order_details.each do |od|
+          - if od.quantity != 0
+            %h1
+              = od.share.menu
+              ¥#{od.unit_price}
+              × #{od.quantity}人前
+        %h1
+          合計金額: ¥#{@amount}
 
-  / = hidden_field_tag :id, @ticket.id
-  = text_field_tag :invitation_code, nil, placeholder: '招待コード'
-  %br
-  = text_field_tag :used_point, nil, placeholder: '使用するポイント'
-  %label 使用可能なポイント
-  = @user_point
-  %br
-  = f.hidden_field :seller_id
-  = f.hidden_field :user_id
-  = f.hidden_field :total_price
-  = hidden_field_tag :buyer_id, current_user.id
-  = hidden_field_tag :seller_id, @ticket.seller.user.id
-  = hidden_field_tag :user_ids, value: current_user.id, value: @ticket.seller_id, multiple: true
-  = f.fields_for :order_details do |od|
-    = od.hidden_field :share_id
-    = od.hidden_field :order_id
-    = od.hidden_field :unit_price
-    = od.hidden_field :quantity
-    = od.hidden_field :price
-  = f.submit "購入内容を修正する", name: "back"
-  %script.stripe-button{"data-description" => "クレジットカード決済", "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", "data-locale" => "ja", :src => "https://checkout.stripe.com/checkout.js", "data-currency" => "jpy"}
+      / = hidden_field_tag :id, @ticket.id
+      .submit-field
+        - unless current_user.stripe_customer_id.present?
+          = text_field_tag :invitation_code, nil, placeholder: '招待コード'
+        = text_field_tag :used_point, nil, placeholder: '使用するポイントを入力'
+        %br
+        %label ※使用可能なポイント：
+        = @user_point
+      %br
+      = f.hidden_field :seller_id
+      = f.hidden_field :user_id
+      = f.hidden_field :total_price
+      = hidden_field_tag :buyer_id, current_user.id
+      = hidden_field_tag :seller_id, @ticket.seller.user.id
+      = hidden_field_tag :user_ids, value: current_user.id, value: @ticket.seller_id, multiple: true
+      = f.fields_for :order_details do |od|
+        = od.hidden_field :share_id
+        = od.hidden_field :order_id
+        = od.hidden_field :unit_price
+        = od.hidden_field :quantity
+        = od.hidden_field :price
+      .middle-small-button
+        = f.submit "購入内容を修正する", name: "back"
+      %p.txt
+        = link_to "キャンセルポリシー", index_path, target: "_blank"
+        の通り、当日キャンセルの場合、返金はクックが承認した時のみ可能です。クックにチャットでご相談下さい。
+      %script.stripe-button{"data-description" => "クレジットカード決済", "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", "data-locale" => "ja", :src => "https://checkout.stripe.com/checkout.js", "data-currency" => "jpy"}

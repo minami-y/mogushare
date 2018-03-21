@@ -1,15 +1,16 @@
-%h1 Profile
+%h2 プロフィール
 
-= mypage_profile_image(current_user)
-= @user.name
-%div
-= @user.email
-
+紹介クーポンコード：
 = @user.user_invitation_code.code
+%br
+※このコードをお友達に紹介すると、もぐシェア内の割引で使える"もぐポイント"がゲットできます
+%br
+%br
+= link_to "お名前/メールアドレス等を編集", edit_user_path(current_user)
+= link_to "自己紹介/口座情報を編集", edit_seller_path(current_user.seller)
 
-= link_to "プロフィールを編集", edit_user_path(current_user)
-= link_to "口座情報を編集", "#"
 
+%h2 投稿済みのチケット
 - @tickets.each do |ticket|
   - ticket.shares.each do |share|
     .board.large

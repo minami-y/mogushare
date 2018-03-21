@@ -112,11 +112,21 @@ label.checkbox {
   display: flex;
   align-items: center;
 }
-.submit-field input, #session_email, #seller_official_name, #seller_address{
+.submit-field input{
   width: 100%;
   height: 32px;
   border: solid 2px #ebebeb;
   margin-bottom: 20px;
+}
+.submit-field input#invitation_code, #used_point{
+  width: 70%;
+  height: 23px;
+  border: solid 2px #ebebeb;
+}
+
+.submit-field h1:last-child {
+  color: #fd7700;
+  text-decoration: underline;
 }
 .submit-field textarea{
   width: 100%;
@@ -226,8 +236,8 @@ p.ticket_title {
 
 .img-field {
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 p.must {
   color: orange
@@ -278,6 +288,17 @@ p.must {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.middle-small-button{
+  width: 50%;
+  border-radius: 5px;
+  border: solid 0.5px #fd7700;
+  font-size: 14px;
+  margin: 10px auto;
+}
+.stripe-button-el span {
+  width: 200px;
+}
+
 .post-images {
   display: flex;
   margin-bottom: 20px;

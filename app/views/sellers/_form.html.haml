@@ -15,7 +15,7 @@
         .mask
           %i.fa.fa-camera
           = f.file_field :photo, required: true, class: "seller-photo-field"
-        %p.comment.must ※必須
+        %p.comment.must ※必須(正方形の画像推奨)
 
       %p.comment 自己紹介
       = f.text_field :self_introduction, required: true
@@ -49,3 +49,9 @@
 
   .submit-button
     = f.submit "登録する"
+
+  %p
+    =link_to "ログアウト", logout_path, method: :delete
+
+  %p
+    お問合わせは mogushare.net@gmail.com までお願いします。
