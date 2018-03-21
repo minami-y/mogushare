@@ -71,6 +71,12 @@ class User < ApplicationRecord
     # end
   end
 
+  def find_or_create_user_point!
+    return user_point if user_point
+
+    create_user_point!
+  end
+
   private
 
   def build_invitation_code

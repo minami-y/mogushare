@@ -5,24 +5,25 @@ class ChargesController < ApplicationController
     @order_details = @order.order_details
     @ticket = Ticket.find(params[:id])
     @amount = @order.total_price
+    # 使用可能なポイント
+    @user_point = current_user.find_or_create_user_point!.amount
   end
 
   def create
     # orderを保存
     @order = Order.new(order_params)
     @order.summed_price = @order.total_price
+    @order_details = @order.order_details
+    @user_point = current_user.find_or_create_user_point!.amount
     @ticket = Ticket.find(params[:id])
+    @amount = @order.total_price
+    if params[:used_point].to_i > current_user.find_or_create_user_point!.amount
+      flash[:alert] = "使用可能なポイントは#{current_user.user_point.amount}です"
+      return render :confirm
+    end
 
-    return  render template: "tickets/#{@ticket.id}/show" if params[:back]
+    return render template: "tickets/#{@ticket.id}/show" if params[:back]
 
-      # 在庫を減らす。
-      @order.order_details.each do |od|
-        @share = Share.find(od.share_id)
-        @share.quantity -= od.quantity
-        @share.save
-      end
-
-      # stripeによる決済処理
       calculator = BillCalculator.new(
         current_user,
         @order.total_price,
@@ -31,7 +32,14 @@ class ChargesController < ApplicationController
       )
       @order.total_price = calculator.amount
 
+      # 在庫を減らす。
+      @order.order_details.each do |od|
+        @share = Share.find(od.share_id)
+        @share.quantity -= od.quantity
+        @share.save
+      end
       @order.save!
+
       if current_user.stripe_customer_id.present?
         customer_id = current_user.stripe_customer_id
       else

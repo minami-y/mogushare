@@ -51,7 +51,7 @@ class BillCalculator
   def apply_point
     raise 'use positive point' if used_point < 0
     return if used_point.zero?
-    raise 'Your available point is less than input' if user.user_point.amount < used_point
+    raise 'Your available point is less than input' if user.find_or_create_user_point!.amount < used_point
 
     if used_point > @payed_amount
       @used_point = payed_amount

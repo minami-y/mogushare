@@ -16,6 +16,8 @@
   = text_field_tag :invitation_code, nil, placeholder: '招待コード'
   %br
   = text_field_tag :used_point, nil, placeholder: '使用するポイント'
+  %label 使用可能なポイント
+  = @user_point
   %br
   = f.hidden_field :seller_id
   = f.hidden_field :user_id
