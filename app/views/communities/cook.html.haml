@@ -44,20 +44,40 @@
 
   .white_content
     .title
-      %p 簡単3ステップで投稿~やり取りまで
-    .tatenaga-box
+      %p 使い方
+    %div#slider-pro.slider-pro
+      .sp-slides
+        .sp-slide
+          =image_tag "howcookuse1.png", class: "sp-image"
+        .sp-slide
+          =image_tag "howcookuse2.png", class: "sp-image"
+        .sp-slide
+          =image_tag "howcookuse3.png", class: "sp-image"
+        .sp-slide
+          =image_tag "howcookuse4.png", class: "sp-image"
+        .sp-slide
+          =image_tag "howcookuse5.png", class: "sp-image"
+    .use_img_5_column
       .use_content
-        %p.title ①郵便番号で近所のコミュニティを検索し会員登録(無料)
-        =image_tag "appflow1.png"
-        %p 郵便番号を入力して近くにいる料理上手さんや、あなたの料理を食べたい子育て家庭と繋がれます
+        %p.title 郵便番号で近くのコミュニティをチェック！
+        =image_tag "howcookuse1.png"
+        %p
       .use_content
-        %p.title ②タイムラインからおすそわけやイベント情報を投稿/確認
-        =image_tag "appflow2.png"
-        %p タイムライン上で"おすそわけ"や料理教室のチケットを投稿、ご近所さんに通知できます。もちろん参加するのもok！
+        %p.title コミュニティの投稿を確認
+        =image_tag "howcookuse2.png"
+        %p
       .use_content
-        %p.title ③当日までに場所,時間をチャットで調整
-        =image_tag "appflow3.png"
-        %p アプリ内でできるチャットで、おすそわけや料理教室などの時間,場所などをやり取りします
+        %p.title 地域のコンテンツを購入
+        =image_tag "howcookuse3.png"
+        %p
+      .use_content
+        %p.title 当日までにチャットで調整
+        =image_tag "howcookuse4.png"
+        %p
+      .use_content
+        %p.title 当日参加したり、やり取りしたり
+        =image_tag "howcookuse5.png"
+        %p
 
   .gray_content
     .title
@@ -168,7 +188,7 @@
   $(document).ready(function() {
     $( '#slider-pro' ).sliderPro({
         width: '100%',
-        height: 500,
+        height: 549,
         responsive: true,
         imageScaleMode: 'cover',
         slideDistance:0,

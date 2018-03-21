@@ -312,7 +312,7 @@
   margin: auto;
 }
 @media screen and (max-width: 500px) {
-  .use_img_3_column {
+  .use_img_5_column {
     display:none;
   }
   .slider-pro {
@@ -330,7 +330,7 @@
   .slider-pro {
     display:none;
   }
-  .use_img_3_column {
+  .use_img_5_column {
     display: flex;
     align-items: center;
   }
@@ -338,6 +338,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 10px;
   }
   .use_content img {
     width: 300px !important;

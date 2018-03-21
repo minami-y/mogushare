@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :already_logged_in
+  # before_action :already_logged_in
 
   def top
   end
@@ -12,10 +12,10 @@ class CommunitiesController < ApplicationController
 
   private
 
-    def already_logged_in
-      if logged_in?
-        redirect_to tickets_path
-      end
-    end
+    # def already_logged_in
+    #   if logged_in?
+    #     redirect_to tickets_path
+    #   end
+    # end
 
 end
