@@ -22,6 +22,6 @@ class UserInvitationCode < ApplicationRecord
   end
 
   def self.generate_code
-    "mogmog_#{Time.now.to_i}"
+    "mogu-#{SecureRandom.hex(3)}"
   end
 end
