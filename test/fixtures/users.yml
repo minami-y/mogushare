@@ -7,9 +7,3 @@ archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
-  use_invitation_code: true
-
-nishisuke:
-  name: nishisuke
-  email: nishi@suke.com
-  password_digest: <%= User.digest('hogehoge') %>
