@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   get    '/cook',   to: 'communities#cook'
   get    '/ambassador',   to: 'communities#ambassador'
   get    '/vision',   to: 'communities#vision'
+  get    '/faq',   to: 'communities#faq'
+  get    '/company',   to: 'communities#company'
+  get    '/terms-of-use',   to: 'communities#terms-of-use'
+  get    '/privacy-policy',   to: 'communities#privacy-policy'
+  get    '/cancellation-policy',   to: 'communities#cancellation-policy'
+  get    '/ask',   to: 'communities#ask'
+  get    '/cooking-guide',   to: 'communities#cooking-guide'
   resources :users
   get    '/buy_history',  to: 'users#buy_history'
   resources :tickets do

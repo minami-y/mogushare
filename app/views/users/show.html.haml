@@ -7,33 +7,35 @@
 %br
 %br
 = link_to "お名前/メールアドレス等を編集", edit_user_path(current_user)
-= link_to "自己紹介/口座情報を編集", edit_seller_path(current_user.seller)
+= link_to "自己紹介/口座情報を編集", edit_seller_path(current_user.seller) if @current_seller.present?
 
 
 %h2 投稿済みのチケット
-- @tickets.each do |ticket|
-  - ticket.shares.each do |share|
-    .board.large
-      .board.middle
-        %p.ticket_title #{share.menu} | #{share.price} 円
-        .ticket_info
-          - if ticket.event_end_date.present?
-            %i.fas.fa-hourglass #{ticket.event_date.strftime('%m/%d %H:%M')} - #{ticket.event_end_date.strftime('%m/%d %H:%M')}
-            %i.fas.fa-map-pin #{ticket.event_place}
-            %i.fas.fa-tag #{ticket.genre}
-      .board-img
-        = image_tag share.image
-      .board.middle
-        %p #{share.message}
-      .ticket-line
-      .board.middle
-        .jump-to-detail
-          / .cook_info
-          /   = image_tag ticket.seller.photo
-          /   %span
-          /     #{ticket.seller.user.name}
-          .next-button
-            =link_to "投稿を編集する", edit_ticket_path(ticket.id)
+-if @current_seller.present?
+  -if @current_seller.tickets.present?
+    - @tickets.each do |ticket|
+      - ticket.shares.each do |share|
+        .board.large
+          .board.middle
+            %p.ticket_title #{share.menu} | #{share.price} 円
+            .ticket_info
+              - if ticket.event_end_date.present?
+                %i.fas.fa-hourglass #{ticket.event_date.strftime('%m/%d %H:%M')} - #{ticket.event_end_date.strftime('%m/%d %H:%M')}
+                %i.fas.fa-map-pin #{ticket.event_place}
+                %i.fas.fa-tag #{ticket.genre}
+          .board-img
+            = image_tag share.image
+          .board.middle
+            %p #{share.message}
+          .ticket-line
+          .board.middle
+            .jump-to-detail
+              / .cook_info
+              /   = image_tag ticket.seller.photo
+              /   %span
+              /     #{ticket.seller.user.name}
+              .next-button
+                =link_to "投稿を編集する", edit_ticket_path(ticket.id)
 
 = render 'shared/after_signup_footer'
 

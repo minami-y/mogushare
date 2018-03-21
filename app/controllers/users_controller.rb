@@ -55,7 +55,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @tickets = current_user.seller.tickets
+    @current_seller = current_user.seller
+    if @current_seller.present?
+      if @current_seller.tickets.present?
+        @tickets = current_user.seller.tickets
+      end
+    end
   end
 
   def edit

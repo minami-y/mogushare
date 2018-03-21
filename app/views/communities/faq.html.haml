@@ -1,0 +1,54 @@
+.board.large
+  .faq-board
+    %input{type: :checkbox, id: "q01"}
+    %label{for:"q01", class: "question-section"}
+      .faq-icon
+        %i.fas.fa-search
+      .question
+        %p イベントやおすそわけなどの活動について、場所や時間も決まっていますか？
+      .faq-icon
+        %i.fas.fa-plus-circle
+    .answer-section01
+      %p 場所,時間は基本的にクックの方が決めたものに従って下さい。より詳細はチャットで直接調整できます。
+    %input{type: :checkbox, id: "q02"}
+    %label{for:"q02", class: "question-section"}
+      .faq-icon
+        %i.fas.fa-search
+      .question
+        %p イベントやおすそわけの価格はどのくらいでしょうか？
+      .faq-icon
+        %i.fas.fa-plus-circle
+    .answer-section02
+      %p 例えば子ども食堂は大人500円子ども300円です。おすそわけは、クックが自由に設定します(原材料費＋α程度が一般的です)。
+    %input{type: :checkbox, id: "q03"}
+    %label{for:"q03", class: "question-section"}
+      .faq-icon
+        %i.fas.fa-search
+      .question
+        %p アレルギーは対応していますか？
+      .faq-icon
+        %i.fas.fa-plus-circle
+    .answer-section03
+      %p "アレルギー対応"と銘打ったようなもの以外で対応は難しいので、アレルギーのある方は自己責任でお願いしています。
+    %input{type: :checkbox, id: "q04"}
+    %label{for:"q04", class: "question-section"}
+      .faq-icon
+        %i.fas.fa-search
+      .question
+        %p 補償などは大丈夫ですか？
+      .faq-icon
+        %i.fas.fa-plus-circle
+    .answer-section04
+      %p "もぐシェア"内での活動については最大3,000万までの保証が付きます。ご安心下さい。
+    %input{type: :checkbox, id: "q05"}
+    %label{for:"q05", class: "question-section"}
+      .faq-icon
+        %i.fas.fa-search
+      .question
+        %p "もぐシェア"の収益はどうやって成り立っていますか？
+      .faq-icon
+        %i.fas.fa-plus-circle
+    .answer-section05
+      %p
+        調味料メーカー等からの広告費や、"もぐシェア"のシステム利用料/保険加入の費用として決済額の10%をクックの方に手数料として頂いております。
+= render 'shared/footer'
