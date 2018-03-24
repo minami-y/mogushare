@@ -203,3 +203,10 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
+  attributes:
+    bank: 銀行名
+    bank_code: 金融機関コード
+    branch_code: 支店コード
+    account_number: 口座番号
+    name:  口座名義

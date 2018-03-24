@@ -2,8 +2,9 @@
   - if seller.errors.any?
     #error_explanation
       %h3
-        = pluralize(seller.errors.count, "error")
-        prohibited this ticket from being saved:
+        入力内容の誤りが
+        = pluralize(seller.errors.count, "箇所")
+        あります:
       %ul
         - seller.errors.full_messages.each do |message|
           %li= message
