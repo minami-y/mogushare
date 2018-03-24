@@ -55,6 +55,9 @@ class TicketsController < ApplicationController
 
   def edit
     @shares = @ticket.shares
+    @shares.each do |share|
+      share.image.cache! unless share.image.blank?
+    end
   end
 
   def edit_confirm
@@ -64,6 +67,7 @@ class TicketsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @ticket.update(ticket_params)
       redirect_to user_path(current_user.id)
     else
@@ -84,7 +88,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:genre, :image_cache, :event_date, :expiration_date, :event_date, :event_end_date, :event_place, shares_attributes: [:id, :image, :image_cache, :menu, :price, :quantity, :message, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
+      params.require(:ticket).permit(:genre, :event_date, :expiration_date, :event_date, :event_end_date, :event_place, shares_attributes: [:id, :image, :image_cache, :menu, :price, :quantity, :message, :ticket_id, :_destroy]).merge(seller_id: current_user.seller.id)
     end
 
     # チケット投稿ページに遷移時、販売者登録ができていなければ登録ページにリダイレクト
