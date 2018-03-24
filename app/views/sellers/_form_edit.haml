@@ -62,12 +62,14 @@
     / %p.comment 通知メールの配信設定(オフすると投稿があった時、メッセージが来た時や購入された際に気付けなくなります)
     / = f.text_field :address
 
+  / 口座情報ページからプロフィール情報に戻るために仮置き。ページ遷移がjsのため、ブラウザの戻るボタンか効かないので前ページに戻るボタンがあったほうがいいかも？
+  .previous-button
+    プロフィール情報に戻る
+
   .submit-button
     = f.submit "編集する"
 
-  / 口座情報ページからプロフィール情報に戻るために仮置き
-  .previous-button
-    プロフィール情報に戻る
+
 
   %p
     =link_to "ログアウト", logout_path, method: :delete

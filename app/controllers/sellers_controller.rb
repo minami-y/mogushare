@@ -42,7 +42,7 @@ class SellersController < ApplicationController
   end
 
   def edit
-    @seller.photo.cache! unless @seller.photo.blank?
+    # @seller.photo.cache! unless @seller.photo.blank?
   end
 
   def update

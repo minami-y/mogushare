@@ -1,3 +1,8 @@
+:css
+  .image-field {
+    opacty: 0;
+  }
+
 :javascript
   $(document).on('turbolinks:load', function() {
   $('.detail_info, .submit-button, .add-button').hide();
@@ -49,7 +54,7 @@
             .post-images
               .mask-squre
                 %i.fa.fa-camera
-                  = share.file_field :image
+                  = share.file_field :image, class: "image-field"
                   = share.hidden_field :image_cache
             %p.comment 詳細
             = share.text_area :message, required: true, rows: "3"
