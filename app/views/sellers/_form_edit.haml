@@ -20,7 +20,7 @@
   .submit-field
     .basic_info
       .img-field
-        .mask
+        .mask.preview
           - if seller.photo.present?
             = image_tag seller.photo, class: "seller_edit_photo"
           - else
