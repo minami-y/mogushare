@@ -1,11 +1,16 @@
-:javascript
-  $(document).on('turbolinks:load', function() {
-  $('.bank-info, .submit-button, .add-button').hide();
-  $('.next-button').on('click', function(){
-    $('.basic_info').hide();
-    $('.bank-info, .submit-button, .add-button').show();
-    });
-  });
+/ :javascript
+/   $(document).on('turbolinks:load', function() {
+/   $('.bank-info, .submit-button, .add-button, .previous-button').hide();
+/   $('.next-button').on('click', function(){
+/     $('.basic_info').hide();
+/     $('.bank-info, .submit-button, .add-button, .previous-button').show();
+/     });
+/   $('.previous-button').on('click', function(){
+/     $('.bank-info, .submit-button, .add-button, .previous-button').hide();
+/     $('.basic_info').show();
+/   })
+/   });
+
 .board.large.color-none
   %h1.title 投稿するにはプロフィールの記入が必須です
   .board.middle.color-none

@@ -42,12 +42,13 @@ class SellersController < ApplicationController
   end
 
   def edit
+    @seller.photo.cache! unless @seller.photo.blank?
   end
 
   def update
     if @seller.update_attributes(seller_params)
       flash[:success] = "購入者情報が更新されました"
-      redirect_to user_path(current_user)
+      redirect_to tickets_path
     end
   end
 
@@ -58,7 +59,7 @@ class SellersController < ApplicationController
     end
 
     def seller_params
-      params.require(:seller).permit(:photo, :self_introduction, :sns_info, bank_account_attributes: [:bank, :bank_code, :account_type, :branch_type, :branch_code, :account_number, :name]).merge(user_id: current_user.id)
+      params.require(:seller).permit(:photo, :photo_cache, :self_introduction, :sns_info, bank_account_attributes: [:bank, :bank_code, :account_type, :branch_type, :branch_code, :account_number, :name]).merge(user_id: current_user.id)
     end
 
 end

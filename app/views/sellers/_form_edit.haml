@@ -14,7 +14,8 @@
       .img-field
         .mask
           %i.fa.fa-camera
-          = f.file_field :photo, required: true, class: "seller-photo-field"
+          = f.file_field :photo, class: "seller-photo-field"
+          = f.hidden_field :photo_cache
         %p.comment.must ※必須(正方形の画像推奨)
 
       %p.comment 自己紹介
@@ -30,7 +31,7 @@
     .bank-info
       = f.fields_for :bank_account do |ba|
         %p.comment 銀行名
-        = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+        = ba.text_field :bank,　required: true, placeholder: "例：もぐシェア銀行"
 
         %p.comment 金融機関コード
         = ba.text_field :bank_code, placeholder: "例：1111"
@@ -52,6 +53,8 @@
 
   .submit-button
     = f.submit "編集する"
+  .previous-button
+    プロフィール情報に戻る
 
   %p
     =link_to "ログアウト", logout_path, method: :delete
