@@ -24,6 +24,7 @@ class ChargesController < ApplicationController
     @user_point = current_user.find_or_create_user_point!.amount
     @ticket = Ticket.find(params[:id])
     @amount = @order.total_price
+
     if params[:used_point].to_i > current_user.find_or_create_user_point!.amount
       flash[:alert] = "使用可能なポイントは#{current_user.user_point.amount}です"
       return render :confirm

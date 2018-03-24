@@ -15,11 +15,11 @@
       .img-field
         .mask
           %i.fa.fa-camera
-          = f.file_field :photo, required: true, class: "seller-photo-field"
+          = f.file_field :photo, class: "seller-photo-field"
         %p.comment.must ※必須(正方形の画像推奨)
 
       %p.comment 自己紹介
-      = f.text_field :self_introduction, required: true
+      = f.text_field :self_introduction
       = hidden_field_tag :user_id, current_user.id
 
       %p.comment HPやinstagramなど

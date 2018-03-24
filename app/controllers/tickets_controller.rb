@@ -67,7 +67,6 @@ class TicketsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @ticket.update(ticket_params)
       redirect_to user_path(current_user.id)
     else

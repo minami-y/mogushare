@@ -110,10 +110,10 @@ ja:
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
-      blank: を入力してください
+      blank: を登録してください
       present: は入力しないでください
       confirmation: と%{attribute}の入力が一致しません
-      empty: を入力してください
+      empty: を登録してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください
       exclusion: は予約されています
@@ -211,3 +211,4 @@ ja:
     account_number: 口座番号
     name:  口座名義
     self_introduction: 自己紹介
+    photo: 写真
