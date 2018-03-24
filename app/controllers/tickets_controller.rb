@@ -92,7 +92,7 @@ class TicketsController < ApplicationController
       if current_user.seller.nil?
         redirect_to new_seller_path
       elsif current_user.seller.bank_account.nil?
-        # redirect_to edit_seller_path(current_user)
+        redirect_to new_seller_path
       end
     end
 

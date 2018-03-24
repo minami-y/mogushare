@@ -62,7 +62,7 @@
 /       %span hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
 /     .chat-time
 /       %span 1分前
--if @groups
+-if @groups.present?
   - @groups.each do |group|
     = link_to talk_path(group) do
       %div
@@ -81,7 +81,7 @@
                 %span 1分前
 -else
   %div.no_item
-  チャットはありません
+    チャットはありません
 
 
 = render 'shared/after_signup_footer'

@@ -1,4 +1,4 @@
-- if @orders
+- if @orders.present?
   - @orders.each do |order|
     - order.order_details.each do |od|
       .board.large
@@ -10,6 +10,8 @@
             %span 商品名： #{od.share.menu}
             %span 購入個数：#{od.quantity} 個
             %span 合計金額：#{od.price} 円
+            - if current_user.seller.present? && order.seller_id == current_user.seller.id
+              =link_to "取引をキャンセルし返金する", index_path
           .chat-time
             %span= od.created_at.strftime('%m/%d')
 
