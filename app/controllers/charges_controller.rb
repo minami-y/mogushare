@@ -4,7 +4,14 @@ class ChargesController < ApplicationController
     @order = Order.new(order_params)
     @order_details = @order.order_details
     @ticket = Ticket.find(params[:id])
-    @amount = @order.total_price
+    @details = params[:order][:order_details_attributes]
+    arry = [*0..@details.count-1]
+    @order.total_price = 0
+    arry.each do |i|
+      price = @details["#{i}"][:unit_price].to_i
+      quantity = @details["#{i}"][:quantity].to_i
+      @order.total_price += price*quantity
+    end
     # 使用可能なポイント
     @user_point = current_user.find_or_create_user_point!.amount
   end
