@@ -1,3 +1,13 @@
+.board.large.color-none
+  .board.middle.color-none
+    .submit-field
+      .basic_info
+        .img-field
+          .mask
+            = image_tag @seller.photo, class: "circle-img"
+          %p #{@seller.user.name}
+          %p #{@seller.self_introduction}
+
 / ログインしているユーザーが投稿者の場合、shareの情報と編集、削除へのリンクを表示
 / - if current_user.seller.nil? || current_user.seller.id != @ticket.seller_id
 = form_for(@order, url: confirm_charges_path(id: @ticket.id)) do |f|

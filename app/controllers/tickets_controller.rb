@@ -44,7 +44,6 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
     @shares = @ticket.shares
     @shares_price = @shares.sum(:price)
     @seller = @ticket.seller
