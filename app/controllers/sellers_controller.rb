@@ -49,6 +49,8 @@ class SellersController < ApplicationController
     if @seller.update_attributes(seller_params)
       flash[:success] = "購入者情報が更新されました"
       redirect_to tickets_path
+    else
+      render 'edit'
     end
   end
 

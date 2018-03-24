@@ -1,25 +1,36 @@
+/ 仮置きのcssです
+:css
+  .seller_edit_photo {
+  width: 80px;
+  }
+
 = form_for seller do |f|
   - if seller.errors.any?
     #error_explanation
       %h3
-        = pluralize(seller.errors.count, "error")
-        prohibited this ticket from being saved:
+        入力内容の誤りが
+        = pluralize(seller.errors.count, "箇所")
+        あります:
       %ul
         - seller.errors.full_messages.each do |message|
           %li= message
+
 
   / image_tagのところ、ifあるならその画像,無いなら白丸にfont-awesomeのアイコン、という形で処理
   .submit-field
     .basic_info
       .img-field
         .mask
-          %i.fa.fa-camera
+          - if seller.photo.present?
+            = image_tag seller.photo, class: "seller_edit_photo"
+          - else
+            %i.fa.fa-camera
           = f.file_field :photo, class: "seller-photo-field"
           = f.hidden_field :photo_cache
         %p.comment.must ※必須(正方形の画像推奨)
 
       %p.comment 自己紹介
-      = f.text_field :self_introduction, required: true
+      = f.text_field :self_introduction
       = hidden_field_tag :user_id, current_user.id
 
       %p.comment HPやinstagramなど
@@ -31,28 +42,30 @@
     .bank-info
       = f.fields_for :bank_account do |ba|
         %p.comment 銀行名
-        = ba.text_field :bank,　required: true, placeholder: "例：もぐシェア銀行"
+        = ba.text_field :bank,　required: true, placeholder: "例：もぐシェア銀行", required: true
 
         %p.comment 金融機関コード
-        = ba.text_field :bank_code, placeholder: "例：1111"
+        = ba.text_field :bank_code, placeholder: "例：1111", required: true
 
         %p.comment 口座種別
-        = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
+        = ba.select :account_type, [["普通", "normal"], ["当座", "current"]], required: true
 
         %p.comment 支店コード
-        =ba.text_field :branch_code, placeholder: "例：111"
+        =ba.text_field :branch_code, placeholder: "例：111", required: true
 
         %p.comment 口座番号
-        =ba.text_field :account_number, placeholder: "例：1111111"
+        =ba.text_field :account_number, placeholder: "例：1111111", required: true
 
         %p.comment 口座名義
-        =ba.text_field :name, placeholder: "モグシェアタロウ"
+        =ba.text_field :name, placeholder: "モグシェアタロウ", required: true
 
     / %p.comment 通知メールの配信設定(オフすると投稿があった時、メッセージが来た時や購入された際に気付けなくなります)
     / = f.text_field :address
 
   .submit-button
     = f.submit "編集する"
+
+  / 口座情報ページからプロフィール情報に戻るために仮置き
   .previous-button
     プロフィール情報に戻る
 
