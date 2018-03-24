@@ -8,7 +8,7 @@
     = f.fields_for :order_details do |od|
       .board.large.ticket-item.ticket-item-menu{"data-price": share.price}
         .board.middle
-          %p.ticket_title #{share.menu} │ #{share.price}
+          %p.ticket_title #{share.menu} │ #{share.price} 円
           = od.hidden_field :unit_price, readonly: true, value: share.price, size: 5, class: "item-price-unit"
           .ticket_info
             / 後でif文削除
@@ -27,17 +27,17 @@
             = od.hidden_field :price, value: 0, readonly: true, size: 5, class: "item-price-total"
             = od.hidden_field :share_id, value: share.id
             = od.select :quantity, (0..share.quantity).to_a, class: "select"
-            .plus
-              %i.fa.fa-plus-circle
-            .minus
-              %i.fa.fa-minus-circle
+            / .plus
+            /   %i.fa.fa-plus-circle
+            / .minus
+            /   %i.fa.fa-minus-circle
             / .next-button
             /   =link_to "カートに入れる", index_path
 
   - if current_user.seller.nil? || current_user.seller.id != @ticket.seller_id
-    合計金額：
-    = f.text_field :total_price, value: 0, readonly: true, size: 5, id: "item-price-total"
-    円
+    / 合計金額：
+    / = f.text_field :total_price, value: 0, readonly: true, size: 5, id: "item-price-total"
+    / 円
 
     = f.submit "確認画面へ", class: "next-button"
 

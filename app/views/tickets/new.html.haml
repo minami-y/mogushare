@@ -22,7 +22,7 @@
       .submit-field
         .basic_info
           %p.comment ジャンル
-          = f.text_field :genre, required: true, placeholder: "例 | おすそわけ"
+          = f.select :genre , [["おすそわけ", "おすそわけ"], ["料理教室", "料理教室"], ["イベント", "イベント"]] , required: true
           %p.comment 開始日時(おすそわけの場合、受渡可能な時間幅)
           .date-box
             = f.datetime_select :event_date, required: true, use_month_numbers: true
@@ -42,9 +42,9 @@
             %p.comment タイトル
             = share.text_field :menu, required: true, placeholder: "例 | 本格フレンチ教室"
             %p.comment 販売価格: 1つあたり
-            = share.text_field :price, required: true, placeholder: "例 | 3000"
+            = share.number_field :price, required: true, placeholder: "例 | 3000"
             %p.comment 販売数
-            = share.text_field :quantity, required: true, placeholder: "例 | 4"
+            = share.number_field :quantity, required: true, placeholder: "例 | 4"
             %p.comment 画像(必須ではありません。サイズは長方形推奨)
             .post-images
               .mask-squre

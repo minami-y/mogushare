@@ -14,7 +14,7 @@
               ¥#{od.unit_price}
               × #{od.quantity}人前
         %h1
-          合計金額: ¥#{@amount}
+          合計金額: ¥#{@order.total_price}
 
       / = hidden_field_tag :id, @ticket.id
       .submit-field
