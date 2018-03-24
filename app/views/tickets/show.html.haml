@@ -6,6 +6,7 @@
           .mask
             = image_tag @seller.photo, class: "circle-img"
           %p #{@seller.user.name}
+          =link_to "#{@seller.sns_info}", @seller.sns_info, target: "_blank"
           %p #{@seller.self_introduction}
 
 / ログインしているユーザーが投稿者の場合、shareの情報と編集、削除へのリンクを表示
