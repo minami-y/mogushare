@@ -40,14 +40,7 @@ class ChargesController < ApplicationController
       )
       @order.total_price = calculator.amount
 
-      # 在庫を減らす。
-      @order.order_details.each do |od|
-        @share = Share.find(od.share_id)
-        @share.quantity -= od.quantity
-        @share.save
-      end
-      @order.save!
-
+      # 決済処理
       if current_user.stripe_customer_id.present?
         customer_id = current_user.stripe_customer_id
       else
@@ -69,6 +62,15 @@ class ChargesController < ApplicationController
           account: @ticket.seller.stripe_account_id,
         }
       })
+
+      # 在庫を減らす。
+      @order.order_details.each do |od|
+        @share = Share.find(od.share_id)
+        @share.quantity -= od.quantity
+        @share.save
+      end
+      @order.save!
+
       # @ticket.update_attributes(buyer_id: params[:buyer_id])
 
       calculator.apply!
