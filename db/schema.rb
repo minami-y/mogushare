@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320125923) do
+ActiveRecord::Schema.define(version: 20180325174405) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -91,12 +91,28 @@ ActiveRecord::Schema.define(version: 20180320125923) do
 
   create_table "sellers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.text     "self_introduction", limit: 65535
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "self_introduction",   limit: 65535
     t.string   "photo"
     t.string   "sns_info"
     t.string   "stripe_account_id"
+    t.string   "postal_code"
+    t.string   "address_kana_state"
+    t.string   "address_kana_city"
+    t.string   "address_kana_town"
+    t.string   "address_kana_line"
+    t.string   "address_kanji_state"
+    t.string   "address_kanji_city"
+    t.string   "address_kanji_town"
+    t.string   "address_kanji_line"
+    t.date     "date_of_birth"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.string   "first_name_kanji"
+    t.string   "last_name_kanji"
+    t.string   "phone_number"
+    t.integer  "gender"
     t.index ["user_id"], name: "index_sellers_on_user_id", using: :btree
   end
 
