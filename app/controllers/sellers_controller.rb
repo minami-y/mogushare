@@ -8,8 +8,6 @@ class SellersController < ApplicationController
 
   def create
     @seller = Seller.new(seller_params)
-    if @seller.save
-      bank_account = @seller.bank_account
 
     # 支払い受け取り用のStripeアカウント作成
     account = Stripe::Account.create(
@@ -50,23 +48,25 @@ class SellersController < ApplicationController
       }
     ) unless @seller.stripe_account_id.present?
 
-      @seller.update(stripe_account_id: account.id)
+    @seller.stripe_account_id = account.id
 
-      # Stripeへ銀行口座の登録
-      bank = account.external_accounts.create({
-        external_account: {
-          account_number: @seller.bank_account.account_number.to_s,
-          country: "JP",
-          currency: "JPY",
-          account_holder_name: @seller.bank_account.name,
-          account_holder_type: "individual",
-          routing_number: @seller.bank_account.bank_code.to_s + @seller.bank_account.branch_code.to_s,
-          object: "bank_account"
-        }
-      })
+    # Stripeへ銀行口座の登録
+    bank_account = @seller.bank_account
+    bank = account.external_accounts.create({
+      external_account: {
+        account_number: @seller.bank_account.account_number.to_s,
+        country: "JP",
+        currency: "JPY",
+        account_holder_name: @seller.bank_account.name,
+        account_holder_type: "individual",
+        routing_number: @seller.bank_account.bank_code.to_s + @seller.bank_account.branch_code.to_s,
+        object: "bank_account"
+      }
+    })
 
-      bank_account.update(bank_account_id: bank.id)
+    @seller.bank_account.bank_account_id = bank.id
 
+    if @seller.save
       redirect_back_or new_ticket_path
     else
       render 'new'
