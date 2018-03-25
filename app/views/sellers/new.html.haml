@@ -1,9 +1,13 @@
 :javascript
   $(document).on('turbolinks:load', function() {
-  $('.bank-info, .submit-button, .add-button').hide();
-  $('.next-button').on('click', function(){
-    $('.basic_info').hide();
-    $('.bank-info, .submit-button, .add-button').show();
+    $('.individual_info, .bank-info, .submit-button, .add-button').hide();
+    $('.next-button').on('click', function(){
+      $('.basic_info').hide();
+      $('.individual_info').show();
+    });
+    $('.last-button').on('click', function(){
+      $('.individual_info').hide();
+      $('.bank-info, .submit-button, .add-button').show();
     });
   });
 
