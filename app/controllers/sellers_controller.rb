@@ -9,64 +9,64 @@ class SellersController < ApplicationController
   def create
     @seller = Seller.new(seller_params)
 
-    # 支払い受け取り用のStripeアカウント作成
-    account = Stripe::Account.create(
-      type: "custom",
-      country: "JP",
-      email: @seller.user.email,
-      legal_entity: {
-        address_kana: {
-          state: @seller.address_kana_state,
-          city: @seller.address_kana_city,
-          town: @seller.address_kana_town,
-          line1: @seller.address_kana_line,
-          postal_code: @seller.postal_code
-        },
-        address_kanji: {
-          state: @seller.address_kanji_state,
-          city: @seller.address_kanji_city,
-          town: @seller.address_kanji_town,
-          line1: @seller.address_kanji_line,
-          postal_code: @seller.postal_code
-        },
-        dob: {
-          day: @seller.date_of_birth.day,
-          month: @seller.date_of_birth.month,
-          year: @seller.date_of_birth.year
-        },
-        first_name_kana: @seller.first_name_kana,
-        first_name_kanji: @seller.first_name_kanji,
-        last_name_kana: @seller.last_name_kana,
-        last_name_kanji: @seller.last_name_kanji,
-        phone_number: @seller.phone_number,
-        gender: @seller.gender,
-        type: "individual",
-      },
-      tos_acceptance: {
-        date: Time.now.to_i,
-        ip: request.remote_ip
-      }
-    ) unless @seller.stripe_account_id.present?
-
-    @seller.stripe_account_id = account.id
-
-    # Stripeへ銀行口座の登録
-    bank_account = @seller.bank_account
-    bank = account.external_accounts.create({
-      external_account: {
-        account_number: @seller.bank_account.account_number.to_s,
-        country: "JP",
-        currency: "JPY",
-        account_holder_name: @seller.bank_account.name,
-        account_holder_type: "individual",
-        routing_number: @seller.bank_account.bank_code.to_s + @seller.bank_account.branch_code.to_s,
-        object: "bank_account"
-      }
-    })
-
-    @seller.bank_account.bank_account_id = bank.id
-
     if @seller.save
+      # 支払い受け取り用のStripeアカウント作成
+      account = Stripe::Account.create(
+        type: "custom",
+        country: "JP",
+        email: @seller.user.email,
+        legal_entity: {
+          address_kana: {
+            state: @seller.address_kana_state,
+            city: @seller.address_kana_city,
+            town: @seller.address_kana_town,
+            line1: @seller.address_kana_line,
+            postal_code: @seller.postal_code
+          },
+          address_kanji: {
+            state: @seller.address_kanji_state,
+            city: @seller.address_kanji_city,
+            town: @seller.address_kanji_town,
+            line1: @seller.address_kanji_line,
+            postal_code: @seller.postal_code
+          },
+          dob: {
+            day: @seller.date_of_birth.day,
+            month: @seller.date_of_birth.month,
+            year: @seller.date_of_birth.year
+          },
+          first_name_kana: @seller.first_name_kana,
+          first_name_kanji: @seller.first_name_kanji,
+          last_name_kana: @seller.last_name_kana,
+          last_name_kanji: @seller.last_name_kanji,
+          phone_number: @seller.phone_number,
+          gender: @seller.gender,
+          type: "individual",
+        },
+        tos_acceptance: {
+          date: Time.now.to_i,
+          ip: request.remote_ip
+        }
+      ) unless @seller.stripe_account_id.present?
+
+      @seller.stripe_account_id = account.id
+
+      # Stripeへ銀行口座の登録
+      bank_account = @seller.bank_account
+      bank = account.external_accounts.create({
+        external_account: {
+          account_number: @seller.bank_account.account_number.to_s,
+          country: "JP",
+          currency: "JPY",
+          account_holder_name: @seller.bank_account.name,
+          account_holder_type: "individual",
+          routing_number: @seller.bank_account.bank_code.to_s + @seller.bank_account.branch_code.to_s,
+          object: "bank_account"
+        }
+      })
+
+      @seller.bank_account.bank_account_id = bank.id
+
       redirect_back_or new_ticket_path
     else
       render 'new'
