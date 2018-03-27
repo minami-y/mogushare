@@ -1,14 +1,22 @@
 :javascript
   $(document).on('turbolinks:load', function() {
-  $('.bank-info, .submit-button, .add-button, .previous-button').hide();
-  $('.next-button').on('click', function(){
-    $('.basic_info').hide();
-    $('.bank-info, .submit-button, .add-button, .previous-button').show();
+    $('.individual_info, .bank-info, .submit-button, .add-button, .previous-button1, .previous-button2').hide();
+    $('.next-button').on('click', function(){
+      $('.basic_info').hide();
+      $('.individual_info, .previous-button1').show();
     });
-  $('.previous-button').on('click', function(){
-    $('.bank-info, .submit-button, .add-button, .previous-button').hide();
-    $('.basic_info').show();
-  })
+    $('.show_more_button').on('click', function(){
+      $('.individual_info, .previous-button1').hide();
+      $('.bank-info, .submit-button, .add-button, .previous-button2').show();
+    });
+    $('.previous-button2').on('click', function(){
+      $('.bank-info, .submit-button, .add-button, .previous-button2').hide();
+      $('.individual_info, .previous-button1').show();
+    })
+    $('.previous-button1').on('click', function(){
+      $('.individual_info, .previous-button1').hide();
+      $('.basic_info').show();
+    })
   });
 
 .board.large.color-none

@@ -5,14 +5,14 @@
       $('.basic_info').hide();
       $('.individual_info').show();
     });
-    $('.last-button').on('click', function(){
+    $('.show_more_button').on('click', function(){
       $('.individual_info').hide();
       $('.bank-info, .submit-button, .add-button').show();
     });
   });
 
 .board.large.color-none
-  %h1.title 投稿するにはプロフィールの記入が必須です
+  %h1.title 投稿にはプロフィールが必須です(簡単3STEP)
   .board.middle.color-none
     = render 'form', seller: @seller
 

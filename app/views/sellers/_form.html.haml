@@ -9,7 +9,6 @@
         - seller.errors.full_messages.each do |message|
           %li= message
 
-  / image_tagのところ、ifあるならその画像,無いなら白丸にfont-awesomeのアイコン、という形で処理
   .submit-field
     .basic_info
       .img-field
@@ -28,7 +27,9 @@
 
       .next-button
         個人情報登録へ
+
     .individual_info
+      %p.comment.must ※出金の際の本人確認に必要です。
       %p.comment 性（漢字）
       = f.text_field :last_name_kanji, placeholder: "山田"
 
@@ -51,33 +52,33 @@
       = f.text_field :address_kanji_state, placeholder: "東京都"
 
       %p.comment 住所：市区町村（漢字）
-      = f.text_field :address_kanji_city, placeholder: "渋谷区"
+      = f.text_field :address_kanji_city, placeholder: "品川区"
 
       %p.comment 住所：町村（漢字）
-      = f.text_field :address_kanji_town, placeholder: "恵比寿3丁目"
+      = f.text_field :address_kanji_town, placeholder: "大崎1丁目"
 
       %p.comment 住所：番地・建物（漢字）
-      = f.text_field :address_kanji_line, placeholder: "21-6-211"
+      = f.text_field :address_kanji_line, placeholder: "11-2-211"
 
       %p.comment 住所：都道府県（かな）
       = f.text_field :address_kana_state, placeholder: "とうきょうと"
 
       %p.comment 住所：市区町村（かな）
-      = f.text_field :address_kana_city, placeholder: "しぶやく"
+      = f.text_field :address_kana_city, placeholder: "しながわく"
 
       %p.comment 住所：町村（かな）
-      = f.text_field :address_kana_town, placeholder: "えびす３ちょうめ"
+      = f.text_field :address_kana_town, placeholder: "おおさき３ちょうめ"
 
       %p.comment 住所：番地・建物（かな）
-      = f.text_field :address_kana_line, placeholder: "21-6-211"
+      = f.text_field :address_kana_line, placeholder: "11-2-211"
 
       %p.comment 郵便番号
-      = f.text_field :postal_code, placeholder: "1506002"
+      = f.text_field :postal_code, placeholder: "1410032"
 
       %p.comment 電話番号
-      = f.text_field :phone_number, placeholder: "0300000000"
+      = f.text_field :phone_number, placeholder: "09000000000"
 
-      .last-button
+      .show_more_button
         銀行口座情報へ
 
     .bank-info

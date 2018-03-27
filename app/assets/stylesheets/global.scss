@@ -36,9 +36,13 @@ h1 span {
   background-color: #ffffff;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+
   align-items: center;
 }
+.header-board p {
+  margin-left: 130px;
+}
+
 
 .board {
   height: auto;
@@ -283,16 +287,13 @@ p.must {
   margin-bottom: 15px;
 }
 
-.previous-button{
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.previous-button1, .previous-button2{
+  width: 80%;
   border-radius: 5px;
   background-color: #fd7700;
   font-size: 14px;
   color: white;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px auto;
 }
 
 .add-button{
@@ -312,6 +313,10 @@ p.must {
   border: solid 0.5px #fd7700;
   font-size: 14px;
   margin: 10px auto;
+}
+.chat-submit-button{
+  border-radius: 5px;
+  font-size: 14px;
 }
 .stripe-button-el span {
   width: 200px;
@@ -431,7 +436,7 @@ label.question-section {
 ——————–*/
 /* 全体のスタイル */
 .kaiwa {
-  margin-bottom: 25px;
+  margin-bottom: 0px;
 }
 /* 左画像 */
 .kaiwa-img-left {

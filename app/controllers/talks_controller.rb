@@ -8,6 +8,11 @@ class TalksController < ApplicationController
     @group = Group.find(params[:id])
     @talk = Talk.new
     @talk_logs = @group.talks
+    @group.users.each do |user|
+      if user.name != current_user.name
+        @else_user = user
+      end
+    end
   end
 
   def create

@@ -1,67 +1,3 @@
-/ ここは個別トーク画面を避難させている
-/ これでトーク相手の情報を動的にとってこれる(今はpartnerという適当な変数になってるので注意！)
-/ %input{name: "partner_name", type: "hidden", value: current_user.partner(適当).name, class: 'partner_name' }
-/ %input{name: "partner_image", type: "hidden", value: current_user.partner(適当).image, class: 'partner_image' }
-
-/ :javascript
-/   $(document).on('turbolinks:load', function() {
-/   var name = $('.partner_name').val();
-/   var img = $('.partner_image').val();
-/   $('header').hide();
-/   $(".header-board img").attr("src", "assets/cook_voice2.png");
-/   $(".header-board p").append("中村友子");
-/   });
-/ = render 'shared/header_white'
-
-
-/ 正しくはifでright,leftを変える必要あり
-/ .board.large.color-none
-/   %div.kaiwa
-/     %figure.kaiwa-img-left
-/       = image_tag "cook_voice2.png"
-/       %figcaption.kaiwa-img-description
-/     %div.kaiwa-text-right
-/       %p.kaiwa-text 山下さんこんにちは~！料理教室のチケットご購入ありがとうございます✨ 来週土曜の10:00~12:00、恵比寿郵便局付近です(詳細は後ほど別途お送りしますね)。当日お子様連れも大丈夫なアットホームな会なので気軽に来て下さいね🤗
-
-/   %div.kaiwa
-/     %figure.kaiwa-img-right
-/       = image_tag "amb1.png"
-/       %figcaption.kaiwa-img-description
-/     %div.kaiwa-text-left
-/       %p.kaiwa-text 中村さんこんにちは！この前のお魚料理のおすそ分けがとーっても美味しくて、子供が大のお気に入りになったのでつい参加したくなっちゃいました！😌娘連れて楽しみにしてます✨
-
-/   %div.kaiwa
-/     %figure.kaiwa-img-left
-/       = image_tag "cook_voice2.png"
-/       %figcaption.kaiwa-img-description
-/     %div.kaiwa-text-right
-/       %p.kaiwa-text わーそう言って頂けるのとっても嬉しいです💖 この前のはイタリアン風だったけど、今回はフレンチ風なの😀 おすそ分けにはまだ出したことないから、楽しみにしててね！
-
-
-/ 以下が正しいチャット一覧(このviewで表示すべきhtml)
-
-
-/ .board.large
-/   .chat-board
-/     .cook_info
-/       = image_tag "blank.png"
-/     .chat-txt
-/       %span
-/         = current_user.name
-/       %span hogehogehogehoge
-/     .chat-time
-/       %span 1分前
-
-/ .board.large
-/   .chat-board
-/     .cook_info
-/       = image_tag "blank.png"
-/     .chat-txt
-/       %span
-/         = current_user.name
-/       %span hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge
-/     .chat-time
-/       %span 1分前
 -if @groups.present?
   - @groups.each do |group|
     = link_to talk_path(group) do
@@ -71,14 +7,18 @@
           .board.large
             .chat-board
               .cook_info
-                = image_tag "blank.png"
+                - if user.seller.present? && user.seller.photo.present?
+                  = image_tag user.seller.photo
+                -else
+                  = image_tag "blank.png"
               .chat-txt
                 %span
                   = user.name
                 %span
                   = group.latest_messages(group)
               .chat-time
-                %span 1分前
+                %span
+                  = group.talks.last.created_at.strftime('%m月%d日%H:%M')
 -else
   %div.no_item
     チャットはありません
