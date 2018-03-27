@@ -1,0 +1,2 @@
+class ChargeMailer < ApplicationMailer
+end
