@@ -1,27 +1,28 @@
--if @groups.present?
-  - @groups.each do |group|
-    = link_to talk_path(group) do
-      %div
-      - group.users.each do |user|
-        - if user.name != current_user.name
-          .board.large
-            .chat-board
-              .cook_info
-                - if user.seller.present? && user.seller.photo.present?
-                  = image_tag user.seller.photo
-                -else
-                  = image_tag "blank.png"
-              .chat-txt
-                %span
-                  = user.name
-                %span
-                  = group.latest_messages(group)
-              .chat-time
-                %span
-                  = group.talks.last.created_at.strftime('%m月%d日%H:%M')
--else
-  %div.no_item
-    チャットはありません
+.main
+  -if @groups.present?
+    - @groups.each do |group|
+      = link_to talk_path(group) do
+        %div
+        - group.users.each do |user|
+          - if user.name != current_user.name
+            .board.large
+              .chat-board
+                .cook_info
+                  - if user.seller.present? && user.seller.photo.present?
+                    = image_tag user.seller.photo
+                  -else
+                    = image_tag "blank.png"
+                .chat-txt
+                  %span
+                    = user.name
+                  %span
+                    = group.latest_messages(group)
+                .chat-time
+                  %span
+                    = group.talks.last.created_at.strftime('%m月%d日%H:%M') if group.talks.present?
+  -else
+    %div.no_item
+      チャットはありません
 
 
 = render 'shared/after_signup_footer'

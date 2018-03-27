@@ -6,9 +6,9 @@
           .cook_info
             = mypage_profile_image(order.seller.user)
           .chat-txt
-            %span= order.seller.user.name
-            %span 商品名： #{od.share.menu}
-            %span 購入個数：#{od.quantity} 個
+            %span 購入者名：#{order.user.name}さん
+            %span 販売者名：#{order.seller.user.name}さん
+            %span 商品名と個数： #{od.share.menu}, #{od.quantity} 個
             %span 合計金額：#{od.unit_price*od.quantity} 円
             - if current_user.seller.present? && order.seller_id == current_user.seller.id
               =link_to "取引をキャンセルし返金する", index_path

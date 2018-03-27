@@ -1,49 +1,50 @@
 / ここマッチングのロジックに応じて変わる
-- if @shares.length > 0
-  - @shares.uniq.each do |share|
-    .board.large
-      .board.middle
-        %p.ticket_title #{share.menu} | #{share.price} 円
-        .ticket_info
-          / 後でif文削除
-          - if share.ticket.event_end_date.present?
-            %i.fas.fa-hourglass #{share.ticket.event_date.strftime('%m/%d %H:%M')} - #{share.ticket.event_end_date.strftime('%m/%d %H:%M')}
-          %i.fas.fa-map-pin #{share.ticket.event_place}
-          %i.fas.fa-tag #{share.ticket.genre}
-      .board-img
-        = image_tag share.image
-      .board.middle
-        %p #{share.message}
-      .ticket-line
-      .board.middle
-        .jump-to-detail
-          .cook_info
-            = image_tag share.ticket.seller.photo
-            %span
-              #{share.ticket.seller.user.name}
-          .show_more_button
-            =link_to "もっと見る", ticket_path(share.ticket.id)
+.main
+  - if @shares.length > 0
+    - @shares.uniq.each do |share|
+      .board.large
+        .board.middle
+          %p.ticket_title #{share.menu} | #{share.price} 円
+          .ticket_info
+            / 後でif文削除
+            - if share.ticket.event_end_date.present?
+              %i.fas.fa-hourglass #{share.ticket.event_date.strftime('%m/%d %H:%M')} - #{share.ticket.event_end_date.strftime('%m/%d %H:%M')}
+            %i.fas.fa-map-pin #{share.ticket.event_place}
+            %i.fas.fa-tag #{share.ticket.genre}
+        .board-img
+          = image_tag share.image
+        .board.middle
+          %p #{share.message}
+        .ticket-line
+        .board.middle
+          .jump-to-detail
+            .cook_info
+              = image_tag share.ticket.seller.photo
+              %span
+                #{share.ticket.seller.user.name}
+            .show_more_button
+              =link_to "もっと見る", ticket_path(share.ticket.id)
 
-  / 以下はelse以下で表示するように
-- else
-  %div.no_item
-    .center_align
-      %p
-        投稿はありません。
-        %br
-        まずはシェアして、身近な所からやり取りを始めてみませんか？
-      %span.smaller
-        lineでシェアはこちら➜
-        .line-it-button{ data: { lang: 'ja', type: 'share-b', url: "https://mogushare.net/"}, style: "display: none;"}
-        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-        %br
-        facebookでシェアはこちら➜
-        .line-it-button{ data: { lang: 'ja', type: 'share-b', url: "https://mogushare.net/"}, style: "display: none;"}
-        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-        %br
-        URLでシェアはこちら(コピーして下さい)↓
-        %br
-        https://mogushare.net/
+    / 以下はelse以下で表示するように
+  - else
+    %div.no_item
+      .center_align
+        %p
+          投稿はありません。
+          %br
+          まずはシェアして、身近な所からやり取りを始めてみませんか？
+        %span.smaller
+          lineでシェアはこちら➜
+          .line-it-button{ data: { lang: 'ja', type: 'share-b', url: "https://mogushare.net/"}, style: "display: none;"}
+          <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+          %br
+          facebookでシェアはこちら➜
+          .line-it-button{ data: { lang: 'ja', type: 'share-b', url: "https://mogushare.net/"}, style: "display: none;"}
+          <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+          %br
+          URLでシェアはこちら(コピーして下さい)↓
+          %br
+          https://mogushare.net/
 
 
 

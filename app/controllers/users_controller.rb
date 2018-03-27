@@ -76,7 +76,11 @@ class UsersController < ApplicationController
   end
 
   def buy_history
-    @orders = Order.where(user_id: current_user.id)
+    if current_user.seller.present?
+      @orders = Order.where("user_id = ? or seller_id = ?", current_user.id, current_user.seller.id)
+    else
+      @orders = Order.where(user_id: current_user.id)
+    end
   end
 
   private

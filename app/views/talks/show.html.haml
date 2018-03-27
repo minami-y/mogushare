@@ -6,30 +6,31 @@
   });
 = render 'shared/header_white'
 
-.board.large.color-none
-  - @talk_logs.each do |talk|
-    - if talk.user.id == current_user.id
-      %div.kaiwa
-        %figure.kaiwa-img-right
-          - if talk.user.seller.present? && talk.user.seller.photo.present?
-            = image_tag talk.user.seller.photo
-          -else
-            = image_tag "blank.png"
-          %figcaption.kaiwa-img-description
-        %div.kaiwa-text-left
-          %p.kaiwa-text
-            = talk.message
-    - else
-      %div.kaiwa
-        %figure.kaiwa-img-left
-          - if talk.user.seller.present? && talk.user.seller.photo.present?
-            = image_tag talk.user.seller.photo
-          -else
-            = image_tag "blank.png"
-          %figcaption.kaiwa-img-description
-        %div.kaiwa-text-right
-          %p.kaiwa-text
-            = talk.message
+.main
+  .board.large.color-none
+    - @talk_logs.each do |talk|
+      - if talk.user.id == current_user.id
+        %div.kaiwa
+          %figure.kaiwa-img-right
+            - if talk.user.seller.present? && talk.user.seller.photo.present?
+              = image_tag talk.user.seller.photo
+            -else
+              = image_tag "blank.png"
+            %figcaption.kaiwa-img-description
+          %div.kaiwa-text-left
+            %p.kaiwa-text
+              = talk.message
+      - else
+        %div.kaiwa
+          %figure.kaiwa-img-left
+            - if talk.user.seller.present? && talk.user.seller.photo.present?
+              = image_tag talk.user.seller.photo
+            -else
+              = image_tag "blank.png"
+            %figcaption.kaiwa-img-description
+          %div.kaiwa-text-right
+            %p.kaiwa-text
+              = talk.message
 
 %footer
   = form_for @talk, url: talks_path do |f|

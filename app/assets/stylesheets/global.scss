@@ -356,17 +356,25 @@ div > .minus, .plus {
 .chat-txt {
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: 160px;
 }
 .chat-txt span{
   text-align: left;
   margin-top: 10px;
   font-size: 10px;
   word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat-txt span:first-child {
   font-weight: bold;
+}
+.chat-txt a {
+  font-size: 10px;
+  text-align: left;
+  margin-top: 10px;
 }
 
 .chat-time {
@@ -532,4 +540,12 @@ p.kaiwa-text:last-child {
   clear: both;
   content: "";
   display: block;
+}
+
+.new_talk {
+  width: 100%;
+  display: flex;
+}
+#talk_message {
+  width: 100%;
 }
