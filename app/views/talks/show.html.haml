@@ -1,41 +1,41 @@
-/ ビューを整える必要あり
-= link_to "戻る", talks_path(current_user)
-- @group.users.each do |user|
-  - if user.name != current_user.name
-    %div
-      #{user.name}さん
-.board.large.color-none
-  - @talk_logs.each do |talk|
-    - if talk.user.id == current_user.id
-      %div.kaiwa
-        %figure.kaiwa-img-right
-          - if talk.user.seller.present? && talk.user.seller.photo.present?
-            = image_tag talk.user.seller.photo
-          -else
-            = image_tag "blank.png"
-          %figcaption.kaiwa-img-description
-        %div.kaiwa-text-left
-          %p.kaiwa-text
-            = talk.message
-        / = talk.created_at.strftime('%Y年%m月%d日　%H:%M')
-    - else
-      %div.kaiwa
-        %figure.kaiwa-img-left
-          - if talk.user.image.present?
-            = image_tag talk.user.image
-          -else
-            = image_tag "blank.png"
-          %figcaption.kaiwa-img-description
-        %div.kaiwa-text-right
-          %p.kaiwa-text
-            = talk.message
+:javascript
+  $(document).on('turbolinks:load', function() {
+  $('header').hide();
+  $(".header-board img").hide();
+  $(".header-board p").append("#{@else_user.name}");
+  });
+= render 'shared/header_white'
 
+.main
+  .board.large.color-none
+    - @talk_logs.each do |talk|
+      - if talk.user.id == current_user.id
+        %div.kaiwa
+          %figure.kaiwa-img-right
+            - if talk.user.seller.present? && talk.user.seller.photo.present?
+              = image_tag talk.user.seller.photo
+            -else
+              = image_tag "blank.png"
+            %figcaption.kaiwa-img-description
+          %div.kaiwa-text-left
+            %p.kaiwa-text
+              = talk.message
+      - else
+        %div.kaiwa
+          %figure.kaiwa-img-left
+            - if talk.user.seller.present? && talk.user.seller.photo.present?
+              = image_tag talk.user.seller.photo
+            -else
+              = image_tag "blank.png"
+            %figcaption.kaiwa-img-description
+          %div.kaiwa-text-right
+            %p.kaiwa-text
+              = talk.message
 
-= form_for @talk, url: talks_path do |f|
-  = f.label :message
-  %br
-  = f.text_area :message
-  = f.hidden_field :group_id, value: @group.id
-  = f.submit "送信"
+%footer
+  = form_for @talk, url: talks_path do |f|
+    = f.text_area :message, placeholder: "メッセージを入力"
+    = f.hidden_field :group_id, value: @group.id
+    = f.submit "送信", class: "chat-submit-button"
 
 

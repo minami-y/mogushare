@@ -12,41 +12,24 @@
 / = render 'shared/header_white'
 
 / buy-confirmーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-.board.large
-  %h1 商品①
-  .line
-  .board.middle
-    = form_for(:session, url: login_path) do |f|
-      .submit-field
-        %p.comment メールアドレス
-        = f.email_field :email
-        %p.comment パスワード
-        = f.password_field :password
-        .add-button
-          ここまま買い物を続ける
-      %p.txt
-        = link_to "キャンセルポリシー", cancellation_policy_path, target: "_blank"
-        の通り、当日キャンセルの場合、返金はクックが承認した時のみ可能です。クックにチャットでご相談下さい。
-      .submit-button
-        = f.submit "これで購入する"
-
-
-
-/ post-confirm(add-buttonまでeachして)submitだけはeachの外に一度だけ設置ーーーーーーーーーーーーーーーーーーー
-/ = form_for(:session, url: login_path) do |f|
-/   .board.large
-/     %h1 商品①
-/     .line
-/     .board.middle
+/ .board.large
+/   %h1 商品①
+/   .line
+/   .board.middle
+/     = form_for(:session, url: login_path) do |f|
 /       .submit-field
 /         %p.comment メールアドレス
 /         = f.email_field :email
 /         %p.comment パスワード
 /         = f.password_field :password
 /         .add-button
-/           編集する
-/   .submit-button.outside-board
-/     = f.submit "投稿する"
+/           ここまま買い物を続ける
+/       %p.txt
+/         = link_to "キャンセルポリシー", cancellation_policy_path, target: "_blank"
+/         の通り、当日キャンセルの場合、返金はクックが承認した時のみ可能です。クックにチャットでご相談下さい。
+/       .submit-button
+/         = f.submit "これで購入する"
+
 
 
 / cancel-confirm(required meとチェックボックスは有効か？)ーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -68,8 +51,6 @@
 /         = f.submit "返金する"
 
 
-/ ----------------------ここまでconfirm系
-/ ----------------------ここからhistory系、chatのデザインをベースに
 
 / ----------------------buy-history(memberから見た)
 / %div.no_item
@@ -111,20 +92,20 @@
 / --------------------------------------------------------ここからstatic
 
 / ----------------------thanksページ
-.board.large
-  .board.middle
-    %h1.title
-      購入ありがとうございます。
-      %br
-      お支払が完了しました。
-      %br
-      %br
-      クックの〇〇さんとチャットで場所や時間を調整して下さい！
-      %br
-      %br
-      %span
-        ※キャンセルは合意が取れた場合、クックからのみ可能です。キャンセルご希望の場合はクックと個別に相談して下さい。
-    .add-button
-      クックとのトークに移動する
-= render 'shared/after_signup_footer'
+/ .board.large
+/   .board.middle
+/     %h1.title
+/       購入ありがとうございます。
+/       %br
+/       お支払が完了しました。
+/       %br
+/       %br
+/       クックの〇〇さんとチャットで場所や時間を調整して下さい！
+/       %br
+/       %br
+/       %span
+/         ※キャンセルは合意が取れた場合、クックからのみ可能です。キャンセルご希望の場合はクックと個別に相談して下さい。
+/     .add-button
+/       クックとのトークに移動する
+/ = render 'shared/after_signup_footer'
 
