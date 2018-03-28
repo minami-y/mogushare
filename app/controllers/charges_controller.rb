@@ -75,6 +75,8 @@ class ChargesController < ApplicationController
 
       calculator.apply!
 
+      ChargeMailer.send_mail_when_charged(current_user, @order.seller, @order).deliver
+
       # 同じ購入者と販売者が属するgroupがない場合はgroupを作成する。
       if current_user.groups.exists?
         groups = current_user.groups
