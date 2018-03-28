@@ -18,7 +18,7 @@
 
       / = hidden_field_tag :id, @ticket.id
       .submit-field
-        - unless current_user.stripe_customer_id.present?
+        - unless current_user.use_invitation_code.present?
           = text_field_tag :invitation_code, nil, placeholder: '招待コード'
         = text_field_tag :used_point, nil, placeholder: '使用するポイントを入力'
         %br

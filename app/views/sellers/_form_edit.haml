@@ -34,17 +34,17 @@
         個人情報登録へ
 
     .individual_info
-      %p.comment.must ※出金の際の本人確認に必要です。
+      %p.comment.must ※正しくお支払するために厳密な本人確認が必要です。少し長いですがご容赦下さい。
       %p.comment 性（漢字）
       = f.text_field :last_name_kanji, placeholder: "山田"
 
       %p.comment 名（漢字）
       = f.text_field :first_name_kanji, placeholder: "太郎"
 
-      %p.comment 性（かな）
+      %p.comment 性（カナ）
       = f.text_field :last_name_kana, placeholder: "ヤマダ"
 
-      %p.comment 名（かな）
+      %p.comment 名（カナ）
       = f.text_field :first_name_kana, placeholder: "タロウ"
 
       %p.comment 生年月日
@@ -65,19 +65,19 @@
       %p.comment 住所：番地・建物（漢字）
       = f.text_field :address_kanji_line, placeholder: "11-2-211"
 
-      %p.comment 住所：都道府県（かな）
-      = f.text_field :address_kana_state, placeholder: "とうきょうと"
+      %p.comment 住所：都道府県（カナ）
+      = f.text_field :address_kana_state, placeholder: "トウキョウト"
 
-      %p.comment 住所：市区町村（かな）
-      = f.text_field :address_kana_city, placeholder: "しながわく"
+      %p.comment 住所：市区町村（カナ）
+      = f.text_field :address_kana_city, placeholder: "シナガワク"
 
-      %p.comment 住所：町村（かな）
-      = f.text_field :address_kana_town, placeholder: "おおさき３ちょうめ"
+      %p.comment 住所：町村（カナ）
+      = f.text_field :address_kana_town, placeholder: "オオサキ3-"
 
-      %p.comment 住所：番地・建物（かな）
+      %p.comment 住所：番地・建物（カナ）
       = f.text_field :address_kana_line, placeholder: "11-2-211"
 
-      %p.comment 郵便番号
+      %p.comment 郵便番号(ハイフン不要)
       = f.text_field :postal_code, placeholder: "1410032"
 
       %p.comment 電話番号

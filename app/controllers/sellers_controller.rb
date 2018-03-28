@@ -48,8 +48,8 @@ class SellersController < ApplicationController
           ip: request.remote_ip
         }
       ) unless @seller.stripe_account_id.present?
-
       @seller.stripe_account_id = account.id
+      @seller.save
 
       # Stripeへ銀行口座の登録
       bank_account = @seller.bank_account
@@ -66,6 +66,7 @@ class SellersController < ApplicationController
       })
 
       @seller.bank_account.bank_account_id = bank.id
+      bank_account.save
 
       redirect_back_or new_ticket_path
     else
