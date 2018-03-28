@@ -1,8 +1,12 @@
-通知内容は
-「#{@seller.user.name}さん もぐシェア運営事務局です。#{@user.name}さんが#{@seller.user.name}さんのチケットを以下の内容で購入しました。
+#{@seller.user.name}さん
+
+もぐシェア運営事務局です。
+#{@user.name}さんが#{@seller.user.name}さんのチケットを以下の内容で購入しました。
+
 - @oder_details.each do |od|
   - if od.quantity > 0
     ・#{od.share.menu} #{od.quantity}人分
+
 以下のurlから確認し、#{@seller.user.name}さんからチャットを初めて下さい。
 
 - if Rails.env.production?
@@ -16,4 +20,4 @@
 ・やり取りの場所
 の3点を確認頂くと間違いも少なくなります。
 
-よろしくお願い致します。」
+よろしくお願い致します。
