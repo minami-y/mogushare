@@ -1,9 +1,14 @@
 通知内容は
-「〇〇さん もぐシェア運営事務局です。▼▼さんが〇〇さんのチケットを以下の内容で購入しました。
-・肉じゃが 2人分
-・カレー 3人分
-以下のurlから確認し、〇〇さんからチャットを初めて下さい。
-urlurlurlurlurlurlurlurl
+「#{@seller.user.name}さん もぐシェア運営事務局です。#{@user.name}さんが#{@seller.user.name}さんのチケットを以下の内容で購入しました。
+- @oder_details.each do |od|
+  - if od.quantity > 0
+    ・#{od.share.menu} #{od.quantity}人分
+以下のurlから確認し、#{@seller.user.name}さんからチャットを初めて下さい。
+
+- if Rails.env.production?
+  https://mogshare.net/talks/#{@group.id}
+- else
+  http://localhost:3000/talks/#{@group.id}
 
 なお最初のメッセージの際に
 ・注文内容(何を何人分)

@@ -75,8 +75,6 @@ class ChargesController < ApplicationController
 
       calculator.apply!
 
-      ChargeMailer.send_mail_when_charged(current_user, @order.seller, @order).deliver
-
       # 同じ購入者と販売者が属するgroupがない場合はgroupを作成する。
       if current_user.groups.exists?
         groups = current_user.groups
@@ -87,21 +85,22 @@ class ChargesController < ApplicationController
           end
         end
         if array.include?(@ticket.seller.user.id)
-          redirect_to thanks_path(id: @ticket.id)
+          redirect_to thanks_path(id: @ticket.id, order_id: @order.id)
         else
           @group = Group.create(group_params)
           @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
           logger.debug @user_group_seller.errors.inspect
           @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-          redirect_to thanks_path(id: @ticket.id)
+          redirect_to thanks_path(id: @ticket.id, order_id: @order.id)
         end
       else
         @group = Group.create(group_params)
         @user_group_seller = UserGroup.create(group_id: @group.id, user_id: @ticket.seller.user.id)
         logger.debug @user_group_seller.errors.inspect
         @user_group_buyer = UserGroup.create(group_id: @group.id, user_id: params[:buyer_id])
-        redirect_to thanks_path(id: @ticket.id)
+        redirect_to thanks_path(id: @ticket.id, order_id: @order.id)
       end
+
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
@@ -110,8 +109,11 @@ class ChargesController < ApplicationController
 
   def thanks
     @ticket = Ticket.find(params[:id])
+    @order = Order.find(params[:order_id])
     @seller = @ticket.seller
     @group = current_user.groups.joins(:users).where(users:{id: @ticket.seller.user.id}).first
+    ChargeMailer.send_mail_when_charged(current_user, @order.seller, @order, @group).deliver
+
   end
 
   private

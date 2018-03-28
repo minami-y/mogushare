@@ -47,7 +47,6 @@ class TicketsController < ApplicationController
     @shares = @ticket.shares
     @shares_price = @shares.sum(:price)
     @seller = @ticket.seller
-    # orderインスタンスを生成
     @order = Order.new
     @order.order_details.build
   end
