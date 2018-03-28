@@ -89,42 +89,42 @@
       - if @bank_account.present?
         = f.fields_for :bank_account, @bank_account do |ba|
           %p.comment 銀行名
-          = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+          = ba.text_field :bank, placeholder: "例：もぐシェア銀行", required: true
 
           %p.comment 金融機関コード
-          = ba.text_field :bank_code, placeholder: "例：1111"
+          = ba.text_field :bank_code, placeholder: "例：1111", required: true
 
           %p.comment 口座種別
-          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
+          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]], required: true
 
           %p.comment 支店コード
-          = ba.text_field :branch_code, placeholder: "例：111"
+          = ba.text_field :branch_code, placeholder: "例：111", required: true
 
           %p.comment 口座番号
-          = ba.text_field :account_number, placeholder: "例：1111111"
+          = ba.text_field :account_number, placeholder: "例：1111111", required: true
 
           %p.comment 口座名義
-          = ba.text_field :name, placeholder: "モグシェアタロウ"
+          = ba.text_field :name, placeholder: "モグシェアタロウ", required: true
 
       - else
         = f.fields_for :bank_account, BankAccount.new do |ba|
           %p.comment 銀行名
-          = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+          = ba.text_field :bank, placeholder: "例：もぐシェア銀行", required: true
 
           %p.comment 金融機関コード
-          = ba.text_field :bank_code, placeholder: "例：1111"
+          = ba.text_field :bank_code, placeholder: "例：1111", required: true
 
           %p.comment 口座種別
           = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
 
           %p.comment 支店コード
-          = ba.text_field :branch_code, placeholder: "例：111"
+          = ba.text_field :branch_code, placeholder: "例：111", required: true
 
           %p.comment 口座番号
-          = ba.text_field :account_number, placeholder: "例：1111111"
+          = ba.text_field :account_number, placeholder: "例：1111111", required: true
 
           %p.comment 口座名義
-          = ba.text_field :name, placeholder: "モグシェアタロウ"
+          = ba.text_field :name, placeholder: "モグシェアタロウ", required: true
 
   .submit-button
     = f.submit "登録する"
