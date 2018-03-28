@@ -1,4 +1,5 @@
 = form_for seller do |f|
+
   - if seller.errors.any?
     #error_explanation
       %h3
@@ -13,9 +14,12 @@
     .basic_info
       .img-field
         .mask
-          %i.fa.fa-camera
+          - if seller.photo.present?
+            = image_tag seller.photo, class: "circle-img"
+          - else
+            %i.fa.fa-camera
           = f.file_field :photo, class: "seller-photo-field"
-          .preview
+          = f.hidden_field :photo_cache
         %p.comment.must ※必須(正方形の画像推奨)
 
       %p.comment 自己紹介
@@ -36,11 +40,11 @@
       %p.comment 名（漢字）
       = f.text_field :first_name_kanji, placeholder: "太郎"
 
-      %p.comment 性（カナ）
-      = f.text_field :last_name_kana, placeholder: "ヤマダ"
+      %p.comment 性（かな）
+      = f.text_field :last_name_kana, placeholder: "やまだ"
 
-      %p.comment 名（カナ）
-      = f.text_field :first_name_kana, placeholder: "タロウ"
+      %p.comment 名（かな）
+      = f.text_field :first_name_kana, placeholder: "たろう"
 
       %p.comment 生年月日
       = f.date_field :date_of_birth
@@ -60,16 +64,16 @@
       %p.comment 住所：番地・建物（漢字）
       = f.text_field :address_kanji_line, placeholder: "11-2-211"
 
-      %p.comment 住所：都道府県（カナ）
-      = f.text_field :address_kana_state, placeholder: "トウキョウト"
+      %p.comment 住所：都道府県（かな）
+      = f.text_field :address_kana_state, placeholder: "とうきょうと"
 
-      %p.comment 住所：市区町村（カナ）
-      = f.text_field :address_kana_city, placeholder: "シナガワク"
+      %p.comment 住所：市区町村（かな）
+      = f.text_field :address_kana_city, placeholder: "しながわく"
 
-      %p.comment 住所：町村（カナ）
-      = f.text_field :address_kana_town, placeholder: "オオサキ3-"
+      %p.comment 住所：町村（かな）
+      = f.text_field :address_kana_town, placeholder: "おおさき3-"
 
-      %p.comment 住所：番地・建物（カナ）
+      %p.comment 住所：番地・建物（かな）
       = f.text_field :address_kana_line, placeholder: "11-2-211"
 
       %p.comment 郵便番号(ハイフン不要)
@@ -82,24 +86,45 @@
         銀行口座情報へ
 
     .bank-info
-      = f.fields_for :bank_account, BankAccount.new do |ba|
-        %p.comment 銀行名
-        = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+      - if @bank_account.present?
+        = f.fields_for :bank_account, @bank_account do |ba|
+          %p.comment 銀行名
+          = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
 
-        %p.comment 金融機関コード
-        = ba.text_field :bank_code, placeholder: "例：1111"
+          %p.comment 金融機関コード
+          = ba.text_field :bank_code, placeholder: "例：1111"
 
-        %p.comment 口座種別
-        = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
+          %p.comment 口座種別
+          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
 
-        %p.comment 支店コード
-        = ba.text_field :branch_code, placeholder: "例：111"
+          %p.comment 支店コード
+          = ba.text_field :branch_code, placeholder: "例：111"
 
-        %p.comment 口座番号
-        = ba.text_field :account_number, placeholder: "例：1111111"
+          %p.comment 口座番号
+          = ba.text_field :account_number, placeholder: "例：1111111"
 
-        %p.comment 口座名義
-        = ba.text_field :name, placeholder: "モグシェアタロウ"
+          %p.comment 口座名義
+          = ba.text_field :name, placeholder: "モグシェアタロウ"
+
+      - else
+        = f.fields_for :bank_account, BankAccount.new do |ba|
+          %p.comment 銀行名
+          = ba.text_field :bank, placeholder: "例：もぐシェア銀行"
+
+          %p.comment 金融機関コード
+          = ba.text_field :bank_code, placeholder: "例：1111"
+
+          %p.comment 口座種別
+          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
+
+          %p.comment 支店コード
+          = ba.text_field :branch_code, placeholder: "例：111"
+
+          %p.comment 口座番号
+          = ba.text_field :account_number, placeholder: "例：1111111"
+
+          %p.comment 口座名義
+          = ba.text_field :name, placeholder: "モグシェアタロウ"
 
   .submit-button
     = f.submit "登録する"

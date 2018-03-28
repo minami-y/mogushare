@@ -1,11 +1,10 @@
 .seller-photo-field {
   opacity: 0;
   position: absolute;
-  top: 182px;
-  left: 117px;
-  width: 100%;
-  height: 100%;
   cursor: pointer;
+}
+.seller-photo-field input {
+  width: 40%;
 }
 
 // Place all the styles related to the sellers controller here.

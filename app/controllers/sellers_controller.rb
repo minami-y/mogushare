@@ -3,12 +3,12 @@ class SellersController < ApplicationController
 
   def new
     @seller = Seller.new
+
     # @seller.bank_account.build
   end
 
   def create
     @seller = Seller.new(seller_params)
-
     if @seller.save
       # 支払い受け取り用のStripeアカウント作成
       account = Stripe::Account.create(
@@ -67,9 +67,9 @@ class SellersController < ApplicationController
 
       @seller.bank_account.bank_account_id = bank.id
       bank_account.save
-
       redirect_back_or new_ticket_path
     else
+      @bank_account = BankAccount.new(seller_params[:bank_account_attributes])
       render 'new'
     end
   end
