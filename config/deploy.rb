@@ -4,6 +4,9 @@ lock "~> 3.10.1"
 set :application, "mogushare"
 set :repo_url, "git@github.com:mogushare/mogushare.git"
 
+# ブランチを指定した場合、指定したブランチでデプロイ
+set :branch, ENV['BRANCH'] || "master"
+
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :rbenv_type, :user
@@ -18,6 +21,35 @@ set :keep_releases, 5
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
+
+#
+  task :asset_sync do
+    run_locally do
+      Bundler.with_clean_env do
+        execute :rake, 'assets:precompile'
+      end
+    end
+  end
+
+  task :upload_manifest do
+    on roles(:app) do |host|
+      if test "[ ! -d #{release_path}/public/assets ]"
+        execute "mkdir -p #{release_path}/public/assets"
+      end
+      file_path = Dir::glob('public/assets/.sprockets-manifest*').first
+      upload!(file_path, "#{release_path}/public/assets")
+    end
+  end
+
+  task :assets_cleanup do
+    run_locally do
+      Bundler.with_clean_env do
+        execute :rake, 'assets:clobber'
+      end
+    end
+  end
+
+# 初期
   task :restart do
     invoke 'unicorn:restart'
   end

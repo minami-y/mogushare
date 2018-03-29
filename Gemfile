@@ -46,10 +46,12 @@ gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-facebook', '~> 4.0'
 # Search tickets by location
-gem 'geokit-rails' 
+gem 'geokit-rails'
 
 # Use for asynchronous processing
 gem 'delayed_job_active_record'
+gem 'asset_sync'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
