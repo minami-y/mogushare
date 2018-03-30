@@ -206,8 +206,8 @@ ActiveRecord::Schema.define(version: 20180330144616) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean  "accepted"
-    t.boolean  "use_invitation_code", default: false, null: false
     t.string   "stripe_customer_id"
+    t.boolean  "use_invitation_code", default: false, null: false
     t.boolean  "mailer",              default: true,  null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
