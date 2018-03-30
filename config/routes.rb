@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   resources :charges do
     collection do
       post 'confirm'
+      get 'cancel_confirm'
+      delete 'cancel'
     end
   end
   # post 'chareges/new' => 'chareges#new'
