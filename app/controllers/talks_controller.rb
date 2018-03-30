@@ -32,7 +32,7 @@ class TalksController < ApplicationController
       group = talk.group
       group_users = group.users
       group_users.each do |user|
-        ChatMailer.send_mail_about_new_chat(user, group) unless user.id == current_user.id
+        ChatMailer.send_mail_about_new_chat(user, group, current_user).deliver unless user.id == current_user.id
       end
     end
 end

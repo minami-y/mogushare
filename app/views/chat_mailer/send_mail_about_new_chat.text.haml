@@ -1,3 +1,6 @@
-#{current_user.name}さんが新しいメッセージを投稿しました
+#{@current_user.name}さんが新しいメッセージを投稿しました
 
-https://mogshare.net/talks/#{@group.id}
+- if Rails.env.production?
+  https://mogshare.net/talks/#{@group.id}
+- else
+  http://localhost:3000/talks/#{@group.id}
