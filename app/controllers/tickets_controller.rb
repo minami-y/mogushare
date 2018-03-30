@@ -106,7 +106,9 @@ class TicketsController < ApplicationController
         end
       end
         user_array.uniq.each do |user|
-        TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver unless @ticket.seller.user_id == user.id
+          if user.mailer == 1
+            TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver unless @ticket.seller.user_id == user.id
+          end
 
         # if user_area.user.mailer == 1
         #   TicketsMailer.send_mail_about_new_ticket(user_area.user, @ticket).deliver_later unless @ticket.seller.user_id == user_area.user_id
