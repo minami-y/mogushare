@@ -120,6 +120,20 @@ class ChargesController < ApplicationController
     @order = Order.find(params[:order_id])
     redirect_to root_path unless @order.seller_id == current_user.seller.id
   end
+
+  def cancel
+    @order = Order.find(params[:order_id])
+
+    redirect_to root_path unless @order.seller_id == current_user.seller.id
+
+    Stripe::Refund.create(
+      charge: @order.stripe_charge_id,
+    )
+    if @order.destroy
+      redirect_to buy_history_path, notice: '注文をキャンセルしました'
+    end
+  end
+
   private
 
     def order_params
