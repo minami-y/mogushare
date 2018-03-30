@@ -116,6 +116,10 @@ class ChargesController < ApplicationController
 
   end
 
+  def cancel_confirm
+    @order = Order.find(params[:order_id])
+    redirect_to root_path unless @order.seller_id == current_user.seller.id
+  end
   private
 
     def order_params
