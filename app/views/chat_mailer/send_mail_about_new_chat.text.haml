@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 #{@current_user.name}さんが新しいメッセージを投稿しました
 
 - if Rails.env.production?
   https://mogshare.net/talks/#{@group.id}
 - else
   http://localhost:3000/talks/#{@group.id}
+=======
+#{@user.name}さん
+
+もぐシェア運営事務局です。
+#{current_user.name}さんから新しいメッセージが来ています。
+
+「#{current_user.talks.last.message}」
+
+返信はこちらから。
+https://mogushare.net/talks/#{@group.id}
+>>>>>>> 4d98783df3fb97409c64d22a6d30fe6b3b8ab981

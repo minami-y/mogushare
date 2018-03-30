@@ -1,10 +1,18 @@
-#{@user.name}さんが新しいおすそわけを公開しました
+#{@user.name}さん
+
+もぐシェア運営事務局です。
+#{@user.name}さんの地域で新しいチケットが投稿されました。
 
 - @shares.each do |share|
+  ーーーーーーーーーーーーー
   メニュー: #{share.menu}
   価格: #{share.price}
+  販売数: #{share.quantity}
+  ーーーーーーーーーーーーー
 
+詳細は以下のurlから確認できます。
 - if Rails.env.production?
   https://mogshare.net/tickets/#{@ticket.id}
 - else
   http://localhost:3000/tickets/#{@ticket.id}
+どうぞよろしくお願い致します。
