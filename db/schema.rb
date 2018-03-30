@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325174405) do
+ActiveRecord::Schema.define(version: 20180330074120) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -76,9 +76,10 @@ ActiveRecord::Schema.define(version: 20180325174405) do
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "total_price"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "summed_price"
+    t.string   "stripe_charge_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
