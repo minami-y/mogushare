@@ -4,4 +4,7 @@
   メニュー: #{share.menu}
   価格: #{share.price}
 
-https://mogshare.net/tickets/#{@ticket.id}
+- if Rails.env.production?
+  https://mogshare.net/tickets/#{@ticket.id}
+- else
+  http://localhost:3000/tickets/#{@ticket.id}

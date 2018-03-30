@@ -99,8 +99,15 @@ class TicketsController < ApplicationController
 
     def send_mail_to_users_in_area
       user_areas = UserArea.where(user_id: @ticket.seller.user_id)
+      user_array = []
       user_areas.each do |user_area|
-        TicketsMailer.send_mail_about_new_ticket(user_area.user, @ticket).deliver_later unless @ticket.seller.user_id == user_area.user_id
+        user_area.area.users.each do |user|
+          user_array << user
+        end
+      end
+          binding.pry
+        user_array.uniq.each do |user|
+        TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver unless @ticket.seller.user_id == user.id
       end
     end
 end
