@@ -11,6 +11,8 @@
       = f.password_field :password
       %p.comment パスワード確認用
       = f.password_field :password_confirmation
+      %p.comment 新しく投稿があった際にメールを受信する
+      = f.check_box :mailer,  {checked: true}, 1, 0
 
   .submit-button
     = f.submit "編集する"

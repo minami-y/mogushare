@@ -1,3 +1,9 @@
-#{current_user.name}さんが新しいメッセージを投稿しました
+#{@user.name}さん
 
-https://mogshare.net/talks/#{@group.id}
+もぐシェア運営事務局です。
+#{current_user.name}さんから新しいメッセージが来ています。
+
+「#{current_user.talks.last.message}」
+
+返信はこちらから。
+https://mogushare.net/talks/#{@group.id}

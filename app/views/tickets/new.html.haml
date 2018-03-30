@@ -14,26 +14,27 @@
       - if @ticket.errors.any?
         #error_explanation
           %h3
-            = pluralize(@ticket.errors.count, "error")
-            prohibited this ticket from being saved:
+            入力内容の誤りが
+            = pluralize(@ticket.errors.count, "箇所")
+            あります:
           %ul
             - @ticket.errors.full_messages.each do |message|
               %li= message
       .submit-field
         .basic_info
           %p.comment ジャンル
-          = f.select :genre , [["おすそわけ", "おすそわけ"], ["料理教室", "料理教室"], ["イベント", "イベント"]] , required: true
+          = f.select :genre , [["おすそわけ", "おすそわけ"], ["料理教室", "料理教室"], ["イベント", "イベント"]]
           %p.comment 開始日時(おすそわけの場合、受渡可能な時間幅)
           .date-box
-            = f.datetime_select :event_date, required: true, use_month_numbers: true
+            = f.datetime_select :event_date, use_month_numbers: true
           %p.comment 終了日時
           .date-box
-            = f.datetime_select :event_end_date, required: true, use_month_numbers: true
+            = f.datetime_select :event_end_date, use_month_numbers: true
           %p.comment 予約締切日時
           .date-box
-            = f.datetime_select :expiration_date, required: true, use_month_numbers: true
+            = f.datetime_select :expiration_date, use_month_numbers: true
           %p.comment 場所(可能な限り詳細に記述して下さい)
-          = f.text_field :event_place, required: true, placeholder: "例 | 広尾郵便局前"
+          = f.text_field :event_place, placeholder: "例 | 広尾郵便局前"
           .next-button
             次へ
 

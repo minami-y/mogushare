@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     member do
       patch 'edit_confirm'
     end
+    resources :shares, only: [ :destroy ]
   end
   resources :talks
   resources :sellers

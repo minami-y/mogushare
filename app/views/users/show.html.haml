@@ -30,12 +30,10 @@
           .ticket-line
           .board.middle
             .jump-to-detail
-              / .cook_info
-              /   = image_tag ticket.seller.photo
-              /   %span
-              /     #{ticket.seller.user.name}
               .next-button
-                =link_to "投稿を編集する", edit_ticket_path(ticket.id)
+                =link_to "チケットを編集する", edit_ticket_path(ticket.id)
+              - unless share.order_details.present?
+                .middle-small-button
+                  =link_to "このメニューを削除する", ticket_share_path(ticket.id, share.id), method: :delete
 
 = render 'shared/after_signup_footer'
-

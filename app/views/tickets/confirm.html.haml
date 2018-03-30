@@ -3,8 +3,8 @@
   = f.hidden_field :event_date, value: @ticket.event_date
   = f.hidden_field :event_end_date, value: @ticket.event_end_date
   = f.hidden_field :expiration_date, value: @ticket.expiration_date
-  = f.hidden_field :event_place
-  = f.hidden_field :genre
+  = f.hidden_field :event_place, value: @ticket.event_place
+  = f.hidden_field :genre, value: @ticket.genre
 
 
   - @shares.each_with_index do |share, i|
