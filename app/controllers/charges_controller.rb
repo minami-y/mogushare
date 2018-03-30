@@ -63,6 +63,8 @@ class ChargesController < ApplicationController
         }
       })
 
+      @order.stripe_charge_id = charge.id
+
       # 在庫を減らす。
       @order.order_details.each do |od|
         @share = Share.find(od.share_id)
