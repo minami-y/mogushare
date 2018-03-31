@@ -43,6 +43,9 @@ class SellersController < ApplicationController
           gender: @seller.gender,
           type: "individual",
         },
+        payout_schedule: {
+          interval: "manual"
+        },
         tos_acceptance: {
           date: Time.now.to_i,
           ip: request.remote_ip
