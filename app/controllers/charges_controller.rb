@@ -102,9 +102,9 @@ class ChargesController < ApplicationController
       end
 
 
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to ticket_path(@ticket)
+    # rescue Stripe::CardError => e
+    #   flash[:error] = e.message
+    #   redirect_to ticket_path(@ticket)
   end
 
   def thanks
