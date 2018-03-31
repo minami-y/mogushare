@@ -1,1 +1,10 @@
-= link_to "返金する", cancel_charges_path(order_id: @order.id), method: :delete
+.board.large
+  %h1 キャンセル画面
+  .line
+  .board.middle
+    %p.must 返金を確定する前に当事者で同意が取れていることを再度確認して下さい。
+    %br
+    %br
+    %br
+    .next-button
+      = link_to "返金する", cancel_charges_path(order_id: @order.id), method: :delete
