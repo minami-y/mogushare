@@ -5,6 +5,9 @@ class ChatMailer < ApplicationMailer
     @user = user
     @current_user = current_user
     @group = group
-    mail to: @user.email
+    mail(
+      subject: "【もぐシェア】メッセージが届きました"
+      to: @user.email
+    )
   end
 end

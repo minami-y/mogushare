@@ -7,6 +7,9 @@ class ChargeMailer < ApplicationMailer
     @oder_details = order.order_details
     @group = group
 
-    mail to: @seller.user.email
+    mail(
+      subject: "【もぐシェア】商品が購入されました"
+      to: @seller.user.email
+    )
   end
 end

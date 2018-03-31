@@ -5,7 +5,9 @@ class TicketsMailer < ApplicationMailer
     @user = user
     @ticket = ticket
     @shares = ticket.shares
-
-    mail to: @user.email
+    mail(
+      subject: "【もぐシェア】新しい投稿があります"
+      to: @user.email
+    )
   end
 end
