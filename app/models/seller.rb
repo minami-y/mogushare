@@ -12,7 +12,10 @@ class Seller < ApplicationRecord
 
   validates :address_kana_town, presence: true, format: { with: /\A[ぁ-ん][ぁ-ん０-９0-9ー－-]+\z/ }
 
+  validates :address_kanji_line, :address_kana_line, format: { with: /\A[a-z0-9]+\z/i }
+
   validates :address_kanji_state, :address_kanji_city, :address_kanji_town, :address_kanji_line, :address_kana_line, :first_name_kanji, :last_name_kanji, :gender, :date_of_birth, presence: true
+  validates :date_of_birth, length: { maximum: 10 }
 
   validates :phone_number, presence: true, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
 

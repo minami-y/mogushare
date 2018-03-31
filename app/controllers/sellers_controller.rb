@@ -2,8 +2,11 @@ class SellersController < ApplicationController
   before_action :set_seller, only: [:edit, :update]
 
   def new
-    @seller = Seller.new
-
+    if current_user.seller.present?
+      redirect_to action: :edit, id: current_user.seller
+    else
+      @seller = Seller.new
+    end
     # @seller.bank_account.build
   end
 
@@ -50,7 +53,6 @@ class SellersController < ApplicationController
       ) unless @seller.stripe_account_id.present?
       @seller.stripe_account_id = account.id
       @seller.save
-
       # Stripeへ銀行口座の登録
       bank_account = @seller.bank_account
       bank = account.external_accounts.create({
@@ -80,7 +82,7 @@ class SellersController < ApplicationController
 
   def update
     if @seller.update_attributes(seller_params)
-      flash[:success] = "購入者情報が更新されました"
+      flash[:success] = "プロフィールが更新されました"
       redirect_to tickets_path
     else
       render 'edit'

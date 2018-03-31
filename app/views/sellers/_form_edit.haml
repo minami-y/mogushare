@@ -58,10 +58,10 @@
       = f.text_field :address_kanji_city, placeholder: "品川区"
 
       %p.comment 住所：町村（漢字）
-      = f.text_field :address_kanji_town, placeholder: "大崎1丁目"
+      = f.text_field :address_kanji_town, placeholder: "大崎"
 
-      %p.comment 住所：番地・建物（漢字）
-      = f.text_field :address_kanji_line, placeholder: "11-2-211"
+      %p.comment 住所：番地・建物（半角）
+      = f.text_field :address_kanji_line, placeholder: "1-11-2-211"
 
       %p.comment 住所：都道府県（かな）
       = f.text_field :address_kana_state, placeholder: "とうきょうと"
@@ -70,15 +70,15 @@
       = f.text_field :address_kana_city, placeholder: "しながわく"
 
       %p.comment 住所：町村（かな）
-      = f.text_field :address_kana_town, placeholder: "おおさき3-"
+      = f.text_field :address_kana_town, placeholder: "おおさき"
 
-      %p.comment 住所：番地・建物（かな）
-      = f.text_field :address_kana_line, placeholder: "11-2-211"
+      %p.comment 住所：番地・建物（半角）
+      = f.text_field :address_kana_line, placeholder: "3-11-2-211"
 
-      %p.comment 郵便番号(ハイフン不要)
+      %p.comment 郵便番号(ハイフン不要,半角のみ)
       = f.text_field :postal_code, placeholder: "1410032"
 
-      %p.comment 電話番号
+      %p.comment 電話番号(半角)
       = f.text_field :phone_number, placeholder: "09000000000"
       .previous-button1
         プロフィール情報に戻る

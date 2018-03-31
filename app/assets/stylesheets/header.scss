@@ -74,9 +74,6 @@ header {
 }
 
 @media screen and (min-width: 500px) {
-  .header_txt , .signup_button , .signin_button , .header_img {
-    display: none;
-  }
   header {
     height: 150px;
   }

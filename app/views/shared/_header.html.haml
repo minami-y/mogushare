@@ -1,4 +1,5 @@
-.pc_alert_button スマホ専用サイトのため、登録/ログインはスマホからのみ可能です
+-if current_page?(root_path) || current_page?(login_path) || current_page?(index_path) || current_page?(vision_path) || current_page?(ambassador_path) || current_page?(cook_path)
+  .pc_alert_button スマホ専用サイトです。PCでもご利用頂けますが、画面が崩れます。
 %header
   .header_container
     .mogura-icon
@@ -43,8 +44,6 @@
           .header_img
             = mypage_profile_image(current_user)
         -else
-          .pc_alert_button
-            ログイン/会員登録はスマホから
           .signup_button
             = link_to '無料登録', index_path
           .signin_button

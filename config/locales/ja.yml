@@ -212,11 +212,11 @@ ja:
     name:  口座名義
     self_introduction: 自己紹介
     photo: 写真
-    last_name_kanji: 名字
+    last_name_kanji: 名前
     first_name_kanji: 名字
-    last_name_kana: 名前
+    last_name_kana: 名前(かな)
     first_name_kana: 名字(かな)
-    date_of_birth: 名前(かな)
+    date_of_birth: 生年月日
     address_kanji_state: 都道府県
     address_kanji_city: 市区町村
     address_kanji_town: 町村
