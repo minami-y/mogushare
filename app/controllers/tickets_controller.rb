@@ -35,7 +35,7 @@ class TicketsController < ApplicationController
     if params[:back]
       render :new
     elsif @ticket.save
-      send_mail_to_users_in_area
+      send_mail_to_users_in_area(@ticket)
       flash[:success] = "チケットを更新しました"
       redirect_to tickets_path
     else
@@ -97,8 +97,8 @@ class TicketsController < ApplicationController
       end
     end
 
-    def send_mail_to_users_in_area
-      user_areas = UserArea.where(user_id: @ticket.seller.user_id)
+    def send_mail_to_users_in_area(ticket)
+      user_areas = UserArea.where(user_id: ticket.seller.user_id)
       user_array = []
       user_areas.each do |user_area|
         user_area.area.users.each do |user|
@@ -106,8 +106,8 @@ class TicketsController < ApplicationController
         end
       end
         user_array.uniq.each do |user|
-          if user.mailer == 1
-            TicketsMailer.send_mail_about_new_ticket(user, @ticket).deliver unless @ticket.seller.user_id == user.id
+          if user.mailer
+            TicketsMailer.send_mail_about_new_ticket(user, ticket).deliver unless ticket.seller.user_id == user.id
           end
 
         # if user_area.user.mailer == 1
