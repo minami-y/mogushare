@@ -20,7 +20,7 @@
         = f.password_field :password_confirmation
       .txt_checkbox
         %p.txt
-          = link_to "利用規約", index_path, target: "_blank"
+          = link_to "利用規約", terms_of_use_path, target: "_blank"
           に同意する
         = f.label :agreement, class: 'checkbox', required: true do
           =f.check_box :accepted ,{:checked => true}
