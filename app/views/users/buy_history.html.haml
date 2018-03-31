@@ -11,7 +11,7 @@
             %span 商品名と個数： #{od.share.menu}, #{od.quantity} 個
             %span 合計金額：#{od.unit_price*od.quantity} 円
             - if current_user.seller.present? && order.seller_id == current_user.seller.id
-              =link_to "取引をキャンセルし返金する", cancel_confirm_charges_path(order_id: order.id)
+              =link_to "取引をキャンセルし返金する", cancel_confirm_charges_path(order_detail_id: od.id)
           .chat-time
             %span= od.created_at.strftime('%m/%d')
 
