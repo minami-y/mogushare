@@ -5,7 +5,7 @@
     = form_tag signup_path, method: 'get' do
       %p.comment 郵便番号
       .submit-field
-        = text_field_tag :search, params[:search], placeholder: "例：150-0013"
+        = text_field_tag :search, params[:search], placeholder: "例：1500013"
       %p
         入力した郵便番号の中心地から
         %strong 半径1kmの円内に属する郵便番号
