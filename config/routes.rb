@@ -34,7 +34,12 @@ Rails.application.routes.draw do
     end
   end
   resources :talks
-  resources :sellers
+  resources :sellers do
+    member do
+      get 'request_payout'
+      post 'payout'
+    end
+  end
   resources :charges do
     collection do
       post 'confirm'

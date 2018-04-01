@@ -1,5 +1,5 @@
 class SellersController < ApplicationController
-  before_action :set_seller, only: [:edit, :update]
+  before_action :set_seller, only: [:edit, :update, :request_payout, :payout]
 
   def new
     @seller = Seller.new
@@ -88,6 +88,31 @@ class SellersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def request_payout
+    balances = Stripe::Balance.retrieve(
+      { stripe_account: @seller.stripe_account_id }
+    )
+
+    @total_price = 0
+
+    balances[:available].each{|balance| @total_price += balance[:amount]}
+  end
+
+  def payout
+    balances = Stripe::Balance.retrieve(
+      { stripe_account: @seller.stripe_account_id }
+    )
+
+    @total_price = 0
+
+    balances[:available].each{|balance| @total_price += balance[:amount]}
+
+    Stripe::Payout.create({
+      amount: 500,
+      currency: "jpy",
+    }, { stripe_account: "acct_1C9eS4Lz3DqZaMUX" })
   end
 
   private
