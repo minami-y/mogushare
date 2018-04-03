@@ -54,14 +54,17 @@ class ChargesController < ApplicationController
 
       raise '決済に失敗しました' unless current_user.stripe_customer_id.present? && @ticket.seller.stripe_account_id.present?
 
-      charge = Stripe::Charge.create({
-        amount: @order.total_price,
-        currency: "jpy",
-        customer: customer_id,
-        destination: {
-          account: @ticket.seller.stripe_account_id,
-        }
-      })
+      unless @order.total_price.zero?
+        charge = Stripe::Charge.create({
+          amount: @order.total_price,
+          currency: "jpy",
+          customer: customer_id,
+          destination: {
+            account: @ticket.seller.stripe_account_id,
+            # amount: @order.total_price,
+          }
+        })
+      end
 
       # 在庫を減らす。
       @order.order_details.each do |od|
