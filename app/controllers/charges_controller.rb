@@ -40,6 +40,11 @@ class ChargesController < ApplicationController
       )
       @order.total_price = calculator.amount
 
+    if @order.total_price.between?(1, 50)
+      flash[:alert] = "１円以上から５０円以下は決済できません"
+      return render :confirm
+    end
+
       # 決済処理
       if current_user.stripe_customer_id.present?
         customer_id = current_user.stripe_customer_id
