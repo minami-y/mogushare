@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330144616) do
+ActiveRecord::Schema.define(version: 20180404063648) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20180330144616) do
   create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bank",            default: "", null: false
     t.integer  "account_type",    default: 0,  null: false
-    t.string   "branch_code",     default: "", null: false
     t.string   "account_number",  default: "", null: false
+    t.string   "branch_code",                  null: false
     t.string   "name",            default: "", null: false
     t.integer  "seller_id",                    null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.integer  "bank_code"
+    t.string   "bank_code"
     t.string   "bank_account_id"
     t.string   "string"
     t.index ["seller_id"], name: "index_bank_accounts_on_seller_id", using: :btree
@@ -76,9 +76,10 @@ ActiveRecord::Schema.define(version: 20180330144616) do
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "total_price"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "summed_price"
+    t.string   "stripe_charge_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
@@ -206,8 +207,8 @@ ActiveRecord::Schema.define(version: 20180330144616) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean  "accepted"
-    t.string   "stripe_customer_id"
     t.boolean  "use_invitation_code", default: false, null: false
+    t.string   "stripe_customer_id"
     t.boolean  "mailer",              default: true,  null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
