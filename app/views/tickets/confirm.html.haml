@@ -24,7 +24,6 @@
         = f.submit "編集する", name: "back"
   .fix-button
     = f.submit "投稿する"
-
   = f.fields_for :shares, @shares do |s|
     = s.hidden_field :menu
     = s.hidden_field :price
@@ -34,7 +33,4 @@
     = s.hidden_field :image_cache
     / = s.hidden_field :"cache[image]", s.image.cache_name
 
-
-
-
-
+= render 'shared/loading'
