@@ -122,11 +122,6 @@ label.checkbox {
   border: solid 2px #ebebeb;
   margin-bottom: 20px;
 }
-.submit-field input#invitation_code, #used_point{
-  width: 70%;
-  height: 23px;
-  border: solid 2px #ebebeb;
-}
 
 .submit-field h1:last-child {
   color: #fd7700;
@@ -561,4 +556,13 @@ p.kaiwa-text:last-child {
 }
 #talk_message {
   width: 100%;
+}
+
+.loading.js-loading {
+  display: none;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+.loading.js-loading img {
+  width: 100px;
 }
