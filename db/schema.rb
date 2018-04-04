@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20180404063648) do
   create_table "bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "bank",            default: "", null: false
     t.integer  "account_type",    default: 0,  null: false
+    t.string   "branch_code",     default: "", null: false
     t.string   "account_number",  default: "", null: false
-    t.string   "branch_code",                  null: false
     t.string   "name",            default: "", null: false
     t.integer  "seller_id",                    null: false
     t.datetime "created_at",                   null: false
@@ -76,10 +76,9 @@ ActiveRecord::Schema.define(version: 20180404063648) do
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "total_price"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "summed_price"
-    t.string   "stripe_charge_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end

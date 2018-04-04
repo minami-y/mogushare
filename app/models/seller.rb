@@ -18,17 +18,25 @@ class Seller < ApplicationRecord
 
   validates :postal_code, presence: true, inclusion: { in: Area.pluck(:postal_code) }
   validates :phone_number, presence: true, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
-
   accepts_nested_attributes_for :bank_account
 
   enum gender: %i(male female)
 
   validate :photo_size
+  validate :check_birth
 
     private
       def photo_size
         if photo.size > 20.megabytes
             errors.add(:picture, "サイズが20Mを超える写真はアップロードできません")
           end
+      end
+
+      def check_birth
+        birth_day = Date.parse("#{date_of_birth}")
+        today = Date.today
+        if birth_day > today.ago(20.years)
+          errors.add(:date_of_birth, "：20歳以下の方は登録できません")
+        end
       end
 end

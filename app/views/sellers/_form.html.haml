@@ -48,8 +48,7 @@
       = f.text_field :first_name_kana, placeholder: "たろう"
 
       %p.comment 生年月日
-      = f.date_field :date_of_birth
-
+      = f.date_select :date_of_birth, use_month_numbers: true, start_year: 1930,end_year: Time.now.year - 20 , default: Date.new(1980, 1, 1), date_separator: '/'
       %p.comment 性別
       = f.select :gender, [["男性", "male"], ["女性", "female"]]
 
