@@ -38,7 +38,7 @@
         -if logged_in?
           .header_txt
             -if current_user.seller.present?
-              = link_to current_user.name, edit_seller_path(current_user.seller)
+              = link_to current_user.name, user_path(current_user)
             - else
               = link_to current_user.name, new_seller_path
           .header_img
