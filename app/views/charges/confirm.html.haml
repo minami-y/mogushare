@@ -20,9 +20,9 @@
       .submit-field
         - unless current_user.use_invitation_code.present?
           %p.comment
-            紹介コードを入力すると500円割引になります(1回のみ利用可能)。
-            %br 紹介コードを教えてくれた人にも500円分のポイントがたまります。
-          = text_field_tag :invitation_code, nil, placeholder: '紹介コード'
+            お知り合いの紹介クーポンコードを入力すると500円割引になります(1回のみ利用可能)。
+            %br 紹介クーポンコードを教えてくれた人にも500円分のポイントがたまります。
+          = text_field_tag :invitation_code, nil, placeholder: 'コード(mogu-xxxxx)'
         = text_field_tag :used_point, nil, placeholder: '使用するポイントを入力'
         %br
         %label ※使用可能なポイント：
@@ -48,4 +48,6 @@
         = link_to "キャンセルポリシー", cancellation_policy_path, target: "_blank"
         の通り、当日キャンセルの場合、返金はクックが承認した時のみ可能です。クックにチャットでご相談下さい。
       %script.stripe-button{"data-description" => "クレジットカード決済", "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", "data-locale" => "ja", :src => "https://checkout.stripe.com/checkout.js", "data-currency" => "jpy"}
+
+= render 'shared/loading'
 

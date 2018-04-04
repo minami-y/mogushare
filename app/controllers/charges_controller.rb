@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
     # orderを保存
     @order = Order.new(order_params)
     @order.summed_price = @order.total_price
-    @order_details = @order.order_details
+    @order_details = @order.order_details.reject{|od| od.quantity == 0}
     @user_point = current_user.find_or_create_user_point!.amount
     @ticket = Ticket.find(params[:id])
     @amount = @order.total_price
@@ -68,6 +68,9 @@ class ChargesController < ApplicationController
         @share = Share.find(od.share_id)
         @share.quantity -= od.quantity
         @share.save
+      end
+      @order.order_details.each do |od|
+        od.mark_for_destruction if od.quantity == 0
       end
       @order.save!
 

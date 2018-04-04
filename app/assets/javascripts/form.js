@@ -62,3 +62,10 @@ $(document).on('turbolinks:load', function() {
         fileReader.readAsDataURL(file);
     });
 });
+
+$(function(){
+    $('.fix-button').click(function(){
+        $('form#new_ticket.new_ticket').css('display','none')
+        $('.loading').fadeIn(600)
+    });
+});

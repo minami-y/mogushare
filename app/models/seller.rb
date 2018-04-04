@@ -5,19 +5,19 @@ class Seller < ApplicationRecord
   has_one :bank_account, dependent: :destroy
   # accepts_nested_attributes_for :bank_account
   mount_uploader :photo, ImageUploader
-  validates :photo, presence: true
-  validates :self_introduction, presence: true
+  validates :photo, :self_introduction, presence: true
 
-  validates :address_kana_state, :address_kana_city, :first_name_kana, :last_name_kana, presence: true, format: { with: /\A[ぁ-んー－]+\z/ }
-
-  validates :address_kana_town, presence: true, format: { with: /\A[ぁ-ん][ぁ-ん０-９0-9ー－-]+\z/ }
-
-  validates :address_kanji_state, :address_kanji_city, :address_kanji_town, :address_kanji_line, :address_kana_line, :first_name_kanji, :last_name_kanji, :gender, :date_of_birth, presence: true
+  validates :first_name_kanji, :last_name_kanji, presence: true
+  validates :first_name_kana, :last_name_kana, presence: true, format: { with: /\A[ぁ-んー－]+\z/ }
+  validates :gender, :date_of_birth, presence: true
   validates :date_of_birth, length: { maximum: 10 }
 
-  validates :phone_number, presence: true, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
+  validates :address_kanji_state, :address_kanji_city, :address_kanji_town, :address_kanji_line, :address_kana_line, presence: true
+  validates :address_kana_state, :address_kana_city, presence: true, format: { with: /\A[ぁ-んー－]+\z/ }
+  validates :address_kana_town, presence: true, format: { with: /\A[ぁ-ん][ぁ-ん０-９0-9ー－-]+\z/ }
 
   validates :postal_code, presence: true, inclusion: { in: Area.pluck(:postal_code) }
+  validates :phone_number, presence: true, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
 
   accepts_nested_attributes_for :bank_account
 
