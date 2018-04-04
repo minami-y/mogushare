@@ -27,8 +27,8 @@ class Seller < ApplicationRecord
 
     private
       def photo_size
-        if photo.size > 2.megabytes
-            errors.add(:picture, "サイズが２Mを超える写真はアップロードできません")
+        if photo.size > 20.megabytes
+            errors.add(:picture, "サイズが20Mを超える写真はアップロードできません")
           end
       end
 end
