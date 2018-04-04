@@ -62,7 +62,7 @@ class SellersController < ApplicationController
           currency: "JPY",
           account_holder_name: @seller.bank_account.name,
           account_holder_type: "individual",
-          routing_number: @seller.bank_account.bank_code + @seller.bank_account.branch_code,
+          routing_number: @seller.bank_account.bank_code.to_s + @seller.bank_account.branch_code.to_s,
           object: "bank_account"
         }
       })
