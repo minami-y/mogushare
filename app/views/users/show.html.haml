@@ -7,7 +7,10 @@
 %br
 %br
 = link_to "お名前/メールアドレス等を編集", edit_user_path(current_user)
-= link_to "自己紹介/口座情報を編集", edit_seller_path(current_user.seller) if @current_seller.present?
+- if @current_seller.present?
+  = link_to "自己紹介/口座情報を編集", edit_seller_path(current_user.seller)
+  = link_to "出金申請をする", request_payout_seller_path(current_user.seller.id)
+
 
 
 %h2 投稿済みのチケット
