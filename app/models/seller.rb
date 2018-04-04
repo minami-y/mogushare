@@ -22,4 +22,13 @@ class Seller < ApplicationRecord
   accepts_nested_attributes_for :bank_account
 
   enum gender: %i(male female)
+
+  validate :photo_size
+
+    private
+      def photo_size
+        if photo.size > 2.megabytes
+            errors.add(:picture, "サイズが２Mを超える写真はアップロードできません")
+          end
+      end
 end
