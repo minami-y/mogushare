@@ -74,6 +74,17 @@ class SellersController < ApplicationController
       @bank_account = BankAccount.new(seller_params[:bank_account_attributes])
       render 'new'
     end
+    rescue Stripe::InvalidRequestError,
+       Stripe::AuthenticationError,
+       Stripe::APIConnectionError,
+       Stripe::StripeError ,
+      Stripe::CardError => e
+      bank_account.delete
+      @seller.delete
+      logger.debug(e)
+      logger.debug(e.code)
+      flash[:alert] = e.message
+      render 'new'
   end
 
   def edit
