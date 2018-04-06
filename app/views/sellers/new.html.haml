@@ -3,15 +3,11 @@
     $('.individual_info, .bank-info, .submit-button, .add-button').hide();
     $('.next-button').on('click', function(){
       $('.basic_info').hide();
-      $('.individual_info').show();
-    });
-    $('.show_more_button').on('click', function(){
-      $('.individual_info').hide();
-      $('.bank-info, .submit-button, .add-button').show();
+      $('.individual_info, .submit-button').show();
     });
   });
 
 .board.large.color-none
-  %h1.title 投稿にはプロフィールが必須です(簡単3STEP)
+  %h1.title 投稿にはプロフィールが必須です(簡単2STEP)
   .board.middle.color-none
     = render 'form', seller: @seller

@@ -35,7 +35,10 @@ Rails.application.routes.draw do
     resources :shares, only: [ :destroy ]
   end
   resources :talks
-  resources :sellers
+
+  resources :sellers do
+    resources :bank_accounts
+  end
   resources :charges do
     collection do
       post 'confirm'

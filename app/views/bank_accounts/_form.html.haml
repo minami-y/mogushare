@@ -1,0 +1,39 @@
+= form_for @bank_account, :url => {:action => :create} do |f|
+  - if @bank_account.errors.any?
+    #error_explanation
+      %h3
+        入力内容の誤りが
+        = pluralize(@bank_account.errors.count, "箇所")
+        あります
+      %ul
+        - @bank_account.errors.full_messages.each do |message|
+          %li= message
+
+  .submit-field
+    .bank-info
+      %p.comment 銀行名
+      = f.text_field :bank, placeholder: "例：もぐシェア銀行", required: true
+
+      %p.comment 金融機関コード
+      = f.text_field :bank_code, placeholder: "例：1111", required: true
+
+      %p.comment 口座種別
+      = f.select :account_type, [["普通", "normal"], ["当座", "current"]]
+
+      %p.comment 支店コード
+      = f.text_field :branch_code, placeholder: "例：111", required: true
+
+      %p.comment 口座番号
+      = f.text_field :account_number, placeholder: "例：1111111", required: true
+
+      %p.comment 口座名義
+      = f.text_field :name, placeholder: "モグシェアタロウ", required: true
+
+      %p.comment 身分証明書(免許証/パスポート/保険証(保険証は追加情報が必要になる可能性があります))
+      .img-field
+        .identification.preview
+          = image_tag "blank.png", class: "identification-image"
+          = f.file_field :identification, class: "seller-photo-field"
+          / = f.hidden_field :photo_cache
+      .submit-button
+      = f.submit "登録する"

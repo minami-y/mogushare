@@ -4,7 +4,7 @@
       %h3
         入力内容の誤りが
         = pluralize(seller.errors.count, "箇所")
-        あります:
+        あります
       %ul
         - seller.errors.full_messages.each do |message|
           %li= message
@@ -13,7 +13,7 @@
     .basic_info
       .img-field
         .mask.preview
-          - if seller.photo.present?
+          - if seller.photo.present? && seller.photo != "blank.png"
             = image_tag seller.photo, class: "circle-img"
           - elsif seller.photo_cache.present?
             = image_tag seller.photo_cache, class: "circle-img"
@@ -82,49 +82,6 @@
       %p.comment 電話番号(半角)
       = f.text_field :phone_number, placeholder: "09000000000"
 
-      .show_more_button
-        銀行口座情報へ
-
-    .bank-info
-      - if @bank_account.present?
-        = f.fields_for :bank_account, @bank_account do |ba|
-          %p.comment 銀行名
-          = ba.text_field :bank, placeholder: "例：もぐシェア銀行", required: true
-
-          %p.comment 金融機関コード
-          = ba.text_field :bank_code, placeholder: "例：1111", required: true
-
-          %p.comment 口座種別
-          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]], required: true
-
-          %p.comment 支店コード
-          = ba.text_field :branch_code, placeholder: "例：111", required: true
-
-          %p.comment 口座番号
-          = ba.text_field :account_number, placeholder: "例：1111111", required: true
-
-          %p.comment 口座名義
-          = ba.text_field :name, placeholder: "モグシェアタロウ", required: true
-
-      - else
-        = f.fields_for :bank_account, BankAccount.new do |ba|
-          %p.comment 銀行名
-          = ba.text_field :bank, placeholder: "例：もぐシェア銀行", required: true
-
-          %p.comment 金融機関コード
-          = ba.text_field :bank_code, placeholder: "例：1111", required: true
-
-          %p.comment 口座種別
-          = ba.select :account_type, [["普通", "normal"], ["当座", "current"]]
-
-          %p.comment 支店コード
-          = ba.text_field :branch_code, placeholder: "例：111", required: true
-
-          %p.comment 口座番号
-          = ba.text_field :account_number, placeholder: "例：1111111", required: true
-
-          %p.comment 口座名義
-          = ba.text_field :name, placeholder: "モグシェアタロウ", required: true
 
   .submit-button
     = f.submit "登録する"

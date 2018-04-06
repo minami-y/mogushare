@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404063648) do
+ActiveRecord::Schema.define(version: 20180405085250) do
 
   create_table "areas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "postal_code",                                         null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180404063648) do
     t.string   "bank_code"
     t.string   "bank_account_id"
     t.string   "string"
+    t.string   "identification"
     t.index ["seller_id"], name: "index_bank_accounts_on_seller_id", using: :btree
   end
 

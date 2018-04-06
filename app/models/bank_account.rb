@@ -5,6 +5,8 @@ class BankAccount < ApplicationRecord
   validates :bank_code, length: { is: 4 }
   validates :branch_code, length: { is: 3 }
   validates :account_number, length: { in: 6..8 }
+  mount_uploader :identification, ImageUploader
+  validates :identification, presence: true
 
   enum account_type: %i(normal current)
 

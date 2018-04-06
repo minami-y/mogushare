@@ -53,25 +53,24 @@ class SellersController < ApplicationController
       ) unless @seller.stripe_account_id.present?
       @seller.stripe_account_id = account.id
       @seller.save
-      # Stripeへ銀行口座の登録
-      bank_account = @seller.bank_account
-      bank = account.external_accounts.create({
-        external_account: {
-          account_number: @seller.bank_account.account_number.to_s,
-          country: "JP",
-          currency: "JPY",
-          account_holder_name: @seller.bank_account.name,
-          account_holder_type: "individual",
-          routing_number: @seller.bank_account.bank_code + @seller.bank_account.branch_code,
-          object: "bank_account"
-        }
-      })
+      # Stbank_account = @seller.bank_account
+      # bank = account.external_accounts.create({
+      #   external_account: {
+      #     account_number: @seller.bank_account.account_number.to_s,
+      #     country: "JP",
+      #     currency: "JPY",
+      #     account_holder_name: @seller.bank_account.name,
+      #     account_holder_type: "individual",
+      #     routing_number: @seller.bank_account.bank_code + @seller.bank_account.branch_code,
+      #     object: "bank_account"
+      #   }
+      # })
 
-      @seller.bank_account.bank_account_id = bank.id
-      bank_account.save
+
+      # @seller.bank_account.bank_account_id = bank.id
+      # bank_account.save
       redirect_back_or new_ticket_path
     else
-      @bank_account = BankAccount.new(seller_params[:bank_account_attributes])
       render 'new'
     end
     rescue Stripe::InvalidRequestError,
@@ -79,10 +78,8 @@ class SellersController < ApplicationController
        Stripe::APIConnectionError,
        Stripe::StripeError ,
       Stripe::CardError => e
-      bank_account.delete
+      #stripe側でNGなので@sellerを削除
       @seller.delete
-      logger.debug(e)
-      logger.debug(e.code)
       flash[:alert] = e.message
       render 'new'
   end
@@ -94,7 +91,7 @@ class SellersController < ApplicationController
   def update
     if @seller.update_attributes(seller_params)
       flash[:success] = "プロフィールが更新されました"
-      redirect_to tickets_path
+      redirect_to user_path(current_user)
     else
       render 'edit'
     end
@@ -129,16 +126,7 @@ class SellersController < ApplicationController
         :last_name_kana,
         :last_name_kanji,
         :phone_number,
-        :gender,
-        bank_account_attributes: [
-          :bank,
-          :bank_code,
-          :account_type,
-          :branch_type,
-          :branch_code,
-          :account_number,
-          :name
-        ]
+        :gender
       ).merge(user_id: current_user.id)
     end
 

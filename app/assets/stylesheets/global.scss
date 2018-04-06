@@ -254,6 +254,22 @@ p.ticket_title {
 p.must {
   color: orange
 }
+
+.identification{
+  margin: 15px 15px;
+  width:  80%;
+  height: 120px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.identification-image{
+  width: 400px;
+  height: 120px;
+}
+
 .mask {
   border-radius: 50%;
   width:  120px;

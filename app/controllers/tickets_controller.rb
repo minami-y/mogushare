@@ -92,8 +92,6 @@ class TicketsController < ApplicationController
     def register_as_seller
       if current_user.seller.nil?
         redirect_to new_seller_path
-      elsif current_user.seller.bank_account.nil?
-        redirect_to new_seller_path
       end
     end
 
